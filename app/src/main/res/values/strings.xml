@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">فیلیمو</string>
+    <string name="vitrin">ویترین</string>
+    <string name="category">دسته بندی</string>
+    <string name="myfilms">فیلم های من</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="watched_film">مشاهده شده ها</string>
+    <string name="saved">نشان شده ها</string>
+    <string name="see_all">مشاهده همه</string>
+    <string name="spacial">ویژه ها</string>
+    <string name="lastest_video">تازه های فیلیمو</string>
+    <string name="sports">ورزشی</string>
+    <string name="doyoulikevideo">آیا این ویدیو رو دوست داشتید ؟</string>
+    <string name="description">توضیحات</string>
+    <string name="traler">پیش نمایش</string>
+    <string name="enter_ur_comment">دیدگاه خود را بنویسید...</string>
+    <string name="login_and_sighnup">ورود و ثبت نام</string>
+    <string name="dark_mode">تم تیره</string>
+    <string name="info">درباره</string>
+    <string name="create_account">اگر در فیلیمو حساب کاربری ندارید،ثبت نام کنید:</string>
+    <string name="create_new_account">ایجاد حساب جدید</string>
+    <string name="login_if_have_account">اگر در فیلیمو حساب کاربری دارید،وارد شوید:</string>
+    <string name="enter_email">ایمیل خود را وارد کنید</string>
+    <string name="forget_pass">فراموشی رمز عبور</string>
+    <string name="enter">ورود</string>
+    <string name="enter_sighnup">ورود و ثبت نام</string>
+    <string name="enter_password">پسورد خود را وارد کنید</string>
+    <string name="enter_email_password">ایمیل و پسورد خود را وارد کنید</string>
+    <string name="enter_ur_name">نام خود را وارد کنید</string>
+    <string name="enter_ur_email">ایمیل خود را وارد کنید</string>
+    <string name="create">ساخت اکانت</string>
+    <string name="enter_phone_number">شماره تلفن خود را وارد کنید</string>
+    <string name="account_created">حساب با موفقیت ساخته شد</string>
+    <string name="accountnotcreated">خطا در ساخت حساب کاربری</string>
+    <string name="email_duplicate">ایمیل قبلا استفاده شده</string>
+    <string name="logout">خروج از حساب کاربری</string>
+    <string name="profile">حساب شخصی</string>
+    <string name="confirm">ثبت</string>
+    <string name="email_forget_sent">پسورد جدی به ایمیلتان ارسال گردید</string>
+    <string name="search">جست و جو</string>
+</resources>
