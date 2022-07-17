@@ -43,8 +43,6 @@ public interface IDao {
 //    @Query("update video set save= :save")
 //    int updateSave (String save);
 
-
-
 //    @Query("INSERT INTO tbl_save (video_id,video_title,video_image) VALUES (:id ,:name,:image)")
 //    int save(String id,String name,String image);
 
@@ -54,14 +52,10 @@ public interface IDao {
     @Query("select * from tbl_save")
     List<Save> getSaveVideos();
 
-
-
     @Insert
     long addLike(LikedVideos like);
 
     @Query("select * from tbl_like where video_title = :video_title")
     List<LikedVideos> getLikeVideos(String video_title);
-
-
 
 }

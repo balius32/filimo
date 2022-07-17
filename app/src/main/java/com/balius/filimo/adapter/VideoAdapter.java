@@ -58,10 +58,10 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoVH> {
 
 
                 } else {
-                            video.setSave("0");
-                            video.setLike("0");
-                            video.setDislike("0");
-                            video.setWatched("0");
+                    video.setSave("0");
+                    video.setLike("0");
+                    video.setDislike("0");
+                    video.setWatched("0");
                 }
                 Intent intent = new Intent(context, VideoPlayerActivity.class);
 
@@ -82,7 +82,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoVH> {
     class VideoVH extends RecyclerView.ViewHolder {
         AppCompatImageView img_video;
         AppCompatTextView txt_video_name;
-       RelativeLayout rel_video;
+        RelativeLayout rel_video;
 
         public VideoVH(@NonNull View itemView) {
             super(itemView);

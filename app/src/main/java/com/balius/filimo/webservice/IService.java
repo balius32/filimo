@@ -4,6 +4,7 @@ import com.balius.filimo.model.category.CategoryModel;
 import com.balius.filimo.model.lastesvideo.VideoModel;
 import com.balius.filimo.model.login.LoginModel;
 import com.balius.filimo.model.sighnup.SighnupModel;
+import com.balius.filimo.model.singelvideo.SingleVideoModel;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -41,12 +42,16 @@ public interface IService {
     @GET("api.php?users_login")
     Call<LoginModel> login(@Query("email") String email, @Query("password") String password);
 
-    @GET("api.php?forgot_pass&email=john@gmail.com")
+    @GET("api.php?forgot_pass")
     Call<SighnupModel> forgetPass(@Query("email") String email);
 
 
-    @GET("api.php?search_text=the")
+    @GET("api.php")
     Call<VideoModel>  searchVideo(@Query("search_text") String videoName);
 
+
+
+    @GET("api.php?")
+    Call<SingleVideoModel> getSingleVideo(@Query("video_id") int id);
 
 }

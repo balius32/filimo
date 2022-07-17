@@ -8,6 +8,8 @@ import com.balius.filimo.model.category.CategoryModel;
 import com.balius.filimo.model.lastesvideo.VideoModel;
 import com.balius.filimo.model.login.LoginModel;
 import com.balius.filimo.model.sighnup.SighnupModel;
+import com.balius.filimo.model.singelvideo.SingleVideo;
+import com.balius.filimo.model.singelvideo.SingleVideoModel;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -211,6 +213,27 @@ public class WebserviceCaller {
 
                 listener.onFailure(t.getMessage().toString());
                 Log.e(""+t.getMessage().toString(),"");
+
+            }
+        });
+    }
+
+    public void getSingleVideo(int video_id,IResponseListener listener) {
+
+        Call<SingleVideoModel> call = iService.getSingleVideo(video_id);
+
+        call.enqueue(new Callback<SingleVideoModel>() {
+            @Override
+            public void onResponse(@NonNull Call<SingleVideoModel> call, @NonNull Response<SingleVideoModel> response) {
+                listener.onSuccess(response.body());
+
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<SingleVideoModel> call, Throwable t) {
+
+                listener.onFailure(t.getMessage().toString());
+
 
             }
         });
