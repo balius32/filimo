@@ -202,9 +202,55 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/rel_lbl_comments"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/rel_player"
+                android:layout_marginTop="@dimen/margin_8">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_marginEnd="@dimen/margin_8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:text="@string/comments"
+                    android:textSize="@dimen/text_16" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img_arrow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_8"
+                    app:srcCompat="@drawable/ic_baseline_arrow_back_ios_24"
+                    app:tint="@color/red" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/img_arrow"
+                    android:text="@string/see_all"
+                    android:textColor="@color/red"
+                    android:textSize="@dimen/text_16" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rel_comments"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:layout_below="@id/rel_lbl_comments"
+                android:layout_marginTop="@dimen/margin_8">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycle_comments"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rel_comments"
                 android:layout_marginTop="@dimen/margin_8">
 
                 <androidx.appcompat.widget.AppCompatImageView

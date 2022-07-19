@@ -48,23 +48,13 @@ public class HorizontalVideoAdapter extends RecyclerView.Adapter<HorizontalVideo
     public void onBindViewHolder(@NonNull horzonVideoVh holder, int position) {
         Video video = videoList.get(position);
 
-        holder.txt_video_name.setText(video.getVideoTitle());
+//        holder.txt_video_name.setText(video.getVideoTitle());
         Picasso.get().load(video.getVideoThumbnailB()).into(holder.img_video);
-
 
         holder.rel_video.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                if (db.iDao().searchVideo(video.getVideoTitle()).size() > 0) {
-
-
-                } else {
-                    video.setSave("0");
-                    video.setLike("0");
-                    video.setDislike("0");
-                    video.setWatched("0");
-                }
                 Intent intent = new Intent(context, VideoPlayerActivity.class);
 
                 intent.putExtra("video", video);
@@ -84,13 +74,13 @@ public class HorizontalVideoAdapter extends RecyclerView.Adapter<HorizontalVideo
 
     class horzonVideoVh extends RecyclerView.ViewHolder{
         AppCompatImageView img_video;
-        AppCompatTextView txt_video_name;
+//        AppCompatTextView txt_video_name;
         RelativeLayout rel_video;
         public horzonVideoVh(@NonNull View itemView) {
             super(itemView);
 
             img_video = itemView.findViewById(R.id.img_video);
-            txt_video_name = itemView.findViewById(R.id.txt_video_name);
+           // txt_video_name = itemView.findViewById(R.id.txt_video_name);
             rel_video = itemView.findViewById(R.id.rel_video);
         }
     }

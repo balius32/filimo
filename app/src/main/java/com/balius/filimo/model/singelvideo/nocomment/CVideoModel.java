@@ -1,24 +1,21 @@
-package com.balius.filimo.model.singelvideo;
+package com.balius.filimo.model.singelvideo.nocomment;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class SingleVideoModel {
-
-
+public class CVideoModel {
     @SerializedName("ALL_IN_ONE_VIDEO")
     @Expose
-    private List<SingleVideo> allInOneVideo = null;
+    private List<CVideo> allInOneVideo = null;
 
-    public List<SingleVideo> getAllInOneVideo() {
+    public List<CVideo> getAllInOneVideo() {
         return allInOneVideo;
     }
 
-    public void setAllInOneVideo(List<SingleVideo> allInOneVideo) {
+    public void setAllInOneVideo(List<CVideo> allInOneVideo) {
         this.allInOneVideo = allInOneVideo;
     }
-
 
 }

@@ -1,11 +1,11 @@
-package com.balius.filimo.model.singelvideo;
+package com.balius.filimo.model.singelvideo.nocomment;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class SingleVideo {
+public class CVideo {
 
     @SerializedName("cat_id")
     @Expose
@@ -48,10 +48,10 @@ public class SingleVideo {
     private String totelViewer;
     @SerializedName("related")
     @Expose
-    private List<Related> related = null;
+    private List<CRelated> related = null;
     @SerializedName("user_comments")
     @Expose
-    private List<UserComment> userComments = null;
+    private List<String> userComments = null;
 
     public String getCatId() {
         return catId;
@@ -157,20 +157,19 @@ public class SingleVideo {
         this.totelViewer = totelViewer;
     }
 
-    public List<Related> getRelated() {
+    public List<CRelated> getRelated() {
         return related;
     }
 
-    public void setRelated(List<Related> related) {
+    public void setRelated(List<CRelated> related) {
         this.related = related;
     }
 
-    public List<UserComment> getUserComments() {
+    public List<String> getUserComments() {
         return userComments;
     }
 
-    public void setUserComments(List<UserComment> userComments) {
+    public void setUserComments(List<String> userComments) {
         this.userComments = userComments;
     }
-
 }

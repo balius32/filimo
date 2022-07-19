@@ -8,8 +8,9 @@ import com.balius.filimo.model.category.CategoryModel;
 import com.balius.filimo.model.lastesvideo.VideoModel;
 import com.balius.filimo.model.login.LoginModel;
 import com.balius.filimo.model.sighnup.SighnupModel;
-import com.balius.filimo.model.singelvideo.SingleVideo;
-import com.balius.filimo.model.singelvideo.SingleVideoModel;
+import com.balius.filimo.model.singelvideo.comment.SingleVideoModel;
+import com.balius.filimo.model.singelvideo.nocomment.CVideo;
+import com.balius.filimo.model.singelvideo.nocomment.CVideoModel;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -211,28 +212,51 @@ public class WebserviceCaller {
             @Override
             public void onFailure(@NonNull Call<VideoModel> call, Throwable t) {
 
-                listener.onFailure(t.getMessage().toString());
-                Log.e(""+t.getMessage().toString(),"");
+                listener.onFailure(t.getMessage());
+                Log.e(""+ t.getMessage(),"");
 
             }
         });
     }
 
-    public void getSingleVideo(int video_id,IResponseListener listener) {
 
-        Call<SingleVideoModel> call = iService.getSingleVideo(video_id);
+    public void getSingleVideo( int id, IResponseListener listener) {
+
+        Call<SingleVideoModel> call = iService.getSingleVideo(id);
 
         call.enqueue(new Callback<SingleVideoModel>() {
             @Override
             public void onResponse(@NonNull Call<SingleVideoModel> call, @NonNull Response<SingleVideoModel> response) {
                 listener.onSuccess(response.body());
-
+                Log.e("","");
             }
-
             @Override
             public void onFailure(@NonNull Call<SingleVideoModel> call, Throwable t) {
 
-                listener.onFailure(t.getMessage().toString());
+                listener.onFailure(t.getMessage());
+                Log.e("","");
+
+
+            }
+        });
+    }
+
+
+    public void getCmSingleVideo( int id, IResponseListener listener) {
+
+        Call<CVideoModel> call = iService.getCSingleVideo(id);
+
+        call.enqueue(new Callback<CVideoModel>() {
+            @Override
+            public void onResponse(@NonNull Call<CVideoModel> call, @NonNull Response<CVideoModel> response) {
+                listener.onSuccess(response.body());
+                Log.e("","");
+            }
+            @Override
+            public void onFailure(@NonNull Call<CVideoModel> call, Throwable t) {
+
+                listener.onFailure(t.getMessage());
+                Log.e("","");
 
 
             }

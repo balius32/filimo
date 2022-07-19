@@ -4,16 +4,11 @@ import com.balius.filimo.model.category.CategoryModel;
 import com.balius.filimo.model.lastesvideo.VideoModel;
 import com.balius.filimo.model.login.LoginModel;
 import com.balius.filimo.model.sighnup.SighnupModel;
-import com.balius.filimo.model.singelvideo.SingleVideoModel;
+import com.balius.filimo.model.singelvideo.comment.SingleVideoModel;
+import com.balius.filimo.model.singelvideo.nocomment.CVideoModel;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
-import retrofit2.http.Header;
-import retrofit2.http.POST;
-import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface IService {
@@ -51,7 +46,10 @@ public interface IService {
 
 
 
-    @GET("api.php?")
+    @GET("api.php")
     Call<SingleVideoModel> getSingleVideo(@Query("video_id") int id);
+
+    @GET("api.php")
+    Call<CVideoModel> getCSingleVideo(@Query("video_id") int id);
 
 }

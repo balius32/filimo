@@ -1,9 +1,12 @@
-package com.balius.filimo.model.singelvideo;
+package com.balius.filimo.model.singelvideo.comment;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Related {
+import java.util.List;
+
+public class SingleVideo {
+
     @SerializedName("cat_id")
     @Expose
     private String catId;
@@ -43,6 +46,12 @@ public class Related {
     @SerializedName("totel_viewer")
     @Expose
     private String totelViewer;
+    @SerializedName("related")
+    @Expose
+    private List<Related> related ;
+    @SerializedName("user_comments")
+    @Expose
+    private List<UserComment> userComments ;
 
     public String getCatId() {
         return catId;
@@ -147,4 +156,22 @@ public class Related {
     public void setTotelViewer(String totelViewer) {
         this.totelViewer = totelViewer;
     }
+
+    public List<Related> getRelated() {
+        return related;
+    }
+
+    public void setRelated(List<Related> related) {
+        this.related = related;
+    }
+
+
+    public List<UserComment> getUserComments() {
+        return userComments;
+    }
+
+    public void setUserComments( List<UserComment> userComments) {
+        this.userComments = userComments;
+    }
+
 }

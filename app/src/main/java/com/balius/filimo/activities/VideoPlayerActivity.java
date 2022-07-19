@@ -1,7 +1,6 @@
 package com.balius.filimo.activities;
 
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Html;
@@ -14,8 +13,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.balius.filimo.database.Db;
 import com.balius.filimo.databinding.ActivityVideoPlayerBinding;
 import com.balius.filimo.model.lastesvideo.Video;
-import com.balius.filimo.model.singelvideo.SingleVideo;
-import com.balius.filimo.model.singelvideo.SingleVideoModel;
+import com.balius.filimo.model.singelvideo.comment.SingleVideo;
+import com.balius.filimo.model.singelvideo.comment.SingleVideoModel;
+import com.balius.filimo.model.singelvideo.comment.UserComment;
+import com.balius.filimo.model.singelvideo.nocomment.CVideo;
+import com.balius.filimo.model.singelvideo.nocomment.CVideoModel;
 import com.balius.filimo.webservice.IResponseListener;
 import com.balius.filimo.webservice.WebserviceCaller;
 import com.google.android.exoplayer2.ExoPlayer;
@@ -31,7 +33,9 @@ public class VideoPlayerActivity extends AppCompatActivity {
     Db db;
     WebserviceCaller webserviceCaller;
     SingleVideo singleVideo;
+    CVideo cVideo;
     Video video;
+
 
 
     @Override
@@ -46,44 +50,68 @@ public class VideoPlayerActivity extends AppCompatActivity {
 
         Log.e("", "");
 
-        binding.txtTitle.setTypeface(null, Typeface.BOLD);
         db = Db.getInstance(getApplicationContext());
-
         String id = video.getId();
 
-        int vid =Integer.parseInt(id);
+        int vid = Integer.parseInt(id);
 
         Log.e("", "");
 
         webserviceCaller.getSingleVideo(vid, new IResponseListener() {
             @Override
             public void onSuccess(Object responseMessage) {
-                SingleVideoModel singleVideoModel = new SingleVideoModel();
+                SingleVideoModel singleVideoModel;
                 singleVideoModel = (SingleVideoModel) responseMessage;
 
                 List<SingleVideo> singleVideoList = singleVideoModel.getAllInOneVideo();
                 singleVideo = singleVideoList.get(0);
 
-                Log.e("","succccesssss");
+                Log.e("", "succccesssss");
+
             }
 
             @Override
             public void onFailure(String onErrorMessage) {
-               Log.e("failllll",""+onErrorMessage);
+
+                Log.e("failllll", "" + onErrorMessage);
+                //if video dosent have comment
+                webserviceCaller.getCmSingleVideo(vid, new IResponseListener() {
+                    @Override
+                    public void onSuccess(Object responseMessage) {
+                        Log.e("sucsscuusse &succusse", "");
+
+                        CVideoModel cVideoModel;
+                        cVideoModel = (CVideoModel) responseMessage;
+
+                        List<CVideo> cVideoList = cVideoModel.getAllInOneVideo();
+                        cVideo = cVideoList.get(0);
+
+                    }
+
+                    @Override
+                    public void onFailure(String onErrorMessage) {
+                        Log.e("Failll & Failll", "");
+                    }
+                });
+
             }
         });
-//
-//        Picasso.get().load(singleVideo.getVideoThumbnailB()).into(binding.imgCover);
-//        binding.txtTitle.setText(singleVideo.getVideoTitle().toString());
-//        binding.txtTime.setText(singleVideo.getVideoDuration() + " دقیقه ");
-//
-//        Spanned spanned = Html.fromHtml(singleVideo.getVideoDescription());
-//        binding.txtDescription.setText(spanned);
-//
-//        binding.lblName.setText(singleVideo.getVideoTitle());
-//
-//        List<Video> videoList = db.iDao().searchVideo(singleVideo.getVideoTitle());
-//
+
+
+
+
+
+        Picasso.get().load(video.getVideoThumbnailB()).into(binding.imgCover);
+        binding.txtTitle.setText(video.getVideoTitle().toString());
+        binding.txtTime.setText(video.getVideoDuration() + " دقیقه ");
+
+        Spanned spanned = Html.fromHtml(video.getVideoDescription());
+        binding.txtDescription.setText(spanned);
+
+        binding.lblName.setText(video.getVideoTitle());
+
+
+        //   List<Video> videoList = db.iDao().searchVideo(singleVideo.getVideoTitle());
 
 //        if (videoList.size() > 0) {
 //            video = videoList.get(0);
@@ -99,12 +127,12 @@ public class VideoPlayerActivity extends AppCompatActivity {
 //        }
 
 
-//        player = new ExoPlayer.Builder(this).build();
-//        MediaItem item = MediaItem.fromUri(Uri.parse(singleVideo.getVideoUrl()));
-//        player.setMediaItem(item);
-//        binding.videoView.setPlayer(player);
-//        player.play();
-//
+        player = new ExoPlayer.Builder(this).build();
+        MediaItem item = MediaItem.fromUri(Uri.parse(video.getVideoUrl()));
+        player.setMediaItem(item);
+        binding.videoView.setPlayer(player);
+        player.play();
+
 
 //        binding.imgSave.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -131,34 +159,33 @@ public class VideoPlayerActivity extends AppCompatActivity {
 //
 //        });
 
-        //watch history
-//        binding.videoView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//            }
-//        });
+        // watch history
+        binding.videoView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
-//        binding.imgShare.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent shareIntent = new Intent(Intent.ACTION_SEND);
-//                shareIntent.setType("text/plain");
-//                shareIntent.putExtra(Intent.EXTRA_SUBJECT, "My application name");
-//                String shareMessage = "Share the video";
-//                shareMessage = shareMessage + singleVideo.getVideoUrl();
-//                shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
-//                startActivity(Intent.createChooser(shareIntent, "choose one"));
-//            }
-//        });
-//
+            }
+        });
 
-//        binding.imgBack.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                finish();
-//            }
-//        });
+        binding.imgShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                shareIntent.setType("text/plain");
+                shareIntent.putExtra(Intent.EXTRA_SUBJECT, "My application name");
+                String shareMessage = "Share the video";
+                shareMessage = shareMessage + video.getVideoUrl();
+                shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
+                startActivity(Intent.createChooser(shareIntent, "choose one"));
+            }
+        });
+
+        binding.imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
     @Override

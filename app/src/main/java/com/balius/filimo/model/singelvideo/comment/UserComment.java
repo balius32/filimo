@@ -1,4 +1,4 @@
-package com.balius.filimo.model.singelvideo;
+package com.balius.filimo.model.singelvideo.comment;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
