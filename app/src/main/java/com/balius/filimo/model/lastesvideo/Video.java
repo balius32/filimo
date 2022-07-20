@@ -94,24 +94,6 @@ public class Video implements Parcelable {
     @ColumnInfo(name = "watched")
     private String watched = "0";
 
-    protected Video(Parcel in) {
-        id = in.readString();
-        catId = in.readString();
-        videoType = in.readString();
-        videoTitle = in.readString();
-        videoUrl = in.readString();
-        videoId = in.readString();
-        videoThumbnailB = in.readString();
-        videoThumbnailS = in.readString();
-        videoDuration = in.readString();
-        videoDescription = in.readString();
-        rateAvg = in.readString();
-        totelViewer = in.readString();
-        cid = in.readString();
-        categoryName = in.readString();
-        categoryImage = in.readString();
-        categoryImageThumb = in.readString();
-    }
 
 
     public Video(String id, String catId, String videoType, String videoTitle, String videoUrl, String videoId, String videoThumbnailB, String videoThumbnailS, String videoDuration, String videoDescription, String rateAvg, String totelViewer, String cid, String categoryName, String categoryImage, String categoryImageThumb) {
@@ -159,6 +141,31 @@ public class Video implements Parcelable {
     }
 
     public Video() {
+    }
+
+
+    protected Video(Parcel in) {
+        vId = in.readInt();
+        id = in.readString();
+        catId = in.readString();
+        videoType = in.readString();
+        videoTitle = in.readString();
+        videoUrl = in.readString();
+        videoId = in.readString();
+        videoThumbnailB = in.readString();
+        videoThumbnailS = in.readString();
+        videoDuration = in.readString();
+        videoDescription = in.readString();
+        rateAvg = in.readString();
+        totelViewer = in.readString();
+        cid = in.readString();
+        categoryName = in.readString();
+        categoryImage = in.readString();
+        categoryImageThumb = in.readString();
+        save = in.readString();
+        like = in.readString();
+        dislike = in.readString();
+        watched = in.readString();
     }
 
     public static final Creator<Video> CREATOR = new Creator<Video>() {
@@ -340,6 +347,7 @@ public class Video implements Parcelable {
         this.watched = watched;
     }
 
+
     @Override
     public int describeContents() {
         return 0;
@@ -347,6 +355,7 @@ public class Video implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(vId);
         parcel.writeString(id);
         parcel.writeString(catId);
         parcel.writeString(videoType);
@@ -363,5 +372,9 @@ public class Video implements Parcelable {
         parcel.writeString(categoryName);
         parcel.writeString(categoryImage);
         parcel.writeString(categoryImageThumb);
+        parcel.writeString(save);
+        parcel.writeString(like);
+        parcel.writeString(dislike);
+        parcel.writeString(watched);
     }
 }

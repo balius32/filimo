@@ -9,9 +9,14 @@ import android.util.Log;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.balius.filimo.R;
+import com.balius.filimo.adapter.CommentAdapter;
 import com.balius.filimo.database.Db;
 import com.balius.filimo.databinding.ActivityVideoPlayerBinding;
+import com.balius.filimo.model.Save;
 import com.balius.filimo.model.lastesvideo.Video;
 import com.balius.filimo.model.singelvideo.comment.SingleVideo;
 import com.balius.filimo.model.singelvideo.comment.SingleVideoModel;
@@ -35,7 +40,16 @@ public class VideoPlayerActivity extends AppCompatActivity {
     SingleVideo singleVideo;
     CVideo cVideo;
     Video video;
+    List<UserComment> userCommentList;
+    //Save save;
+    String id;
 
+//    String video_id;
+//    String video_title;
+//    String video_duration;
+//    String video_description;
+//    String video_image;
+//    String video_url;
 
 
     @Override
@@ -46,12 +60,12 @@ public class VideoPlayerActivity extends AppCompatActivity {
 
         webserviceCaller = new WebserviceCaller();
         bundle = getIntent().getExtras();
+
         video = bundle.getParcelable("video");
 
-        Log.e("", "");
-
         db = Db.getInstance(getApplicationContext());
-        String id = video.getId();
+        id = video.getId();
+
 
         int vid = Integer.parseInt(id);
 
@@ -65,20 +79,26 @@ public class VideoPlayerActivity extends AppCompatActivity {
 
                 List<SingleVideo> singleVideoList = singleVideoModel.getAllInOneVideo();
                 singleVideo = singleVideoList.get(0);
+                userCommentList = singleVideo.getUserComments();
+
+
+                binding.recycleComments.setAdapter(new CommentAdapter(getApplicationContext(), userCommentList));
+                binding.recycleComments.setLayoutManager(new LinearLayoutManager(getApplicationContext(),
+                        RecyclerView.VERTICAL, false));
 
                 Log.e("", "succccesssss");
-
             }
 
             @Override
             public void onFailure(String onErrorMessage) {
 
                 Log.e("failllll", "" + onErrorMessage);
+
                 //if video dosent have comment
                 webserviceCaller.getCmSingleVideo(vid, new IResponseListener() {
                     @Override
                     public void onSuccess(Object responseMessage) {
-                        Log.e("sucsscuusse &succusse", "");
+                        Log.e("failll &succusse", "");
 
                         CVideoModel cVideoModel;
                         cVideoModel = (CVideoModel) responseMessage;
@@ -90,6 +110,7 @@ public class VideoPlayerActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(String onErrorMessage) {
+
                         Log.e("Failll & Failll", "");
                     }
                 });
@@ -97,35 +118,14 @@ public class VideoPlayerActivity extends AppCompatActivity {
             }
         });
 
-
-
-
-
         Picasso.get().load(video.getVideoThumbnailB()).into(binding.imgCover);
-        binding.txtTitle.setText(video.getVideoTitle().toString());
+        binding.txtTitle.setText(video.getVideoTitle());
         binding.txtTime.setText(video.getVideoDuration() + " دقیقه ");
 
         Spanned spanned = Html.fromHtml(video.getVideoDescription());
         binding.txtDescription.setText(spanned);
 
         binding.lblName.setText(video.getVideoTitle());
-
-
-        //   List<Video> videoList = db.iDao().searchVideo(singleVideo.getVideoTitle());
-
-//        if (videoList.size() > 0) {
-//            video = videoList.get(0);
-//            if (video.getSave().equals("1")){
-//                binding.imgSave.setBackgroundResource(R.drawable.icon_save_dark);
-//            }
-//            else {
-//                binding.imgSave.setBackgroundResource(R.drawable.icon_save);
-//            }
-//
-//        } else {
-//            binding.imgSave.setBackgroundResource(R.drawable.icon_save);
-//        }
-
 
         player = new ExoPlayer.Builder(this).build();
         MediaItem item = MediaItem.fromUri(Uri.parse(video.getVideoUrl()));
@@ -134,37 +134,37 @@ public class VideoPlayerActivity extends AppCompatActivity {
         player.play();
 
 
-//        binding.imgSave.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//
-//                if (videoList.size() > 0) {
-//
-//
-//                    if (video.getSave().equals("1")) {
-//                        binding.imgSave.setBackgroundResource(R.drawable.icon_save);
-//                        db.iDao().updateSave("0");}
-//
-//                    if (video.getSave().equals("0")){
-//                        binding.imgSave.setBackgroundResource(R.drawable.icon_save_dark);
-//                        db.iDao().updateSave("1");
-//                    }
-//
-//                }
-//                else {
-//                    video.setSave("1");
-//                    long result = db.iDao().addVideo(video);
-//                }}
-//
-//        });
 
-        // watch history
-        binding.videoView.setOnClickListener(new View.OnClickListener() {
+        List<Save> saveList = db.iDao().getSaveVideos(video.getVideoTitle());
+
+        if (saveList.size() > 0) {
+
+            binding.imgSave.setBackgroundResource(R.drawable.icon_save_dark);
+
+        } else {
+            binding.imgSave.setBackgroundResource(R.drawable.icon_save);
+        }
+
+
+
+        binding.imgSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
+                List<Save> saveList = db.iDao().getSaveVideos(video.getVideoTitle());
+
+                if (saveList.size() > 0) {
+                    binding.imgSave.setBackgroundResource(R.drawable.icon_save);
+                    db.iDao().deleteSave(video.getId());
+                } else {
+                    binding.imgSave.setBackgroundResource(R.drawable.icon_save_dark);
+                    video.setSave("1");
+                    Save save  = new Save(video.getId(),video.getVideoTitle(),video.getVideoThumbnailB(),
+                            video.getVideoUrl(),video.getVideoDescription(),video.getVideoDuration());
+                    long result = db.iDao().addSave(save);
+                }
             }
+
         });
 
         binding.imgShare.setOnClickListener(new View.OnClickListener() {

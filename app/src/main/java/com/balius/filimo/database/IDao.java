@@ -37,25 +37,32 @@ public interface IDao {
     @Query("select * from video where video_title = :name")
     List<Video> searchVideo(String name);
 
-//    @Query("select * from video where save = :save ")
-//    List<Video> getSavedVideos(String save) ;
+    @Query("select * from video where save = :save ")
+    List<Video> getSavedVideos(String save);
 
-//    @Query("update video set save= :save")
-//    int updateSave (String save);
+    @Query("update video set save= :save")
+    int updateSave(String save);
 
-//    @Query("INSERT INTO tbl_save (video_id,video_title,video_image) VALUES (:id ,:name,:image)")
-//    int save(String id,String name,String image);
 
     @Insert
     long addSave(Save save);
 
     @Query("select * from tbl_save")
-    List<Save> getSaveVideos();
+    List<Save> getAllSaveVideos();
 
-    @Insert
-    long addLike(LikedVideos like);
+    @Query("select * from tbl_save where video_title = :video_title")
+    List<Save> getSaveVideos(String video_title);
 
-    @Query("select * from tbl_like where video_title = :video_title")
-    List<LikedVideos> getLikeVideos(String video_title);
+
+//
+//    @Insert
+//    long addLike(LikedVideos like);
+//
+//    @Query("select * from tbl_like where video_title = :video_title")
+//    List<LikedVideos> getLikeVideos(String video_title);
+//
+    @Query("delete  from tbl_save where video_id=:id")
+    void deleteSave(String id);
+
 
 }

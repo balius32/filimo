@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <RelativeLayout
+        android:id="@+id/rel_save_video"
+        android:layout_width="@dimen/margin_150"
+        android:layout_height="@dimen/margin_220">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img_video"
+            android:layout_width="@dimen/margin_140"
+            android:layout_height="@dimen/margin_200"
+            android:scaleType="fitXY" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_video_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/img_video"
+            android:layout_centerHorizontal="true"
+            android:layout_marginEnd="@dimen/margin_8" />
+
+    </RelativeLayout>
+
+
+
+</RelativeLayout>
