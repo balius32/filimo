@@ -7,6 +7,8 @@ import android.text.Html;
 import android.text.Spanned;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -16,8 +18,10 @@ import com.balius.filimo.R;
 import com.balius.filimo.adapter.CommentAdapter;
 import com.balius.filimo.database.Db;
 import com.balius.filimo.databinding.ActivityVideoPlayerBinding;
+import com.balius.filimo.model.LikedVideos;
 import com.balius.filimo.model.Save;
 import com.balius.filimo.model.lastesvideo.Video;
+import com.balius.filimo.model.login.Login;
 import com.balius.filimo.model.singelvideo.comment.SingleVideo;
 import com.balius.filimo.model.singelvideo.comment.SingleVideoModel;
 import com.balius.filimo.model.singelvideo.comment.UserComment;
@@ -27,6 +31,7 @@ import com.balius.filimo.webservice.IResponseListener;
 import com.balius.filimo.webservice.WebserviceCaller;
 import com.google.android.exoplayer2.ExoPlayer;
 import com.google.android.exoplayer2.MediaItem;
+import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -41,15 +46,8 @@ public class VideoPlayerActivity extends AppCompatActivity {
     CVideo cVideo;
     Video video;
     List<UserComment> userCommentList;
-    //Save save;
     String id;
 
-//    String video_id;
-//    String video_title;
-//    String video_duration;
-//    String video_description;
-//    String video_image;
-//    String video_url;
 
 
     @Override
@@ -69,7 +67,7 @@ public class VideoPlayerActivity extends AppCompatActivity {
 
         int vid = Integer.parseInt(id);
 
-        Log.e("", "");
+
 
         webserviceCaller.getSingleVideo(vid, new IResponseListener() {
             @Override
@@ -127,6 +125,7 @@ public class VideoPlayerActivity extends AppCompatActivity {
 
         binding.lblName.setText(video.getVideoTitle());
 
+        binding.videoView.setResizeMode(AspectRatioFrameLayout.RESIZE_MODE_FILL);
         player = new ExoPlayer.Builder(this).build();
         MediaItem item = MediaItem.fromUri(Uri.parse(video.getVideoUrl()));
         player.setMediaItem(item);
@@ -143,6 +142,17 @@ public class VideoPlayerActivity extends AppCompatActivity {
 
         } else {
             binding.imgSave.setBackgroundResource(R.drawable.icon_save);
+        }
+
+        List<LikedVideos> likedVideosList = db.iDao().getLikeVideos(video.getVideoTitle());
+
+        if (likedVideosList.size()>0){
+
+            binding.imgLike.setBackgroundResource(R.color.dark_yellow);
+            binding.imgDislike.setBackgroundResource(R.color.dark_yellow);
+        }else {
+            binding.imgLike.setBackgroundResource(R.color.gray);
+            binding.imgDislike.setBackgroundResource(R.color.gray);
         }
 
 
@@ -184,6 +194,54 @@ public class VideoPlayerActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();
+            }
+        });
+
+
+        binding.btnWatch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),PlayerActivity.class);
+                intent.putExtra("url",video.getVideoUrl());
+                startActivity(intent);
+            }
+        });
+
+        binding.imgSendComment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               List<Login> loginList =  db.iDao().getAllAccount();
+                String text = binding.edtComment.getText().toString();
+               if (loginList.size()>0){
+
+                   if (text.isEmpty()){
+                       Toast.makeText(VideoPlayerActivity.this, R.string.pls_enter_comment, Toast.LENGTH_SHORT).show();
+                   }else {
+                   Login login=loginList.get(0);
+
+                   String username = login.getName();
+                   webserviceCaller.insertComment(text, username, vid, new IResponseListener() {
+                       @Override
+                       public void onSuccess(Object responseMessage) {
+                           Toast.makeText(VideoPlayerActivity.this, R.string.succefully_add_comment, Toast.LENGTH_SHORT).show();
+                           binding.edtComment.setText(null);
+                           InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
+                           imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+                       }
+
+                       @Override
+                       public void onFailure(String onErrorMessage) {
+                           Toast.makeText(VideoPlayerActivity.this, R.string.error_insert_comment, Toast.LENGTH_SHORT).show();
+
+                       }
+                   });
+                   }
+               }
+               else {
+                   Toast.makeText(VideoPlayerActivity.this, R.string.login_firs, Toast.LENGTH_SHORT).show();
+               }
+
+
             }
         });
     }

@@ -263,5 +263,26 @@ public class WebserviceCaller {
         });
     }
 
+    public void insertComment(String cmText,String username,int videoId,IResponseListener listener) {
+
+        Call<SighnupModel> call = iService.insertComment(cmText,username,videoId);
+
+        call.enqueue(new Callback<SighnupModel>() {
+            @Override
+            public void onResponse(@NonNull Call<SighnupModel> call, @NonNull Response<SighnupModel> response) {
+                listener.onSuccess(response.body());
+                Log.e(""+response.body(),"");
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<SighnupModel> call, Throwable t) {
+
+                listener.onFailure(t.getMessage().toString());
+                Log.e(""+t.getMessage().toString(),"");
+
+            }
+        });
+    }
+
 
 }

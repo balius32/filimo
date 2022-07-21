@@ -73,6 +73,13 @@ public class CreateAccountActivity extends AppCompatActivity {
             }
         });
 
+        binding.imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
 
     }
 }

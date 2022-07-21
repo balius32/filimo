@@ -53,16 +53,6 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoVH> {
         holder.rel_video.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (db.iDao().searchVideo(video.getVideoTitle()).size() > 0) {
-
-
-                } else {
-                    video.setSave("0");
-                    video.setLike("0");
-                    video.setDislike("0");
-                    video.setWatched("0");
-                }
-
                 Intent intent = new Intent(context, VideoPlayerActivity.class);
 
                 intent.putExtra("video", video);

@@ -40,4 +40,10 @@
     <string name="email_forget_sent">پسورد جدی به ایمیلتان ارسال گردید</string>
     <string name="search">جست و جو</string>
     <string name="comments">دیدگاه ها</string>
+    <string name="watch">تماشا</string>
+    <string name="enter_and_watch">ورود و تماشا</string>
+    <string name="succefully_add_comment">نظر با موفقیت ثبت شد</string>
+    <string name="error_insert_comment">خطا در ثبت نظر</string>
+    <string name="login_firs">ابتدا باید وارد حساب کاربری بشید</string>
+    <string name="pls_enter_comment">لطفا نظر خود را بنویسید</string>
 </resources>

@@ -17,6 +17,10 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".activities.PlayerActivity"
+            android:exported="false"
+            android:configChanges="orientation|screenSize|screenLayout"/>
+        <activity
             android:name=".activities.SearchActivity"
             android:exported="false" />
         <activity

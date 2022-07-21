@@ -30,10 +30,9 @@ public class VitrinFragment extends Fragment {
         // Required empty public constructor
     }
 
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         binding = FragmentVitrinBinding.inflate(getLayoutInflater());
         webserviceCaller = new WebserviceCaller();
 
@@ -69,7 +68,7 @@ public class VitrinFragment extends Fragment {
                 binding.recycleSpacial.setAdapter(new HorizontalVideoAdapter(getActivity(),videoModel.getAllInOneVideo() ));
                 binding.recycleSpacial.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL,false));
 
-                binding.pager.setAdapter(new PageAdapter(getActivity(),videoModel.getAllInOneVideo()));
+              //  binding.pager.setAdapter(new PageAdapter(getActivity(),videoModel.getAllInOneVideo()));
             }
 
             @Override
@@ -106,8 +105,6 @@ public class VitrinFragment extends Fragment {
                 startActivity(intent);
             }
         });
-
-
 
 
         return binding.getRoot();

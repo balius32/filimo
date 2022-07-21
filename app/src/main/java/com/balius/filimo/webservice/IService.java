@@ -52,4 +52,10 @@ public interface IService {
     @GET("api.php")
     Call<CVideoModel> getCSingleVideo(@Query("video_id") int id);
 
+    @GET("api.php?video_comment")
+    Call<SighnupModel> insertComment(
+            @Query("comment_text") String tex
+            ,@Query("video&user_name") String username
+            ,@Query("post_id") int post_id);
+
 }
