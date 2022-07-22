@@ -1,8 +1,5 @@
 package com.balius.filimo.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatImageView;
-
 import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,9 +7,12 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatImageView;
+import androidx.appcompat.widget.AppCompatTextView;
+
 import com.balius.filimo.R;
 import com.balius.filimo.databinding.ActivityPlayerBinding;
-import com.balius.filimo.databinding.ActivityVideoPlayerBinding;
 import com.google.android.exoplayer2.ExoPlayer;
 import com.google.android.exoplayer2.MediaItem;
 import com.google.android.exoplayer2.Player;
@@ -24,6 +24,8 @@ public class PlayerActivity extends AppCompatActivity {
     AppCompatImageView lock;
     AppCompatImageView fullscreen;
     AppCompatImageView img_open_lock;
+    AppCompatImageView img_back;
+    AppCompatTextView txt_name;
     ProgressBar progressbar;
 
     ExoPlayer player;
@@ -33,6 +35,7 @@ public class PlayerActivity extends AppCompatActivity {
     boolean isLocked = false;
     boolean isFullScreen = false;
 
+    String videoName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,16 +45,28 @@ public class PlayerActivity extends AppCompatActivity {
 
         bundle = getIntent().getExtras();
         url = bundle.getString("url");
+        videoName = bundle.getString("title");
 
         lock = findViewById(R.id.exo_lock);
         fullscreen = findViewById(R.id.btn_fullscreen);
         progressbar = findViewById(R.id.progressbar);
         img_open_lock = findViewById(R.id.img_open_lock);
+        img_back = findViewById(R.id.img_back);
+        txt_name = findViewById(R.id.txt_name);
 
         img_open_lock.setVisibility(View.GONE);
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
+
+        txt_name.setText(videoName);
+
+        img_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         lock.setOnClickListener(new View.OnClickListener() {
             @Override

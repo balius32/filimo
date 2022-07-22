@@ -22,13 +22,13 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="@dimen/margin_8"/>
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <com.balius.filimo.customview.PersianTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/margin_8"
                 android:layout_toStartOf="@id/img_back"
-                android:text="@string/enter_sighnup"
-                android:textSize="@dimen/text_16"/>
+                android:text="@string/sighn_up"
+                android:textSize="@dimen/text_16" />
 
 
         </RelativeLayout>
@@ -43,7 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <com.balius.filimo.customview.PersianTextView
                 android:id="@+id/txt_creat_account"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -54,7 +54,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <com.balius.filimo.customview.PersianTextView
                 android:id="@+id/appCompatTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

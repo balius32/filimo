@@ -24,7 +24,7 @@
                 android:layout_marginEnd="@dimen/margin_8"
                 app:srcCompat="@drawable/ic_baseline_arrow_forward_24" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <com.balius.filimo.customview.PersianTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/margin_8"
@@ -49,13 +49,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <com.balius.filimo.customview.PersianTextView
                 android:id="@+id/lbl_create_account"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/create_account"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="@dimen/margin_8"/>
+                android:layout_marginTop="@dimen/margin_8"
+                android:text="@string/create_account" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_sighnup"
@@ -85,7 +85,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <com.balius.filimo.customview.PersianTextView
                 android:id="@+id/lbl_login"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -139,7 +139,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/edt_email" />
 
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <com.balius.filimo.customview.PersianTextView
                 android:id="@+id/txt_forget_pass"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

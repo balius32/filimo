@@ -15,12 +15,12 @@ public class LikedVideos {
     private String video_title;
 
     @ColumnInfo(name = "like_state")
-    private String like_state;
+    private boolean like_state  ;
 
     @ColumnInfo(name = "dislike_state")
-    private String dislike_state;
+    private boolean dislike_state ;
 
-    public LikedVideos(int id, String video_title, String like_state, String dislike_state) {
+    public LikedVideos(int id, String video_title, boolean like_state, boolean dislike_state) {
         this.id = id;
         this.video_title = video_title;
         this.like_state = like_state;
@@ -28,7 +28,7 @@ public class LikedVideos {
     }
 
     @Ignore
-    public LikedVideos(String video_title, String like_state, String dislike_state) {
+    public LikedVideos(String video_title, boolean like_state, boolean dislike_state) {
         this.video_title = video_title;
         this.like_state = like_state;
         this.dislike_state = dislike_state;
@@ -53,19 +53,19 @@ public class LikedVideos {
         this.video_title = video_title;
     }
 
-    public String getLike_state() {
+    public boolean isLike_state() {
         return like_state;
     }
 
-    public void setLike_state(String like_state) {
+    public void setLike_state(boolean like_state) {
         this.like_state = like_state;
     }
 
-    public String getDislike_state() {
+    public boolean isDislike_state() {
         return dislike_state;
     }
 
-    public void setDislike_state(String dislike_state) {
+    public void setDislike_state(boolean dislike_state) {
         this.dislike_state = dislike_state;
     }
 }

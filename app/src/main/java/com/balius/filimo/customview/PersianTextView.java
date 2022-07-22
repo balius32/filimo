@@ -12,27 +12,24 @@ import org.jetbrains.annotations.NotNull;
 
 public class PersianTextView extends AppCompatTextView {
 
-    public PersianTextView(@NonNull @NotNull Context context) {
+
+    public PersianTextView(@NonNull Context context) {
         super(context);
-        setFont(context);
+        setfont(context);
     }
 
-
-
-    public PersianTextView(@NonNull @NotNull Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs) {
-        super(context, attrs);
-        setFont(context);
-    }
-
-    public PersianTextView(@NonNull @NotNull Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        setFont(context);
-    }
-
-
-    private void setFont(@NonNull @NotNull Context context) {
-        Typeface typeface = Typeface.createFromAsset(context.getAssets(), "fonts/IRANSans_Bold.ttf");
+    private void setfont(@NonNull Context context) {
+        Typeface typeface = Typeface.createFromAsset(context.getAssets(), "fonts/IRANSansMobile.ttf");
         setTypeface(typeface);
     }
 
+    public PersianTextView(@NonNull Context context, @Nullable AttributeSet attrs) {
+        super(context, attrs);
+        setfont(context);
+    }
+
+    public PersianTextView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        setfont(context);
+    }
 }

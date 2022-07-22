@@ -9,7 +9,7 @@
         android:layout_height="match_parent"
         android:scaleType="fitXY" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <com.balius.filimo.customview.PersianTextView
         android:id="@+id/txt_title"
         android:textColor="@color/white"
         android:textSize="@dimen/text_16"

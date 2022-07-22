@@ -62,11 +62,14 @@ public class VitrinFragment extends Fragment {
             public void onSuccess(Object responseMessage) {
                 Log.e(""+responseMessage.toString() , " eeeeeee");
 
-                VideoModel videoModel= new VideoModel();
+                VideoModel videoModel;
                 videoModel = (VideoModel) responseMessage;
 
                 binding.recycleSpacial.setAdapter(new HorizontalVideoAdapter(getActivity(),videoModel.getAllInOneVideo() ));
                 binding.recycleSpacial.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL,false));
+
+                binding.pager.setAdapter(new PageAdapter(getActivity(),videoModel.getAllInOneVideo()));
+                binding.springDotsIndicator.setViewPager(binding.pager);
 
               //  binding.pager.setAdapter(new PageAdapter(getActivity(),videoModel.getAllInOneVideo()));
             }

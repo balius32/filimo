@@ -38,11 +38,11 @@ public class CategoryActivity extends AppCompatActivity {
                 VideoModel videoModel = new VideoModel();
                 videoModel = (VideoModel) responseMessage;
 
-
+/*
                 binding.recycleCategoryVideos.setAdapter(new VideoAdapter(getApplicationContext(),videoModel.getAllInOneVideo()));
                 GridLayoutManager manager = new GridLayoutManager(getApplicationContext(),3);
                 binding.recycleCategoryVideos.setLayoutManager(manager);
-                Log.e(""+responseMessage , "erooorrrr");
+                Log.e(""+responseMessage , "erooorrrr");*/
 
             }
 
@@ -53,5 +53,6 @@ public class CategoryActivity extends AppCompatActivity {
 
             }
         });
+
     }
 }

@@ -5,9 +5,62 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.CategoryActivity">
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycle_category_videos"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/dark_yellow">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                app:srcCompat="@drawable/ic_baseline_arrow_forward_24" />
+
+            <com.balius.filimo.customview.PersianTextView
+                android:id="@+id/txt_category_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/margin_8"
+                android:layout_toStartOf="@id/img_back"
+                android:text="category_name" />
+
+        </RelativeLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+    <RelativeLayout
+        android:id="@+id/lbl_ct_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar">
+
+        <com.balius.filimo.customview.PersianTextView
+            android:id="@+id/lbl_cat_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="cat_ name"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/margin_8"/>
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycle_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/margin_180"
+        android:layout_below="@id/lbl_ct_name" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycle_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/recycle_horizontal"
+        android:layout_marginTop="@dimen/margin_16" />
 </RelativeLayout>

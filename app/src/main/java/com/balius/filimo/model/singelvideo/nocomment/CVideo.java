@@ -1,5 +1,6 @@
 package com.balius.filimo.model.singelvideo.nocomment;
 
+import com.balius.filimo.model.singelvideo.comment.Related;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -48,7 +49,7 @@ public class CVideo {
     private String totelViewer;
     @SerializedName("related")
     @Expose
-    private List<CRelated> related = null;
+    private List<Related> related = null;
     @SerializedName("user_comments")
     @Expose
     private List<String> userComments = null;
@@ -157,11 +158,11 @@ public class CVideo {
         this.totelViewer = totelViewer;
     }
 
-    public List<CRelated> getRelated() {
+    public List<Related> getRelated() {
         return related;
     }
 
-    public void setRelated(List<CRelated> related) {
+    public void setRelated(List<Related> related) {
         this.related = related;
     }
 

@@ -6,6 +6,7 @@ import androidx.room.Query;
 
 import com.balius.filimo.model.LikedVideos;
 import com.balius.filimo.model.Save;
+import com.balius.filimo.model.Watched;
 import com.balius.filimo.model.lastesvideo.Video;
 import com.balius.filimo.model.login.Login;
 
@@ -64,15 +65,26 @@ public interface IDao {
     List<LikedVideos> getLikeVideos(String video_title);
 
 
-    @Query("update tbl_like set like_state = :like_state ")
-    int updateLike (String like_state);
+    @Query("update tbl_like set like_state = :like_state where video_title = :title ")
+    int updateLike (boolean like_state,String title);
 
-    @Query("update tbl_like set dislike_state = :dislike_state ")
-    int updateDisLike (String dislike_state);
+    @Query("update tbl_like set dislike_state = :dislike_state where video_title = :title ")
+    int updateDisLike (boolean dislike_state,String title);
 
-    @Query("delete  from tbl_like where video_title=:video_title")
-    void deleteLike(String video_title);
 
+
+
+    @Insert
+    long addWatch(Watched watched);
+
+    @Query("select * from tbl_watched")
+    List<Watched> getAllWatchedVideos();
+
+    @Query("select * from tbl_watched where video_title = :video_title")
+    List<Watched> getWatchedVideos(String video_title);
+
+    @Query("delete  from tbl_watched where video_id=:id")
+    void deleteWatched(String id);
 
 
 }

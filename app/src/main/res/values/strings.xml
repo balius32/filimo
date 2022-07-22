@@ -46,4 +46,6 @@
     <string name="error_insert_comment">خطا در ثبت نظر</string>
     <string name="login_firs">ابتدا باید وارد حساب کاربری بشید</string>
     <string name="pls_enter_comment">لطفا نظر خود را بنویسید</string>
+    <string name="related">پیشنهادهای مشابه</string>
+    <string name="sighn_up">ثبت نام</string>
 </resources>

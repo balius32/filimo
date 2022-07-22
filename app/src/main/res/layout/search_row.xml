@@ -22,7 +22,7 @@
     </RelativeLayout>
 
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <com.balius.filimo.customview.PersianTextView
         android:id="@+id/txt_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

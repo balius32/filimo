@@ -21,9 +21,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                app:srcCompat="@drawable/ic_baseline_arrow_forward_24" />
+                app:srcCompat="@drawable/ic_baseline_arrow_forward_24"
+                android:layout_centerVertical="true"/>
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <com.balius.filimo.customview.PersianTextView
                 android:id="@+id/lbl_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -36,7 +37,8 @@
                 android:id="@+id/img_share"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_baseline_share_24" />
+                app:srcCompat="@drawable/ic_baseline_share_24"
+                android:layout_centerVertical="true"/>
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/img_download"
@@ -44,6 +46,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_8"
                 android:layout_toEndOf="@id/img_share"
+                android:layout_centerVertical="true"
                 app:srcCompat="@drawable/ic_baseline_cloud_download_24" />
 
             <androidx.appcompat.widget.AppCompatImageView
@@ -77,7 +80,8 @@
                     android:id="@+id/img_cover_mat"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/margin_180"
-                    android:background="@color/gray" />
+                    android:background="@color/gray"
+                    android:scaleType="fitXY"/>
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/img_cover"
@@ -86,10 +90,9 @@
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentBottom="true"
                     android:layout_marginEnd="@dimen/margin_16"
-
                     />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <com.balius.filimo.customview.PersianTextView
                     android:id="@+id/txt_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -100,7 +103,7 @@
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_16" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <com.balius.filimo.customview.PersianTextView
                     android:id="@+id/txt_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -129,43 +132,50 @@
                     android:layout_marginTop="@dimen/margin_8"
                     android:background="@drawable/btn_style_green"
                     android:text="@string/watch"
-                    android:textColor="@color/white"/>
+                    android:textColor="@color/white" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <com.balius.filimo.customview.PersianTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentBottom="true"
-                    android:layout_margin="@dimen/margin_8"
+                    android:layout_marginStart="@dimen/margin_8"
+                    android:layout_marginTop="@dimen/margin_8"
+                    android:layout_marginEnd="@dimen/margin_8"
+                    android:layout_marginBottom="@dimen/margin_8"
                     android:text="@string/doyoulikevideo" />
 
-                <androidx.appcompat.widget.AppCompatImageView
+                <androidx.appcompat.widget.AppCompatImageButton
                     android:id="@+id/img_dislike"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/margin_40"
+                    android:layout_height="@dimen/margin_40"
                     android:layout_alignParentBottom="true"
                     android:layout_marginStart="@dimen/margin_8"
-                    app:srcCompat="@drawable/dislike" />
+                    android:layout_marginBottom="@dimen/margin_4"
+                    android:background="@drawable/img_btn_shape"
+                    app:srcCompat="@drawable/dislike_32" />
 
-                <androidx.appcompat.widget.AppCompatImageView
+                <androidx.appcompat.widget.AppCompatImageButton
                     android:id="@+id/img_like"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/margin_40"
+                    android:layout_height="@dimen/margin_40"
                     android:layout_alignParentBottom="true"
                     android:layout_marginStart="@dimen/margin_8"
                     android:layout_marginBottom="@dimen/margin_8"
                     android:layout_toEndOf="@id/img_dislike"
-                    app:srcCompat="@drawable/like" />
+                    android:background="@drawable/img_btn_shape"
+                    android:elevation="@dimen/margin_16"
+                    app:srcCompat="@drawable/like_32" />
 
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/rel_description"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/margin_200"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/rel_like">
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <com.balius.filimo.customview.PersianTextView
                     android:id="@+id/lbl_description"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -179,7 +189,36 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/lbl_description"
-                    android:layout_marginTop="@dimen/margin_8" />
+                    android:layout_marginTop="@dimen/margin_8"
+                    android:layout_marginBottom="@dimen/margin_8"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/lbl_related"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/rel_description"
+                android:layout_marginTop="@dimen/margin_8">
+
+                <com.balius.filimo.customview.PersianTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="@dimen/margin_8"
+                    android:text="@string/related" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/rel_recycle_related"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_240"
+                android:layout_below="@id/lbl_related"
+                android:layout_marginTop="@dimen/margin_8">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycle_related"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
 
             </RelativeLayout>
 
@@ -187,9 +226,9 @@
                 android:id="@+id/rel_lbl_trailer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/rel_description">
+                android:layout_below="@id/rel_recycle_related">
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <com.balius.filimo.customview.PersianTextView
                     android:id="@+id/lbl_trailer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -220,11 +259,11 @@
                 android:layout_below="@id/rel_player"
                 android:layout_marginTop="@dimen/margin_8">
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_marginEnd="@dimen/margin_8"
+                <com.balius.filimo.customview.PersianTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="@dimen/margin_8"
                     android:text="@string/comments"
                     android:textSize="@dimen/text_16" />
 
@@ -234,9 +273,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_8"
                     app:srcCompat="@drawable/ic_baseline_arrow_back_ios_24"
+                    android:layout_centerVertical="true"
                     app:tint="@color/red" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <com.balius.filimo.customview.PersianTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@id/img_arrow"
@@ -249,14 +289,14 @@
             <RelativeLayout
                 android:id="@+id/rel_comments"
                 android:layout_width="match_parent"
-                android:layout_height="400dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/rel_lbl_comments"
                 android:layout_marginTop="@dimen/margin_8">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycle_comments"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="wrap_content" />
             </RelativeLayout>
 
             <RelativeLayout

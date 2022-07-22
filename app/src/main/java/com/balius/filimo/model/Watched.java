@@ -20,22 +20,38 @@ public class Watched {
     @ColumnInfo(name = "video_title")
     private String video_title;
 
-    public Watched() {
-    }
+    @ColumnInfo(name = "video_url")
+    private String video_url;
 
-    public Watched(int id, String video_id, String video_image, String video_title) {
+    @ColumnInfo(name = "video_description")
+    private String video_description;
+
+    @ColumnInfo(name = "video_time")
+    private String video_time;
+
+    public Watched(int id, String video_id, String video_image, String video_title, String video_url, String video_description, String video_time) {
         this.id = id;
         this.video_id = video_id;
         this.video_image = video_image;
         this.video_title = video_title;
+        this.video_url = video_url;
+        this.video_description = video_description;
+        this.video_time = video_time;
     }
 
     @Ignore
-    public Watched(String video_id, String video_image, String video_title) {
+    public Watched(String video_id, String video_image, String video_title, String video_url, String video_description, String video_time) {
         this.video_id = video_id;
         this.video_image = video_image;
         this.video_title = video_title;
+        this.video_url = video_url;
+        this.video_description = video_description;
+        this.video_time = video_time;
     }
+
+    public Watched() {
+    }
+
 
     public int getId() {
         return id;
@@ -67,5 +83,29 @@ public class Watched {
 
     public void setVideo_title(String video_title) {
         this.video_title = video_title;
+    }
+
+    public String getVideo_url() {
+        return video_url;
+    }
+
+    public void setVideo_url(String video_url) {
+        this.video_url = video_url;
+    }
+
+    public String getVideo_description() {
+        return video_description;
+    }
+
+    public void setVideo_description(String video_description) {
+        this.video_description = video_description;
+    }
+
+    public String getVideo_time() {
+        return video_time;
+    }
+
+    public void setVideo_time(String video_time) {
+        this.video_time = video_time;
     }
 }
