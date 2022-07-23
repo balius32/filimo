@@ -1,6 +1,7 @@
 package com.balius.filimo.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.balius.filimo.R;
+import com.balius.filimo.activities.CategoryActivity;
 import com.balius.filimo.model.category.VideoCategories;
 import com.squareup.picasso.Picasso;
 
@@ -46,6 +48,17 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         holder.txt_title.setTypeface(null, Typeface.BOLD);
 
         Picasso.get().load(categories.getCategoryImageThumb()).into(holder.img_categories);
+
+        holder.img_categories.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, CategoryActivity.class);
+                intent.putExtra("catId",categories.getCid());
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
+            }
+        });
+
 
     }
 

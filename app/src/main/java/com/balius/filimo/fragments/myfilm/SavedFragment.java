@@ -15,6 +15,9 @@ import com.balius.filimo.adapter.SaveAdapter;
 import com.balius.filimo.adapter.VideoAdapter;
 import com.balius.filimo.database.Db;
 import com.balius.filimo.databinding.FragmentSavedBinding;
+import com.balius.filimo.model.Save;
+
+import java.util.List;
 
 public class SavedFragment extends Fragment {
     FragmentSavedBinding binding;
@@ -31,6 +34,7 @@ public class SavedFragment extends Fragment {
 
         db = Db.getInstance(getActivity());
 
+
         return binding.getRoot();
     }
 
@@ -40,6 +44,20 @@ public class SavedFragment extends Fragment {
         binding.recycleSaved.setAdapter(new SaveAdapter(getActivity(), db.iDao().getAllSaveVideos()));
         GridLayoutManager manager = new GridLayoutManager(getActivity(),3);
         binding.recycleSaved.setLayoutManager(manager);
+        checkNull();
+
+    }
+
+    public void checkNull(){
+
+        List<Save> saveList = db.iDao().getAllSaveVideos();
+
+        if (saveList.size()>0){
+            binding.relSaveVideo.setVisibility(View.VISIBLE);
+        }else {
+            binding.relSaveVideo.setVisibility(View.GONE);
+            binding.constraintNoSave.setVisibility(View.VISIBLE);
+        }
 
     }
 }

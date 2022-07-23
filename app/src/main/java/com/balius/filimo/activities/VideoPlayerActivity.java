@@ -1,7 +1,6 @@
 package com.balius.filimo.activities;
 
 import android.content.Intent;
-import android.graphics.BlurMaskFilter;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Html;
@@ -74,6 +73,7 @@ public class VideoPlayerActivity extends AppCompatActivity {
 
 
         int vid = Integer.parseInt(id);
+        binding.cardNoComment.setVisibility(View.INVISIBLE);
 
 
         webserviceCaller.getSingleVideo(vid, new IResponseListener() {
@@ -100,6 +100,8 @@ public class VideoPlayerActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(String onErrorMessage) {
+                binding.recycleComments.setVisibility(View.INVISIBLE);
+                binding.cardNoComment.setVisibility(View.VISIBLE);
 
                 Log.e("failllll", "" + onErrorMessage);
 

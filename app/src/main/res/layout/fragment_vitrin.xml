@@ -6,7 +6,36 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.VitrinFragment">
 
+   <androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/constraint_no_signal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+       android:visibility="gone">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/appCompatImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="188dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/no_internet" />
+
+    <com.balius.filimo.customview.PersianTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/no_internet"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appCompatImageView" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+
     <ScrollView
+        android:id="@+id/scroll_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -18,6 +47,13 @@
                 android:id="@+id/rel_pager"
                 android:layout_width="match_parent"
                 android:layout_height="500dp">
+                <ProgressBar
+                    android:id="@+id/progress_pager"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:indeterminateTint="@color/dark_yellow"
+                    android:visibility="gone"/>
 
                 <androidx.viewpager.widget.ViewPager
                     android:id="@+id/pager"
@@ -55,9 +91,9 @@
                     android:id="@+id/img_arrow"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/margin_8"
                     app:srcCompat="@drawable/ic_baseline_arrow_back_ios_24"
-                    android:layout_centerVertical="true"
                     app:tint="@color/red" />
 
                 <com.balius.filimo.customview.PersianTextView
@@ -85,6 +121,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/margin_180"
                 android:layout_below="@id/rel_spacial">
+
+                <ProgressBar
+                    android:id="@+id/progress_spacial"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:indeterminateTint="@color/dark_yellow"
+                    android:visibility="gone"/>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycle_spacial"
@@ -133,6 +177,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/margin_240"
                 android:layout_below="@id/rel_lastest_video">
+                <ProgressBar
+                    android:id="@+id/progress_latest"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:indeterminateTint="@color/dark_yellow"
+                    android:visibility="gone"/>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycle_lastest_video"
@@ -181,7 +232,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/margin_240"
                 android:layout_below="@id/rel_sport_video">
-
+                <ProgressBar
+                    android:id="@+id/progress_sport"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:indeterminateTint="@color/dark_yellow"
+                    android:visibility="gone"/>
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycle_sport_video"
                     android:layout_width="match_parent"

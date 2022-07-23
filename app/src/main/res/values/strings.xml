@@ -48,4 +48,13 @@
     <string name="pls_enter_comment">لطفا نظر خود را بنویسید</string>
     <string name="related">پیشنهادهای مشابه</string>
     <string name="sighn_up">ثبت نام</string>
+    <string name="what_the_film">تماشای فیلم</string>
+    <string name="phone">موبایل</string>
+    <string name="go_continue">ادامه</string>
+    <string name="pls_enter_phone">\" لطفا موبایل خود را وارد کنید\"</string>
+    <string name="email_pass_email">پسورد یا ایمیل خالی میباشد</string>
+    <string name="emty_comment">نظری برای این ویدیو ثبت نشده</string>
+    <string name="no_internet">اتصال به اینترنت برقرار نیست</string>
+    <string name="empty_save">هیج فیلمی را نشان نکرده اید</string>
+    <string name="empty_watched">هیج فیلمی را تماشا نکرده اید</string>
 </resources>

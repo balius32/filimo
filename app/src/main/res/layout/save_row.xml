@@ -7,12 +7,13 @@
     <RelativeLayout
         android:id="@+id/rel_save_video"
         android:layout_width="@dimen/margin_150"
-        android:layout_height="@dimen/margin_220">
+        android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/img_video"
-            android:layout_width="@dimen/margin_140"
-            android:layout_height="@dimen/margin_200"
+            android:layout_width="@dimen/margin_120"
+            android:layout_height="@dimen/margin_180"
+            android:layout_centerHorizontal="true"
             android:scaleType="fitXY" />
 
         <com.balius.filimo.customview.PersianTextView

@@ -6,33 +6,26 @@
     android:layout_height="match_parent"
     tools:context=".activities.SearchActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="?attr/actionBarSize"
+            android:id="@+id/constraint_search">
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/edt_search"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/margin_40"
+                android:drawableEnd="@drawable/ic_baseline_search_24"
+                android:drawablePadding="@dimen/margin_8"
+                android:background="@drawable/custom_input"
                 android:hint="@string/search"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/img_search"
-                app:layout_constraintStart_toEndOf="@+id/img_back"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/img_search"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/img_back"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_baseline_search_24" />
+                android:imeOptions="actionSearch"
+                android:inputType="text"/>
+
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/img_back"
@@ -45,13 +38,13 @@
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.appcompat.widget.Toolbar>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycle_search"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/toolbar"
+      android:layout_below="@+id/constraint_search"
         android:layout_alignParentEnd="true"
         app:reverseLayout="true" />
 

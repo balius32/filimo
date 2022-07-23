@@ -10,7 +10,7 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="?attr/actionBarSize"
         android:background="@color/dark_yellow">
 
         <RelativeLayout
@@ -23,6 +23,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="@dimen/margin_8"
+                android:layout_centerVertical="true"
                 app:srcCompat="@drawable/ic_baseline_arrow_forward_24" />
 
             <com.balius.filimo.customview.PersianTextView
@@ -31,7 +32,8 @@
                 android:layout_marginEnd="@dimen/margin_8"
                 android:layout_toStartOf="@id/img_back"
                 android:text="@string/profile"
-                android:textSize="@dimen/text_16" />
+                android:textSize="@dimen/text_16"
+                android:layout_centerVertical="true"/>
 
 
         </RelativeLayout>

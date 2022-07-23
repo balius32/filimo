@@ -8,7 +8,7 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="?attr/actionBarSize"
         android:background="@color/dark_yellow">
         <RelativeLayout
             android:layout_width="match_parent"
@@ -20,6 +20,7 @@
                 android:layout_height="wrap_content"
                 app:srcCompat="@drawable/ic_baseline_arrow_forward_24"
                 android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
                 android:layout_marginEnd="@dimen/margin_8"/>
 
             <com.balius.filimo.customview.PersianTextView
@@ -28,6 +29,7 @@
                 android:layout_marginEnd="@dimen/margin_8"
                 android:layout_toStartOf="@id/img_back"
                 android:text="@string/sighn_up"
+                android:layout_centerVertical="true"
                 android:textSize="@dimen/text_16" />
 
 
@@ -35,9 +37,10 @@
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/card_create_account"
         android:layout_margin="@dimen/margin_8"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="@dimen/margin_320"
         android:layout_below="@id/toolbar">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -67,89 +70,54 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txt_creat_account" />
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/img_account"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/appCompatTextView"
-                app:srcCompat="@drawable/ic_baseline_account_circle_24" />
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/edt_username"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/margin_40"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/custom_input"
+                android:drawableEnd="@drawable/ic_baseline_person_24"
+                android:drawablePadding="@dimen/margin_8"
                 android:hint="@string/enter_ur_name"
-                app:layout_constraintEnd_toStartOf="@+id/img_account"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/appCompatTextView" />
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/img_email"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/edt_username"
-                app:srcCompat="@drawable/ic_baseline_email_24" />
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/edt_email"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/margin_40"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/custom_input"
+                android:drawableEnd="@drawable/ic_baseline_email_24"
+                android:drawablePadding="@dimen/margin_8"
                 android:hint="@string/enter_ur_email"
-                app:layout_constraintEnd_toStartOf="@+id/img_email"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/edt_username" />
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/img_password"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/edt_email"
-                app:srcCompat="@drawable/ic_baseline_key_24" />
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/edt_password"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/margin_40"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/custom_input"
+                android:drawableEnd="@drawable/ic_baseline_key_24"
+                android:drawablePadding="@dimen/margin_8"
                 android:hint="@string/enter_password"
-                app:layout_constraintEnd_toStartOf="@+id/img_password"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/edt_email" />
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/img_phone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/edt_password"
-                app:srcCompat="@drawable/ic_baseline_phone_android_24" />
-
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/edt_phone"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                app:layout_constraintEnd_toStartOf="@+id/img_phone"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/edt_password"
-                android:hint="@string/enter_phone_number" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_add_account"
@@ -158,15 +126,23 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/edt_phone"
                 android:background="@color/green"
                 android:text="@string/create"
-                android:textColor="@color/white"/>
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edt_password" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
+
+    <ProgressBar
+        android:id="@+id/progress_create_account"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:indeterminateTint="@color/dark_yellow"
+        android:visibility="gone"/>
 
 </RelativeLayout>

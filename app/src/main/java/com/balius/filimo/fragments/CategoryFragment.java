@@ -31,8 +31,9 @@ public class CategoryFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
         binding = FragmentCategoryBinding.inflate(getLayoutInflater());
+
+        binding.progressCategory.setVisibility(View.VISIBLE);
 
         webserviceCaller = new WebserviceCaller();
 
@@ -48,13 +49,16 @@ public class CategoryFragment extends Fragment {
                 binding.recycleCategory.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL,false));
 
                 Log.e(""+responseMessage,"");
+                binding.progressCategory.setVisibility(View.GONE);
             }
 
             @Override
             public void onFailure(String onErrorMessage) {
 
-                Log.e(""+onErrorMessage,"");
+                binding.relCategory.setVisibility(View.GONE);
+                binding.constraintNoSignal.setVisibility(View.VISIBLE);
 
+                Log.e(""+onErrorMessage,"");
             }
         });
 

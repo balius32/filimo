@@ -32,7 +32,7 @@ public interface IService {
 
     @GET("api.php?user_register")
     Call<SighnupModel> sighnup(@Query("name") String name , @Query("email") String email ,
-                               @Query("password") String password ,@Query("phone") int phone);
+                               @Query("password") String password ,@Query("phone") String phone);
 
     @GET("api.php?users_login")
     Call<LoginModel> login(@Query("email") String email, @Query("password") String password);

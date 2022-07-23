@@ -14,6 +14,9 @@ import com.balius.filimo.adapter.SaveAdapter;
 import com.balius.filimo.adapter.WatchedAdapter;
 import com.balius.filimo.database.Db;
 import com.balius.filimo.databinding.FragmentWatchedFilmBinding;
+import com.balius.filimo.model.Save;
+
+import java.util.List;
 
 public class WatchedFilmFragment extends Fragment {
     FragmentWatchedFilmBinding binding;
@@ -41,6 +44,20 @@ public class WatchedFilmFragment extends Fragment {
         binding.recycleWatched.setAdapter(new WatchedAdapter( db.iDao().getAllWatchedVideos(),getActivity()));
         GridLayoutManager manager = new GridLayoutManager(getActivity(),3);
         binding.recycleWatched.setLayoutManager(manager);
+        history();
+
+    }
+
+    public void history(){
+
+        List<Save> saveList = db.iDao().getAllSaveVideos();
+
+        if (saveList.size()>0){
+            binding.relWatched.setVisibility(View.VISIBLE);
+        }else {
+            binding.relWatched.setVisibility(View.GONE);
+            binding.constraintNoWatched.setVisibility(View.VISIBLE);
+        }
 
     }
 }

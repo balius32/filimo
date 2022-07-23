@@ -134,7 +134,7 @@ public class WebserviceCaller {
     }
 
 
-    public void sighnup(String name, String email, String password , int phone,IResponseListener listener) {
+    public void sighnup(String name, String email, String password , String  phone,IResponseListener listener) {
 
         Call<SighnupModel> call = iService.sighnup(name,email,password,phone);
 

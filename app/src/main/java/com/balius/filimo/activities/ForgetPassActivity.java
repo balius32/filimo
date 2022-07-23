@@ -46,12 +46,9 @@ public class ForgetPassActivity extends AppCompatActivity {
                 webserviceCaller.forgetPass(binding.edtEmail.getText().toString(), new IResponseListener() {
                     @Override
                     public void onSuccess(Object responseMessage) {
-                        SighnupModel sighnupModel = new SighnupModel();
-                        sighnupModel = (SighnupModel) responseMessage;
-                        List<Sighnup> sighnupList = sighnupModel.getAllInOneVideo();
-                        Sighnup sighnup = new Sighnup();
-                        sighnup = sighnupList.get(0);
-                        
+                        SighnupModel sighnupModel  = (SighnupModel) responseMessage;
+                        Sighnup sighnup = sighnupModel.getAllInOneVideo().get(0);
+
                         if (sighnup.getSuccess().equals("1")){
                             AlertDialog.Builder alert = new AlertDialog.Builder(ForgetPassActivity.this);
                             alert.setMessage(R.string.email_forget_sent)

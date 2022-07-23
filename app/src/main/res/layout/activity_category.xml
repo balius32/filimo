@@ -37,7 +37,7 @@
     </androidx.appcompat.widget.Toolbar>
 
     <RelativeLayout
-        android:id="@+id/lbl_ct_name"
+        android:id="@+id/rel_lbl_ct_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/toolbar">
@@ -46,21 +46,50 @@
             android:id="@+id/lbl_cat_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="cat_ name"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="@dimen/margin_8"/>
+            android:layout_marginEnd="@dimen/margin_8"
+            android:text="cat_ name" />
     </RelativeLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycle_horizontal"
+    <RelativeLayout
+        android:layout_marginTop="@dimen/margin_8"
+        android:id="@+id/rel_horizontal"
         android:layout_width="match_parent"
         android:layout_height="@dimen/margin_180"
-        android:layout_below="@id/lbl_ct_name" />
+        android:layout_below="@id/rel_lbl_ct_name" >
+        <ProgressBar
+            android:id="@+id/progress_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:indeterminateTint="@color/dark_yellow"
+            android:visibility="gone"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycle_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_180" />
+
+    </RelativeLayout>
+
+<RelativeLayout
+    android:layout_marginTop="@dimen/margin_16"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/rel_horizontal">
+    <ProgressBar
+        android:id="@+id/progress_vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:indeterminateTint="@color/dark_yellow"
+        android:visibility="gone"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycle_vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/recycle_horizontal"
         android:layout_marginTop="@dimen/margin_16" />
+</RelativeLayout>
+
 </RelativeLayout>

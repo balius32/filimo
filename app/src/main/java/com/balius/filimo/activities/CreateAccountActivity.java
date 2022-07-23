@@ -2,6 +2,7 @@ package com.balius.filimo.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -20,46 +21,49 @@ public class CreateAccountActivity extends AppCompatActivity {
 
     ActivityCreateAccountBinding binding;
     WebserviceCaller webserviceCaller;
+    Bundle bundle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding= ActivityCreateAccountBinding.inflate(getLayoutInflater());
+        binding = ActivityCreateAccountBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         webserviceCaller = new WebserviceCaller();
+
+        bundle = getIntent().getExtras();
+        String phone = bundle.getString("phone");
 
         binding.btnAddAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                binding.cardCreateAccount.setVisibility(View.INVISIBLE);
+                binding.progressCreateAccount.setVisibility(View.VISIBLE);
 
                 String name = binding.edtUsername.getText().toString();
                 String email = binding.edtEmail.getText().toString();
                 String password = binding.edtPassword.getText().toString();
-                int phoneNum = Integer.parseInt(binding.edtPhone.getText().toString());
-                webserviceCaller.sighnup(name, email, password, phoneNum, new IResponseListener() {
+
+
+                webserviceCaller.sighnup(name, email, password, phone, new IResponseListener() {
                     @Override
                     public void onSuccess(Object responseMessage) {
-                        SighnupModel sighnupModel = new SighnupModel();
-                        sighnupModel = (SighnupModel) responseMessage;
+                        SighnupModel sighnupModel = (SighnupModel) responseMessage;
 
-                        Sighnup sighnupObject = new Sighnup();
-
-                        List<Sighnup> sighnups = sighnupModel.getAllInOneVideo();
-
-                       sighnupObject= sighnups.get(0);
+                        Sighnup sighnupObject = sighnupModel.getAllInOneVideo().get(0);
 
 
-                       if (sighnupObject.getSuccess().toString().equals("1")){
+                        if (sighnupObject.getSuccess().toString().equals("1")) {
 
-                           Toast.makeText(CreateAccountActivity.this, R.string.account_created, Toast.LENGTH_SHORT).show();
-                           finish();
+                            Toast.makeText(CreateAccountActivity.this, R.string.account_created, Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                            startActivity(intent);
+                            binding.progressCreateAccount.setVisibility(View.GONE);
 
-                       }
-                       else {
-                           Toast.makeText(CreateAccountActivity.this, R.string.email_duplicate, Toast.LENGTH_SHORT).show();
-                           finish();
+                        } else {
+                            Toast.makeText(CreateAccountActivity.this, R.string.email_duplicate, Toast.LENGTH_SHORT).show();
+                            finish();
 
-                       }
+                        }
                     }
 
                     @Override
@@ -76,10 +80,18 @@ public class CreateAccountActivity extends AppCompatActivity {
         binding.imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(intent);
             }
         });
 
 
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        binding.cardCreateAccount.setVisibility(View.VISIBLE);
     }
 }
