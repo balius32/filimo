@@ -1,24 +1,20 @@
 package com.balius.filimo.fragments;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.balius.filimo.adapter.CategoryAdapter;
 import com.balius.filimo.databinding.FragmentCategoryBinding;
 import com.balius.filimo.model.category.CategoryModel;
-import com.balius.filimo.model.category.VideoCategories;
 import com.balius.filimo.webservice.IResponseListener;
 import com.balius.filimo.webservice.WebserviceCaller;
-
-import java.util.List;
 
 
 public class CategoryFragment extends Fragment {

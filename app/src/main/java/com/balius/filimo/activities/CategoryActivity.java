@@ -1,16 +1,15 @@
 package com.balius.filimo.activities;
 
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-
 import com.balius.filimo.R;
-import com.balius.filimo.adapter.VideoAdapter;
 import com.balius.filimo.adapter.VideoCategoryAdapter;
 import com.balius.filimo.adapter.VideoCategoryHAdapter;
 import com.balius.filimo.databinding.ActivityCategoryBinding;
@@ -18,8 +17,6 @@ import com.balius.filimo.model.lastesvideo.Video;
 import com.balius.filimo.model.lastesvideo.VideoModel;
 import com.balius.filimo.webservice.IResponseListener;
 import com.balius.filimo.webservice.WebserviceCaller;
-
-import java.util.List;
 
 public class CategoryActivity extends AppCompatActivity {
     ActivityCategoryBinding binding;

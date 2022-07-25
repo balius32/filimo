@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Work/projects/filimo/filimo/app/src/main/res/drawable/background_splashscreen.xml" value="0.133" />
         <entry key="..\:/Work/projects/filimo/filimo/app/src/main/res/drawable/btn_style.xml" value="0.1695" />
         <entry key="..\:/Work/projects/filimo/filimo/app/src/main/res/drawable/btn_style_green.xml" value="0.1415" />
         <entry key="..\:/Work/projects/filimo/filimo/app/src/main/res/drawable/custom_input.xml" value="0.1465" />
@@ -33,7 +34,7 @@
         <entry key="..\:/Work/projects/filimo/filimo/app/src/main/res/layout/fragment_category.xml" value="0.25416666666666665" />
         <entry key="..\:/Work/projects/filimo/filimo/app/src/main/res/layout/fragment_my_films.xml" value="0.24010416666666667" />
         <entry key="..\:/Work/projects/filimo/filimo/app/src/main/res/layout/fragment_saved.xml" value="0.25416666666666665" />
-        <entry key="..\:/Work/projects/filimo/filimo/app/src/main/res/layout/fragment_vitrin.xml" value="0.264" />
+        <entry key="..\:/Work/projects/filimo/filimo/app/src/main/res/layout/fragment_vitrin.xml" value="0.2" />
         <entry key="..\:/Work/projects/filimo/filimo/app/src/main/res/layout/fragment_watched_film.xml" value="0.25416666666666665" />
         <entry key="..\:/Work/projects/filimo/filimo/app/src/main/res/layout/horizon_video_row.xml" value="0.25" />
         <entry key="..\:/Work/projects/filimo/filimo/app/src/main/res/layout/pager_row.xml" value="0.176" />

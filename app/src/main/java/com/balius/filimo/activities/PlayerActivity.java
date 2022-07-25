@@ -17,6 +17,7 @@ import com.google.android.exoplayer2.ExoPlayer;
 import com.google.android.exoplayer2.MediaItem;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
+import com.google.android.exoplayer2.ui.PlayerView;
 
 public class PlayerActivity extends AppCompatActivity {
     ActivityPlayerBinding binding;
@@ -106,7 +107,6 @@ public class PlayerActivity extends AppCompatActivity {
                 .setSeekBackIncrementMs(10000)
                 .setSeekForwardIncrementMs(10000)
                 .build();
-
 
         player.addListener(new Player.Listener() {
             @Override

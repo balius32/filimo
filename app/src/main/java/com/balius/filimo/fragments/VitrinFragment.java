@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+
 import com.balius.filimo.activities.CategoryActivity;
 import com.balius.filimo.adapter.HorizontalVideoAdapter;
 import com.balius.filimo.adapter.PageAdapter;
@@ -36,7 +37,10 @@ public class VitrinFragment extends Fragment {
         binding = FragmentVitrinBinding.inflate(getLayoutInflater());
         webserviceCaller = new WebserviceCaller();
 
+
+
         binding.progressLatest.setVisibility(View.VISIBLE);
+
         webserviceCaller.getLastestVideo(new IResponseListener() {
             @Override
             public void onSuccess(Object responseMessage) {

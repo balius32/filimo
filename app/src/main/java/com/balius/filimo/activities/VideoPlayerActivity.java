@@ -1,7 +1,9 @@
 package com.balius.filimo.activities;
 
+import android.annotation.TargetApi;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.Spanned;
@@ -87,6 +89,7 @@ public class VideoPlayerActivity extends AppCompatActivity {
                 userCommentList = singleVideo.getUserComments();
 
                 relatedList = singleVideo.getRelated();
+
 
                 binding.recycleComments.setAdapter(new CommentAdapter(getApplicationContext(), userCommentList));
                 binding.recycleComments.setLayoutManager(new LinearLayoutManager(getApplicationContext(),
@@ -377,6 +380,7 @@ public class VideoPlayerActivity extends AppCompatActivity {
 
             }
         });
+
     }
 
     @Override
@@ -384,6 +388,15 @@ public class VideoPlayerActivity extends AppCompatActivity {
         super.onStop();
         if (player != null) {
             player.stop();
+        }
+    }
+
+
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+    private void forceRTLIfSupported()
+    {
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1){
+            getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
         }
     }
 }

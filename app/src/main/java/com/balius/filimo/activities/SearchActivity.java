@@ -33,31 +33,6 @@ public class SearchActivity extends AppCompatActivity {
 
         webserviceCaller =new WebserviceCaller();
 
-     /*   binding.imgSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                webserviceCaller.searchVideo(binding.edtSearch.getText().toString(), new IResponseListener() {
-                    @Override
-                    public void onSuccess(Object responseMessage) {
-                        VideoModel videoModel = new VideoModel();
-                        videoModel= (VideoModel) responseMessage;
-
-                        binding.recycleSearch.setAdapter(new SearchAdapter(getApplicationContext(),videoModel.getAllInOneVideo()));
-                        binding.recycleSearch.setLayoutManager(new LinearLayoutManager(getApplicationContext(),
-                                RecyclerView.VERTICAL,false));
-                    }
-
-                    @Override
-                    public void onFailure(String onErrorMessage) {
-
-                    }
-                });
-
-            }
-        });
-
-*/
 
         binding.edtSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -99,6 +74,9 @@ public class SearchActivity extends AppCompatActivity {
         });
 
     }
+
+
+
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     private void forceRTLIfSupported()
     {
