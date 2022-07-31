@@ -1,354 +1,410 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.VideoPlayerActivity">
+    tools:context=".activities.VideoPlayerActivity"
+    android:id="@+id/refreshLayout">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/dark_yellow">
 
-        <RelativeLayout
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/img_back"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                app:srcCompat="@drawable/ic_baseline_arrow_forward_24" />
-
-            <com.balius.filimo.customview.PersianTextView
-                android:id="@+id/lbl_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/margin_8"
-                android:layout_toStartOf="@id/img_back"
-                android:layout_centerVertical="true"
-                android:text="alkjdlfjdsa"
-                android:textSize="@dimen/text_16" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/img_share"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                app:srcCompat="@drawable/ic_baseline_share_24" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/img_download"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="@dimen/margin_8"
-                android:layout_toEndOf="@id/img_share"
-                app:srcCompat="@drawable/ic_baseline_cloud_download_24" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/img_save"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="@dimen/margin_8"
-                android:layout_toEndOf="@id/img_download"
-                app:srcCompat="@drawable/icon_save" />
-
-
-        </RelativeLayout>
-    </androidx.appcompat.widget.Toolbar>
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/toolbar">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <RelativeLayout
-                android:id="@+id/rel_cover"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/margin_200">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/img_cover_mat"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/margin_180"
-                    android:background="@color/gray"
-                    android:scaleType="fitXY"/>
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/img_cover"
-                    android:layout_width="@dimen/margin_100"
-                    android:layout_height="@dimen/margin_144"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginEnd="@dimen/margin_16"
-                    />
-
-                <com.balius.filimo.customview.PersianTextView
-                    android:id="@+id/txt_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@id/img_cover"
-                    android:layout_marginEnd="@dimen/margin_8"
-                    android:layout_toStartOf="@id/img_cover"
-                    android:text="title"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/text_16" />
-
-                <com.balius.filimo.customview.PersianTextView
-                    android:id="@+id/txt_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/txt_title"
-                    android:layout_marginEnd="@dimen/margin_8"
-                    android:layout_toStartOf="@id/img_cover"
-                    android:text="time"
-                    android:textColor="@color/white" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/rel_like"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/margin_100"
-                android:layout_below="@id/rel_cover"
-                android:layout_marginTop="-2dp">
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btn_watch"
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginStart="@dimen/margin_8"
-                    android:layout_marginTop="@dimen/margin_8"
-                    android:background="@drawable/btn_style_green"
-                    android:text="@string/watch"
-                    android:textColor="@color/white" />
-
-                <com.balius.filimo.customview.PersianTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginStart="@dimen/margin_8"
-                    android:layout_marginTop="@dimen/margin_8"
-                    android:layout_marginEnd="@dimen/margin_8"
-                    android:layout_marginBottom="@dimen/margin_8"
-                    android:text="@string/doyoulikevideo" />
-
-                <androidx.appcompat.widget.AppCompatImageButton
-                    android:id="@+id/img_dislike"
-                    android:layout_width="@dimen/margin_40"
-                    android:layout_height="@dimen/margin_40"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginStart="@dimen/margin_8"
-                    android:layout_marginBottom="@dimen/margin_4"
-                    android:background="@drawable/img_btn_shape"
-                    app:srcCompat="@drawable/dislike_32" />
-
-                <androidx.appcompat.widget.AppCompatImageButton
-                    android:id="@+id/img_like"
-                    android:layout_width="@dimen/margin_40"
-                    android:layout_height="@dimen/margin_40"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginStart="@dimen/margin_8"
-                    android:layout_marginBottom="@dimen/margin_8"
-                    android:layout_toEndOf="@id/img_dislike"
-                    android:background="@drawable/img_btn_shape"
-                    android:elevation="@dimen/margin_16"
-                    app:srcCompat="@drawable/like_32" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/rel_description"
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appBarLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/rel_like">
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-                <com.balius.filimo.customview.PersianTextView
-                    android:id="@+id/lbl_description"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginTop="@dimen/text_16"
-                    android:text="@string/description"
-                    android:textSize="@dimen/text_16" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/txt_description"
+                <com.google.android.material.appbar.CollapsingToolbarLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/lbl_description"
-                    android:layout_marginTop="@dimen/margin_8"
-                    android:layout_marginBottom="@dimen/margin_8"/>
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/lbl_related"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@id/rel_description"
-                android:layout_marginTop="@dimen/margin_8">
-
-                <com.balius.filimo.customview.PersianTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="@dimen/margin_8"
-                    android:text="@string/related" />
-            </RelativeLayout>
-            <RelativeLayout
-                android:id="@+id/rel_recycle_related"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/margin_240"
-                android:layout_below="@id/lbl_related"
-                android:layout_marginTop="@dimen/margin_8">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycle_related"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/rel_lbl_trailer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/rel_recycle_related">
-
-                <com.balius.filimo.customview.PersianTextView
-                    android:id="@+id/lbl_trailer"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginTop="@dimen/margin_8"
-                    android:layout_marginEnd="@dimen/margin_8"
-                    android:text="@string/traler"
-                    android:textSize="@dimen/text_16" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/rel_player"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/margin_200"
-                android:layout_below="@id/rel_lbl_trailer"
-                android:layout_marginTop="@dimen/margin_8">
-
-                <com.google.android.exoplayer2.ui.PlayerView
-                    android:id="@+id/videoView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/rel_lbl_comments"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/rel_player"
-                android:layout_marginTop="@dimen/margin_8">
-
-                <com.balius.filimo.customview.PersianTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="@dimen/margin_8"
-                    android:text="@string/comments"
-                    android:textSize="@dimen/text_16" />
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/img_arrow"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/margin_8"
-                    app:srcCompat="@drawable/ic_baseline_arrow_back_ios_24"
-                    android:layout_centerVertical="true"
-                    app:tint="@color/red" />
-
-                <com.balius.filimo.customview.PersianTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toEndOf="@id/img_arrow"
-                    android:text="@string/see_all"
-                    android:textColor="@color/red"
-                    android:textSize="@dimen/text_16" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/rel_comments"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/rel_lbl_comments"
-                android:layout_marginTop="@dimen/margin_8">
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/card_no_comment"
-                    android:layout_width="match_parent"
-                    android:layout_height="120dp">
+                    app:contentScrim="@color/dark_yellow"
+                    app:layout_scrollFlags="scroll|snap|exitUntilCollapsed">
 
                     <RelativeLayout
+                        android:id="@+id/rel_cover"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="@dimen/margin_200"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:background="@color/white">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/img_cover_mat"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/margin_180"
+                            android:background="@color/gray"
+                            android:scaleType="fitXY" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/img_cover"
+                            android:layout_width="@dimen/margin_100"
+                            android:layout_height="@dimen/margin_144"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginEnd="@dimen/margin_16" />
+
+                        <com.balius.filimo.customview.PersianTextView
+                            android:id="@+id/txt_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignTop="@id/img_cover"
+                            android:layout_marginEnd="@dimen/margin_8"
+                            android:layout_toStartOf="@id/img_cover"
+                            android:text="title"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/text_16" />
+
+                        <com.balius.filimo.customview.PersianTextView
+                            android:id="@+id/txt_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/txt_title"
+                            android:layout_marginEnd="@dimen/margin_8"
+                            android:layout_toStartOf="@id/img_cover"
+                            android:text="time"
+                            android:textColor="@color/white" />
+
+                    </RelativeLayout>
+
+
+                    <androidx.appcompat.widget.Toolbar
+                        android:id="@+id/toolbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize"
+                        app:layout_collapseMode="pin"
+                        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/img_back"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true"
+                                app:srcCompat="@drawable/ic_baseline_arrow_forward_24" />
+
+                            <com.balius.filimo.customview.PersianTextView
+                                android:id="@+id/lbl_name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/margin_8"
+                                android:layout_toStartOf="@id/img_back"
+                                android:layout_centerVertical="true"
+                                android:text="alkjdlfjdsa"
+                                android:textSize="@dimen/text_16" />
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/img_share"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                app:srcCompat="@drawable/ic_baseline_share_24" />
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/img_download"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginStart="@dimen/margin_8"
+                                android:layout_toEndOf="@id/img_share"
+                                app:srcCompat="@drawable/ic_baseline_cloud_download_24" />
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/img_save"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginStart="@dimen/margin_8"
+                                android:layout_toEndOf="@id/img_download"
+                                app:srcCompat="@drawable/icon_save" />
+
+
+                        </RelativeLayout>
+                    </androidx.appcompat.widget.Toolbar>
+                </com.google.android.material.appbar.CollapsingToolbarLayout>
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/toolbar"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <RelativeLayout
+                        android:id="@+id/rel_like"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/margin_100"
+
+                        android:background="@color/white">
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btn_watch"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginStart="@dimen/margin_8"
+                            android:layout_marginTop="@dimen/margin_8"
+                            android:background="@drawable/btn_style_green"
+                            android:text="@string/watch"
+                            android:textColor="@color/white" />
 
                         <com.balius.filimo.customview.PersianTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="@dimen/text_20"
-                            android:text="@string/emty_comment"
-                            android:layout_centerInParent="true"/>
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginStart="@dimen/margin_8"
+                            android:layout_marginTop="@dimen/margin_8"
+                            android:layout_marginEnd="@dimen/margin_8"
+                            android:layout_marginBottom="@dimen/margin_8"
+                            android:text="@string/doyoulikevideo" />
+
+                        <androidx.appcompat.widget.AppCompatImageButton
+                            android:id="@+id/img_dislike"
+                            android:layout_width="@dimen/margin_40"
+                            android:layout_height="@dimen/margin_40"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginStart="@dimen/margin_8"
+                            android:layout_marginBottom="@dimen/margin_4"
+                            android:background="@drawable/img_btn_shape"
+                            app:srcCompat="@drawable/dislike_32" />
+
+                        <androidx.appcompat.widget.AppCompatImageButton
+                            android:id="@+id/img_like"
+                            android:layout_width="@dimen/margin_40"
+                            android:layout_height="@dimen/margin_40"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginStart="@dimen/margin_8"
+                            android:layout_marginBottom="@dimen/margin_8"
+                            android:layout_toEndOf="@id/img_dislike"
+                            android:background="@drawable/img_btn_shape"
+                            android:elevation="@dimen/margin_16"
+                            app:srcCompat="@drawable/like_32" />
 
                     </RelativeLayout>
-                </androidx.cardview.widget.CardView>
+                    <View
+                        android:id="@+id/view_description"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/dark_gray"
+                        android:layout_below="@id/rel_like"
+                        android:layout_marginTop="@dimen/margin_8"/>
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycle_comments"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </RelativeLayout>
+                    <RelativeLayout
+                        android:id="@+id/rel_description"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/view_description">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/rel_comments"
-                android:layout_marginTop="@dimen/margin_8">
+                        <com.balius.filimo.customview.PersianTextView
+                            android:id="@+id/lbl_description"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+
+                            android:text="@string/story"
+                            android:textSize="@dimen/text_16" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/txt_description"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/lbl_description"
+                            android:layout_marginTop="@dimen/margin_8"
+                            android:layout_marginBottom="@dimen/margin_8" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/lbl_related"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@id/rel_description"
+                        android:layout_marginTop="@dimen/margin_8">
+
+                        <com.balius.filimo.customview.PersianTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="@dimen/margin_8"
+                            android:text="@string/related" />
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:id="@+id/rel_recycle_related"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/margin_240"
+                        android:layout_below="@id/lbl_related"
+                        android:layout_marginTop="@dimen/margin_8">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recycle_related"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rel_lbl_trailer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/rel_recycle_related">
+
+                        <com.balius.filimo.customview.PersianTextView
+                            android:id="@+id/lbl_trailer"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginTop="@dimen/margin_8"
+                            android:layout_marginEnd="@dimen/margin_8"
+                            android:text="@string/traler"
+                            android:textSize="@dimen/text_16" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rel_player"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/margin_200"
+                        android:layout_below="@id/rel_lbl_trailer"
+                        android:layout_marginTop="@dimen/margin_8">
 
 
-                <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/edt_comment"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/margin_40"
-                    android:background="@drawable/custom_input"
-                    android:drawableEnd="@drawable/ic_baseline_person_24"
-                    android:drawablePadding="@dimen/margin_8"
-                    android:layout_toEndOf="@id/img_send_comment"
-                    android:hint="@string/enter_ur_comment"
-                    android:layout_marginEnd="@dimen/margin_8"/>
+                        <RelativeLayout
+                            android:id="@+id/rel_img_player"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
 
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/img_send_comment"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/img_video_player"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:scaleType="fitXY"/>
 
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    app:srcCompat="@drawable/ic_baseline_keyboard_arrow_left_24" />
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                app:srcCompat="@drawable/ic_baseline_play_circle_outline_24"/>
 
-            </RelativeLayout>
+                        </RelativeLayout>
 
-        </RelativeLayout>
-    </ScrollView>
+                        <com.google.android.exoplayer2.ui.PlayerView
+                            android:visibility="gone"
+                            android:id="@+id/videoView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rel_lbl_comments"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/rel_player"
+                        android:layout_marginTop="@dimen/margin_8">
+
+                        <com.balius.filimo.customview.PersianTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="@dimen/margin_8"
+                            android:text="@string/comments"
+                            android:textSize="@dimen/text_16" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/img_arrow"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/margin_8"
+                            app:srcCompat="@drawable/ic_baseline_arrow_back_ios_24"
+                            android:layout_centerVertical="true"
+                            app:tint="@color/red" />
+
+                        <com.balius.filimo.customview.PersianTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toEndOf="@id/img_arrow"
+                            android:text="@string/see_all"
+                            android:textColor="@color/red"
+                            android:textSize="@dimen/text_16" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rel_comments"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/rel_lbl_comments"
+                        android:layout_marginTop="@dimen/margin_8">
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/card_no_comment"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <com.balius.filimo.customview.PersianTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="@dimen/text_20"
+                                    android:text="@string/emty_comment"
+                                    android:layout_centerInParent="true"/>
+
+                            </RelativeLayout>
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recycle_comments"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/rel_comments"
+                        android:layout_marginTop="@dimen/margin_8">
 
 
-</RelativeLayout>
+                        <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/edt_comment"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/margin_40"
+                            android:background="@drawable/custom_input"
+                            android:drawableEnd="@drawable/ic_baseline_person_24"
+                            android:drawablePadding="@dimen/margin_8"
+                            android:layout_toEndOf="@id/img_send_comment"
+                            android:hint="@string/enter_ur_comment"
+                            android:layout_marginEnd="@dimen/margin_8"/>
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/img_send_comment"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            app:srcCompat="@drawable/ic_baseline_keyboard_arrow_left_24" />
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+            </androidx.core.widget.NestedScrollView>
+
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

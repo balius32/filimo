@@ -23,7 +23,7 @@ public class CategoryActivity extends AppCompatActivity {
     Bundle bundle;
     Video video;
     WebserviceCaller webserviceCaller;
-
+    int catId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,76 +35,12 @@ public class CategoryActivity extends AppCompatActivity {
         webserviceCaller = new WebserviceCaller();
 
         String id = bundle.getString("catId");
-        int catId = Integer.parseInt(id);
+        catId = Integer.parseInt(id);
 
         if (catId==85){
-
-            binding.txtCategoryName.setText(R.string.lastest_video);
-            binding.lblCatName.setText(R.string.lastest_video);
-
-
-            binding.progressHorizontal.setVisibility(View.VISIBLE);
-            binding.progressVertical.setVisibility(View.VISIBLE);
-            webserviceCaller.getLastestVideo(new IResponseListener() {
-                @Override
-                public void onSuccess(Object responseMessage) {
-                    VideoModel videoModel = (VideoModel) responseMessage;
-                    video = videoModel.getAllInOneVideo().get(0);
-
-                    binding.recycleVertical.setAdapter(new VideoCategoryAdapter(videoModel.getAllInOneVideo(), getApplicationContext()));
-                    GridLayoutManager manager = new GridLayoutManager(getApplicationContext(),3);
-                    binding.recycleVertical.setLayoutManager(manager);
-                    binding.progressVertical.setVisibility(View.GONE);
-
-
-                    binding.recycleHorizontal.setAdapter(new VideoCategoryHAdapter(videoModel.getAllInOneVideo(), getApplicationContext()));
-                    LinearLayoutManager manager1 = new LinearLayoutManager(getApplicationContext(), RecyclerView.HORIZONTAL,false);
-                    binding.recycleHorizontal.setLayoutManager(manager1);
-                    binding.progressHorizontal.setVisibility(View.GONE);
-
-
-
-                }
-
-                @Override
-                public void onFailure(String onErrorMessage) {
-
-                }
-            });
-
+            latestVideo();
         }else {
-            binding.progressHorizontal.setVisibility(View.VISIBLE);
-            binding.progressVertical.setVisibility(View.VISIBLE);
-            webserviceCaller.searchCategory(catId, new IResponseListener() {
-                @Override
-                public void onSuccess(Object responseMessage) {
-                    VideoModel videoModel = (VideoModel) responseMessage;
-                    video = videoModel.getAllInOneVideo().get(0);
-
-                    binding.recycleVertical.setAdapter(new VideoCategoryAdapter(videoModel.getAllInOneVideo(), getApplicationContext()));
-                    GridLayoutManager manager = new GridLayoutManager(getApplicationContext(),3);
-                    binding.recycleVertical.setLayoutManager(manager);
-                    binding.progressVertical.setVisibility(View.GONE);
-
-
-                    binding.recycleHorizontal.setAdapter(new VideoCategoryHAdapter(videoModel.getAllInOneVideo(), getApplicationContext()));
-                    LinearLayoutManager manager1 = new LinearLayoutManager(getApplicationContext(), RecyclerView.HORIZONTAL,false);
-                    binding.recycleHorizontal.setLayoutManager(manager1);
-                    binding.progressHorizontal.setVisibility(View.GONE);
-
-                    binding.txtCategoryName.setText(video.getCategoryName());
-                    binding.lblCatName.setText(video.getCategoryName());
-
-                }
-
-                @Override
-                public void onFailure(String onErrorMessage) {
-
-                    Log.e("" + onErrorMessage, "erooorrrr");
-
-                }
-            });
-
+          getCategory();
         }
 
 
@@ -114,5 +50,74 @@ public class CategoryActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+    private void latestVideo(){
+
+        binding.txtCategoryName.setText(R.string.lastest_video);
+        binding.lblCatName.setText(R.string.lastest_video);
+
+
+        binding.progressHorizontal.setVisibility(View.VISIBLE);
+        binding.progressVertical.setVisibility(View.VISIBLE);
+        webserviceCaller.getLastestVideo(new IResponseListener() {
+            @Override
+            public void onSuccess(Object responseMessage) {
+                VideoModel videoModel = (VideoModel) responseMessage;
+                video = videoModel.getAllInOneVideo().get(0);
+
+                binding.recycleVertical.setAdapter(new VideoCategoryAdapter(videoModel.getAllInOneVideo(), getApplicationContext()));
+                GridLayoutManager manager = new GridLayoutManager(getApplicationContext(),3);
+                binding.recycleVertical.setLayoutManager(manager);
+                binding.progressVertical.setVisibility(View.GONE);
+
+
+                binding.recycleHorizontal.setAdapter(new VideoCategoryHAdapter(videoModel.getAllInOneVideo(), getApplicationContext()));
+                LinearLayoutManager manager1 = new LinearLayoutManager(getApplicationContext(), RecyclerView.HORIZONTAL,false);
+                binding.recycleHorizontal.setLayoutManager(manager1);
+                binding.progressHorizontal.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onFailure(String onErrorMessage) {
+
+            }
+        });
+
+    }
+
+    private void getCategory(){
+
+        binding.progressHorizontal.setVisibility(View.VISIBLE);
+        binding.progressVertical.setVisibility(View.VISIBLE);
+        webserviceCaller.searchCategory(catId, new IResponseListener() {
+            @Override
+            public void onSuccess(Object responseMessage) {
+                VideoModel videoModel = (VideoModel) responseMessage;
+                video = videoModel.getAllInOneVideo().get(0);
+
+                binding.recycleVertical.setAdapter(new VideoCategoryAdapter(videoModel.getAllInOneVideo(), getApplicationContext()));
+                GridLayoutManager manager = new GridLayoutManager(getApplicationContext(),3);
+                binding.recycleVertical.setLayoutManager(manager);
+                binding.progressVertical.setVisibility(View.GONE);
+
+
+                binding.recycleHorizontal.setAdapter(new VideoCategoryHAdapter(videoModel.getAllInOneVideo(), getApplicationContext()));
+                LinearLayoutManager manager1 = new LinearLayoutManager(getApplicationContext(), RecyclerView.HORIZONTAL,false);
+                binding.recycleHorizontal.setLayoutManager(manager1);
+                binding.progressHorizontal.setVisibility(View.GONE);
+
+                binding.txtCategoryName.setText(video.getCategoryName());
+                binding.lblCatName.setText(video.getCategoryName());
+
+            }
+
+            @Override
+            public void onFailure(String onErrorMessage) {
+
+                Log.e("" + onErrorMessage, "erooorrrr");
+
+            }
+        });
+
     }
 }

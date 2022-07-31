@@ -83,8 +83,5 @@ public interface IDao {
     @Query("select * from tbl_watched where video_title = :video_title")
     List<Watched> getWatchedVideos(String video_title);
 
-    @Query("delete  from tbl_watched where video_id=:id")
-    void deleteWatched(String id);
-
 
 }

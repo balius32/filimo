@@ -62,9 +62,6 @@ public class ForgetPassActivity extends AppCompatActivity {
                                         }
                                     });
                             alert.show();
-
-                        }else {
-
                         }
                     }
 

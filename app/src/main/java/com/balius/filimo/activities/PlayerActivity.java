@@ -125,7 +125,7 @@ public class PlayerActivity extends AppCompatActivity {
         MediaItem item = MediaItem.fromUri(Uri.parse(url));
         player.setMediaItem(item);
         binding.playerView.setPlayer(player);
-
+        player.prepare();
         player.play();
 
 

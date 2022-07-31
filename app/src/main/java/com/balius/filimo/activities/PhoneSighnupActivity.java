@@ -23,16 +23,15 @@ public class PhoneSighnupActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String phone = binding.edtPhone.getText().toString();
-                if (phone.isEmpty()){
 
+                if (phone.isEmpty()) {
                     Toast.makeText(PhoneSighnupActivity.this, R.string.pls_enter_phone, Toast.LENGTH_SHORT).show();
 
-                }else {
-                    Intent intent = new Intent(getApplicationContext(),CreateAccountActivity.class);
-                    intent.putExtra("phone",phone);
+                } else {
+                    Intent intent = new Intent(getApplicationContext(), CreateAccountActivity.class);
+                    intent.putExtra("phone", phone);
                     startActivity(intent);
                 }
-
             }
         });
 

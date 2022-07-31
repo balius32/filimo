@@ -55,8 +55,6 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     private void performSearch() {
-
-
         webserviceCaller.searchVideo(binding.edtSearch.getText().toString(), new IResponseListener() {
             @Override
             public void onSuccess(Object responseMessage) {

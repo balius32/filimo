@@ -11,15 +11,18 @@ android {
         targetSdk 32
         versionCode 1
         versionName "1.0"
-        vectorDrawables.useSupportLibrary=true
+        vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
     }
 
     buildTypes {
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile(
+                    'proguard-android-optimize.txt'),
+                    'proguard-rules.pro'
         }
     }
     compileOptions {
@@ -46,12 +49,14 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
     implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'jp.wasabeef:picasso-transformations:2.4.0'
 
-    implementation 'com.google.android.exoplayer:exoplayer:2.18.0'
 
-    implementation 'com.google.android.exoplayer:exoplayer-core:2.18.0'
-    implementation 'com.google.android.exoplayer:exoplayer-dash:2.18.0'
-    implementation 'com.google.android.exoplayer:exoplayer-ui:2.18.0'
+    implementation 'com.google.android.exoplayer:exoplayer:2.18.1'
+
+    implementation 'com.google.android.exoplayer:exoplayer-core:2.18.1'
+    implementation 'com.google.android.exoplayer:exoplayer-dash:2.18.1'
+    implementation 'com.google.android.exoplayer:exoplayer-ui:2.18.1'
 
     def room_version = "2.4.2"
 
@@ -63,9 +68,9 @@ dependencies {
 
     implementation("com.tbuonomo:dotsindicator:4.3")
 
-    implementation 'jp.wasabeef:picasso-transformations:2.4.0'
+    implementation 'com.github.smarteist:autoimageslider:1.4.0'
 
-
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 
 
 

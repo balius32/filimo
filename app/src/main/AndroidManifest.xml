@@ -28,6 +28,7 @@
             android:exported="false" />
         <activity
             android:name=".activities.PlayerActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"
             android:configChanges="orientation|screenSize|screenLayout"
             android:exported="false" />
         <activity
