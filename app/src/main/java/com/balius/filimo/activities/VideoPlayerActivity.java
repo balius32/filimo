@@ -114,14 +114,11 @@ public class VideoPlayerActivity extends AppCompatActivity {
 
         Picasso.get().load(video.getVideoThumbnailB()).into(binding.imgVideoPlayer);
 
-        binding.relPlayer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                binding.relImgPlayer.setVisibility(View.INVISIBLE);
-                binding.videoView.setVisibility(View.VISIBLE);
-                player.prepare();
-                player.play();
-            }
+        binding.relPlayer.setOnClickListener(view -> {
+            binding.relImgPlayer.setVisibility(View.INVISIBLE);
+            binding.videoView.setVisibility(View.VISIBLE);
+            player.prepare();
+            player.play();
         });
 
 
@@ -163,45 +160,34 @@ public class VideoPlayerActivity extends AppCompatActivity {
         }
 
 
-        binding.imgSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        binding.imgSave.setOnClickListener(view -> {
 
-                List<Save> saveList = db.iDao().getSaveVideos(video.getVideoTitle());
+            List<Save> saveList1 = db.iDao().getSaveVideos(video.getVideoTitle());
 
-                if (saveList.size() > 0) {
-                    binding.imgSave.setBackgroundResource(R.drawable.ic_baseline_bookmark_border_24);
-                    db.iDao().deleteSave(video.getId());
-                } else {
-                    binding.imgSave.setBackgroundResource(R.drawable.ic_baseline_bookmark_24);
+            if (saveList1.size() > 0) {
+                binding.imgSave.setBackgroundResource(R.drawable.ic_baseline_bookmark_border_24);
+                db.iDao().deleteSave(video.getId());
+            } else {
+                binding.imgSave.setBackgroundResource(R.drawable.ic_baseline_bookmark_24);
 
-                    video.setSave("1");
-                    Save save = new Save(video.getId(), video.getVideoTitle(), video.getVideoThumbnailB(),
-                            video.getVideoUrl(), video.getVideoDescription(), video.getVideoDuration());
-                    long result = db.iDao().addSave(save);
-                }
+                video.setSave("1");
+                Save save = new Save(video.getId(), video.getVideoTitle(), video.getVideoThumbnailB(),
+                        video.getVideoUrl(), video.getVideoDescription(), video.getVideoDuration());
+                long result = db.iDao().addSave(save);
             }
         });
 
-        binding.imgShare.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent shareIntent = new Intent(Intent.ACTION_SEND);
-                shareIntent.setType("text/plain");
-                shareIntent.putExtra(Intent.EXTRA_SUBJECT, "My application name");
-                String shareMessage = "Share the video";
-                shareMessage = shareMessage + video.getVideoUrl();
-                shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
-                startActivity(Intent.createChooser(shareIntent, "choose one"));
-            }
+        binding.imgShare.setOnClickListener(view -> {
+            Intent shareIntent = new Intent(Intent.ACTION_SEND);
+            shareIntent.setType("text/plain");
+            shareIntent.putExtra(Intent.EXTRA_SUBJECT, "My application name");
+            String shareMessage = "Share the video";
+            shareMessage = shareMessage + video.getVideoUrl();
+            shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
+            startActivity(Intent.createChooser(shareIntent, "choose one"));
         });
 
-        binding.imgBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        binding.imgBack.setOnClickListener(view -> finish());
 
 
         List<Login> accountList = db.iDao().getAllAccount();
@@ -211,128 +197,116 @@ public class VideoPlayerActivity extends AppCompatActivity {
             binding.btnWatch.setText(R.string.enter_and_watch);
         }
 
-        binding.btnWatch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        binding.btnWatch.setOnClickListener(view -> {
 
 
-                List<Login> accountList = db.iDao().getAllAccount();
-                if (accountList.size() > 0) {
+            List<Login> accountList1 = db.iDao().getAllAccount();
+            if (accountList1.size() > 0) {
 
-                    Intent intent = new Intent(getApplicationContext(), PlayerActivity.class);
-                    intent.putExtra("url", video.getVideoUrl());
-                    intent.putExtra("title", video.getVideoTitle());
-                    startActivity(intent);
+                Intent intent = new Intent(getApplicationContext(), PlayerActivity.class);
+                intent.putExtra("url", video.getVideoUrl());
+                intent.putExtra("title", video.getVideoTitle());
+                startActivity(intent);
 
 
-                    List<Watched> watchedList = db.iDao().getWatchedVideos(video.getVideoTitle());
+                List<Watched> watchedList = db.iDao().getWatchedVideos(video.getVideoTitle());
 
-                    if (watchedList.size() <= 0) {
-                        Watched watched = new Watched(video.getId(), video.getVideoThumbnailB(), video.getVideoTitle()
-                                , video.getVideoUrl(), video.getVideoDescription(), video.getVideoDuration());
+                if (watchedList.size() <= 0) {
+                    Watched watched = new Watched(video.getId(), video.getVideoThumbnailB(), video.getVideoTitle()
+                            , video.getVideoUrl(), video.getVideoDescription(), video.getVideoDuration());
 
-                        db.iDao().addWatch(watched);
-                    }
-
-                } else {
-                    Toast.makeText(VideoPlayerActivity.this, R.string.login_firs, Toast.LENGTH_SHORT).show();
+                    db.iDao().addWatch(watched);
                 }
+
+            } else {
+                Toast.makeText(VideoPlayerActivity.this, R.string.login_firs, Toast.LENGTH_SHORT).show();
             }
         });
 
-        binding.imgSendComment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                List<Login> loginList = db.iDao().getAllAccount();
-                String text = binding.edtComment.getText().toString();
-                if (loginList.size() > 0) {
+        binding.imgSendComment.setOnClickListener(view -> {
+            List<Login> loginList = db.iDao().getAllAccount();
+            String text = binding.edtComment.getText().toString();
+            if (loginList.size() > 0) {
 
-                    if (text.isEmpty()) {
-                        Toast.makeText(VideoPlayerActivity.this, R.string.pls_enter_comment, Toast.LENGTH_SHORT).show();
-                                         }
-                    else {
-                        Login login = loginList.get(0);
+                if (text.isEmpty()) {
+                    Toast.makeText(VideoPlayerActivity.this, R.string.pls_enter_comment, Toast.LENGTH_SHORT).show();
+                                     }
+                else {
+                    Login login = loginList.get(0);
 
-                        String username = login.getName();
+                    String username = login.getName();
 
-                        insertComment(text, username);
-                        }
-                } else {
-                    Toast.makeText(VideoPlayerActivity.this, R.string.login_firs, Toast.LENGTH_SHORT).show();}
-            }
-        });
-
-        binding.imgLike.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                List<LikedVideos> likedVideosList = db.iDao().getLikeVideos(video.getVideoTitle());
-
-                if (likedVideosList.size() > 0) {
-                    LikedVideos likedVideos = likedVideosList.get(0);
-
-                    if (likedVideos.isLike_state()) {
-                        binding.imgLike.setColorFilter(ContextCompat.getColor(getApplicationContext(),
-                                R.color.green), android.graphics.PorterDuff.Mode.SRC_IN);
-                        binding.imgDislike.setColorFilter(ContextCompat.getColor(getApplicationContext(),
-                                R.color.black), android.graphics.PorterDuff.Mode.SRC_IN);
-                    } else {
-                        binding.imgLike.setColorFilter(ContextCompat.getColor(getApplicationContext(),
-                                R.color.green), android.graphics.PorterDuff.Mode.SRC_IN);
-                        binding.imgDislike.setColorFilter(ContextCompat.getColor(getApplicationContext(),
-                                R.color.black), android.graphics.PorterDuff.Mode.SRC_IN);
-                        boolean like = true;
-                        boolean dislike = false;
-                        db.iDao().updateLike(like, video.getVideoTitle());
-                        db.iDao().updateDisLike(dislike, video.getVideoTitle());
+                    insertComment(text, username);
                     }
+            } else {
+                Toast.makeText(VideoPlayerActivity.this, R.string.login_firs, Toast.LENGTH_SHORT).show();}
+        });
+
+        binding.imgLike.setOnClickListener(view -> {
+
+            List<LikedVideos> likedVideosList1 = db.iDao().getLikeVideos(video.getVideoTitle());
+
+            if (likedVideosList1.size() > 0) {
+                LikedVideos likedVideos = likedVideosList1.get(0);
+
+                if (likedVideos.isLike_state()) {
+                    binding.imgLike.setColorFilter(ContextCompat.getColor(getApplicationContext(),
+                            R.color.green), android.graphics.PorterDuff.Mode.SRC_IN);
+                    binding.imgDislike.setColorFilter(ContextCompat.getColor(getApplicationContext(),
+                            R.color.black), android.graphics.PorterDuff.Mode.SRC_IN);
                 } else {
                     binding.imgLike.setColorFilter(ContextCompat.getColor(getApplicationContext(),
                             R.color.green), android.graphics.PorterDuff.Mode.SRC_IN);
                     binding.imgDislike.setColorFilter(ContextCompat.getColor(getApplicationContext(),
                             R.color.black), android.graphics.PorterDuff.Mode.SRC_IN);
-                    LikedVideos likedVideos = new LikedVideos(video.getVideoTitle(), true, false);
-                    db.iDao().addLike(likedVideos);
+                    boolean like = true;
+                    boolean dislike = false;
+                    db.iDao().updateLike(like, video.getVideoTitle());
+                    db.iDao().updateDisLike(dislike, video.getVideoTitle());
                 }
-
+            } else {
+                binding.imgLike.setColorFilter(ContextCompat.getColor(getApplicationContext(),
+                        R.color.green), android.graphics.PorterDuff.Mode.SRC_IN);
+                binding.imgDislike.setColorFilter(ContextCompat.getColor(getApplicationContext(),
+                        R.color.black), android.graphics.PorterDuff.Mode.SRC_IN);
+                LikedVideos likedVideos = new LikedVideos(video.getVideoTitle(), true, false);
+                db.iDao().addLike(likedVideos);
             }
+
         });
 
-        binding.imgDislike.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                List<LikedVideos> likedVideosList = db.iDao().getLikeVideos(video.getVideoTitle());
+        binding.imgDislike.setOnClickListener(view -> {
+            List<LikedVideos> likedVideosList12 = db.iDao().getLikeVideos(video.getVideoTitle());
 
-                if (likedVideosList.size() > 0) {
-                    LikedVideos likedVideos = likedVideosList.get(0);
+            if (likedVideosList12.size() > 0) {
+                LikedVideos likedVideos = likedVideosList12.get(0);
 
-                    if (likedVideos.isLike_state()) {
-                        binding.imgLike.setColorFilter(ContextCompat.getColor(getApplicationContext(),
-                                R.color.black), android.graphics.PorterDuff.Mode.SRC_IN);
-                        binding.imgDislike.setColorFilter(ContextCompat.getColor(getApplicationContext(),
-                                R.color.red), android.graphics.PorterDuff.Mode.SRC_IN);
-                        boolean like = false;
-                        boolean dislike = true;
-                        db.iDao().updateLike(like, video.getVideoTitle());
-                        db.iDao().updateDisLike(dislike, video.getVideoTitle());
-                    } else {
-                        binding.imgLike.setColorFilter(ContextCompat.getColor(getApplicationContext(),
-                                R.color.black), android.graphics.PorterDuff.Mode.SRC_IN);
-                        binding.imgDislike.setColorFilter(ContextCompat.getColor(getApplicationContext(),
-                                R.color.red), android.graphics.PorterDuff.Mode.SRC_IN);
-
-                    }
-
+                if (likedVideos.isLike_state()) {
+                    binding.imgLike.setColorFilter(ContextCompat.getColor(getApplicationContext(),
+                            R.color.black), android.graphics.PorterDuff.Mode.SRC_IN);
+                    binding.imgDislike.setColorFilter(ContextCompat.getColor(getApplicationContext(),
+                            R.color.red), android.graphics.PorterDuff.Mode.SRC_IN);
+                    boolean like = false;
+                    boolean dislike = true;
+                    db.iDao().updateLike(like, video.getVideoTitle());
+                    db.iDao().updateDisLike(dislike, video.getVideoTitle());
                 } else {
                     binding.imgLike.setColorFilter(ContextCompat.getColor(getApplicationContext(),
                             R.color.black), android.graphics.PorterDuff.Mode.SRC_IN);
                     binding.imgDislike.setColorFilter(ContextCompat.getColor(getApplicationContext(),
                             R.color.red), android.graphics.PorterDuff.Mode.SRC_IN);
-                    LikedVideos likedVideos = new LikedVideos(video.getVideoTitle(), false, true);
-                    db.iDao().addLike(likedVideos);
+
                 }
 
+            } else {
+                binding.imgLike.setColorFilter(ContextCompat.getColor(getApplicationContext(),
+                        R.color.black), android.graphics.PorterDuff.Mode.SRC_IN);
+                binding.imgDislike.setColorFilter(ContextCompat.getColor(getApplicationContext(),
+                        R.color.red), android.graphics.PorterDuff.Mode.SRC_IN);
+                LikedVideos likedVideos = new LikedVideos(video.getVideoTitle(), false, true);
+                db.iDao().addLike(likedVideos);
             }
+
         });
 
 

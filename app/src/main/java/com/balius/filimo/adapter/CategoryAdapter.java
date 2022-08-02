@@ -55,14 +55,11 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
 
         Picasso.get().load(categories.getCategoryImageThumb()).placeholder(gradientDrawable).into(holder.img_categories);
 
-        holder.img_categories.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, CategoryActivity.class);
-                intent.putExtra("catId",categories.getCid());
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(intent);
-            }
+        holder.img_categories.setOnClickListener(view -> {
+            Intent intent = new Intent(context, CategoryActivity.class);
+            intent.putExtra("catId",categories.getCid());
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
         });
 
     }

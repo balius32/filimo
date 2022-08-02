@@ -30,22 +30,16 @@ public class ProfileActivity extends AppCompatActivity {
 
         binding.txtName.setText(login.getName());
 
-        binding.imgBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
-            }
+        binding.imgBack.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
         });
 
-        binding.cardLogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                db.iDao().logout(login.getUserId());
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
+        binding.cardLogout.setOnClickListener(view -> {
+            db.iDao().logout(login.getUserId());
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
 
-            }
         });
 
 

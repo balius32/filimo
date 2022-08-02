@@ -100,7 +100,6 @@ public class CategoryActivity extends AppCompatActivity {
                 binding.recycleVertical.setLayoutManager(manager);
                 binding.progressVertical.setVisibility(View.GONE);
 
-
                 binding.recycleHorizontal.setAdapter(new VideoCategoryHAdapter(videoModel.getAllInOneVideo(), getApplicationContext()));
                 LinearLayoutManager manager1 = new LinearLayoutManager(getApplicationContext(), RecyclerView.HORIZONTAL,false);
                 binding.recycleHorizontal.setLayoutManager(manager1);

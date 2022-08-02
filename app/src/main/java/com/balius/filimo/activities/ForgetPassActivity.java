@@ -32,28 +32,20 @@ public class ForgetPassActivity extends AppCompatActivity {
 
         webserviceCaller = new WebserviceCaller();
 
-        binding.imgBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        binding.imgBack.setOnClickListener(view -> finish());
 
-        binding.btnForgetPass.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
+        binding.btnForgetPass.setOnClickListener(view ->
                 webserviceCaller.forgetPass(binding.edtEmail.getText().toString(), new IResponseListener() {
                     @Override
                     public void onSuccess(Object responseMessage) {
-                        SighnupModel sighnupModel  = (SighnupModel) responseMessage;
+                        SighnupModel sighnupModel = (SighnupModel) responseMessage;
                         Sighnup sighnup = sighnupModel.getAllInOneVideo().get(0);
 
-                        if (sighnup.getSuccess().equals("1")){
+                        if (sighnup.getSuccess().equals("1")) {
                             AlertDialog.Builder alert = new AlertDialog.Builder(ForgetPassActivity.this);
                             alert.setMessage(R.string.email_forget_sent)
                                     .setTitle("success")
-                                    .setPositiveButton("ok",new DialogInterface.OnClickListener() {
+                                    .setPositiveButton("ok", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialogInterface, int i) {
 
@@ -69,9 +61,7 @@ public class ForgetPassActivity extends AppCompatActivity {
                     public void onFailure(String onErrorMessage) {
 
                     }
-                });
-            }
-        });
+                }));
 
 
     }

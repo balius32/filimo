@@ -47,14 +47,11 @@ public class VideoCategoryAdapter extends RecyclerView.Adapter<VideoCategoryAdap
 
         Picasso.get().load(video.getVideoThumbnailB()).into(holder.img_video);
 
-        holder.rel_save_video.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, VideoPlayerActivity.class);
-                intent.putExtra("video",video);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(intent);
-            }
+        holder.rel_save_video.setOnClickListener(view -> {
+            Intent intent = new Intent(context, VideoPlayerActivity.class);
+            intent.putExtra("video",video);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
         });
 
 

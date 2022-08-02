@@ -53,15 +53,12 @@ public class SliderPagerAdapter extends
                 .into(viewHolder.img_pager_blur);
 
 
-        viewHolder.img_pager.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, VideoPlayerActivity.class);
-                intent.putExtra("video", video);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(intent);
+        viewHolder.img_pager.setOnClickListener(view -> {
+            Intent intent = new Intent(context, VideoPlayerActivity.class);
+            intent.putExtra("video", video);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
 
-            }
         });
     }
 

@@ -48,21 +48,18 @@ public class RelatedAdapter extends RecyclerView.Adapter<RelatedAdapter.RelatedV
         Picasso.get().load(related.getVideoThumbnailB()).into(holder.img_video);
 
 
-        holder.rel_video.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, VideoPlayerActivity.class);
-                video.setId(related.getId());
-                video.setVideoTitle(related.getVideoTitle());
-                video.setVideoThumbnailB(related.getVideoThumbnailB());
-                video.setVideoUrl(related.getVideoUrl());
-                video.setVideoDescription(related.getVideoDescription());
-                video.setVideoDuration(related.getVideoDuration());
+        holder.rel_video.setOnClickListener(view -> {
+            Intent intent = new Intent(context, VideoPlayerActivity.class);
+            video.setId(related.getId());
+            video.setVideoTitle(related.getVideoTitle());
+            video.setVideoThumbnailB(related.getVideoThumbnailB());
+            video.setVideoUrl(related.getVideoUrl());
+            video.setVideoDescription(related.getVideoDescription());
+            video.setVideoDuration(related.getVideoDuration());
 
-                intent.putExtra("video", video);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(intent);
-            }
+            intent.putExtra("video", video);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
         });
 
 

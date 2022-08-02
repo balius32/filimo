@@ -19,28 +19,20 @@ public class PhoneSighnupActivity extends AppCompatActivity {
         binding = ActivityPhoneSighnUpBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.btnAddAccount.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String phone = binding.edtPhone.getText().toString();
+        binding.btnAddAccount.setOnClickListener(view -> {
+            String phone = binding.edtPhone.getText().toString();
 
-                if (phone.isEmpty()) {
-                    Toast.makeText(PhoneSighnupActivity.this, R.string.pls_enter_phone, Toast.LENGTH_SHORT).show();
+            if (phone.isEmpty()) {
+                Toast.makeText(PhoneSighnupActivity.this, R.string.pls_enter_phone, Toast.LENGTH_SHORT).show();
 
-                } else {
-                    Intent intent = new Intent(getApplicationContext(), CreateAccountActivity.class);
-                    intent.putExtra("phone", phone);
-                    startActivity(intent);
-                }
+            } else {
+                Intent intent = new Intent(getApplicationContext(), CreateAccountActivity.class);
+                intent.putExtra("phone", phone);
+                startActivity(intent);
             }
         });
 
-        binding.imgBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        binding.imgBack.setOnClickListener(view -> finish());
 
 
     }

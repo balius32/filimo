@@ -52,16 +52,13 @@ public class HorizontalVideoAdapter extends RecyclerView.Adapter<HorizontalVideo
 
         Picasso.get().load(video.getVideoThumbnailB()).into(holder.img_video);
 
-        holder.rel_video.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        holder.rel_video.setOnClickListener(view -> {
 
-                Intent intent = new Intent(context, VideoPlayerActivity.class);
+            Intent intent = new Intent(context, VideoPlayerActivity.class);
 
-                intent.putExtra("video", video);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(intent);
-            }
+            intent.putExtra("video", video);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
         });
 
 

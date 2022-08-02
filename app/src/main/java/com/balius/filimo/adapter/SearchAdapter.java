@@ -44,15 +44,12 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchVh> 
         holder.txt_name.setText(video.getVideoTitle());
         Picasso.get().load(video.getVideoThumbnailB()).into(holder.img_video);
 
-        holder.const_layout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        holder.const_layout.setOnClickListener(view -> {
 
-                Intent intent = new Intent(context, VideoPlayerActivity.class);
-                intent.putExtra("video", video);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(intent);
-            }
+            Intent intent = new Intent(context, VideoPlayerActivity.class);
+            intent.putExtra("video", video);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
         });
 
     }

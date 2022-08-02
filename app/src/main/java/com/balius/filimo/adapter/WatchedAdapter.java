@@ -49,21 +49,18 @@ public class WatchedAdapter extends RecyclerView.Adapter<WatchedAdapter.watchVH>
 
         Picasso.get().load(watched.getVideo_image()).into(holder.img_video);
 
-        holder.rel_save_video.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                video.setId(watched.getVideo_id());
-                video.setVideoTitle(watched.getVideo_title());
-                video.setVideoThumbnailB(watched.getVideo_image());
-                video.setVideoUrl(watched.getVideo_url());
-                video.setVideoDescription(watched.getVideo_description());
-                video.setVideoDuration(watched.getVideo_time());
+        holder.rel_save_video.setOnClickListener(view -> {
+            video.setId(watched.getVideo_id());
+            video.setVideoTitle(watched.getVideo_title());
+            video.setVideoThumbnailB(watched.getVideo_image());
+            video.setVideoUrl(watched.getVideo_url());
+            video.setVideoDescription(watched.getVideo_description());
+            video.setVideoDuration(watched.getVideo_time());
 
-                Intent intent = new Intent(context, VideoPlayerActivity.class);
-                intent.putExtra("video",video);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(intent);
-            }
+            Intent intent = new Intent(context, VideoPlayerActivity.class);
+            intent.putExtra("video",video);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
         });
 
     }

@@ -45,14 +45,11 @@ public class VideoCategoryHAdapter extends RecyclerView.Adapter<VideoCategoryHAd
         holder.txt_video_name.setText(video.getVideoTitle());
         holder.txt_category_name.setText(video.getCategoryName());
         Picasso.get().load(video.getVideoThumbnailB()).into(holder.img_video);
-        holder.card_category.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, VideoPlayerActivity.class);
-                intent.putExtra("video",video);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(intent);
-            }
+        holder.card_category.setOnClickListener(view -> {
+            Intent intent = new Intent(context, VideoPlayerActivity.class);
+            intent.putExtra("video",video);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
         });
 
     }

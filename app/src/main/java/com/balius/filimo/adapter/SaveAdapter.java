@@ -50,21 +50,18 @@ public class SaveAdapter extends RecyclerView.Adapter<SaveAdapter.SaveVH> {
 
         Picasso.get().load(save.getVideo_image()).into(holder.img_video);
 
-        holder.rel_save_video.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                video.setId(save.getVideo_id());
-                video.setVideoTitle(save.getVideo_title());
-                video.setVideoThumbnailB(save.getVideo_image());
-                video.setVideoUrl(save.getVideo_url());
-                video.setVideoDescription(save.getVideo_description());
-                video.setVideoDuration(save.getVideo_time());
+        holder.rel_save_video.setOnClickListener(view -> {
+            video.setId(save.getVideo_id());
+            video.setVideoTitle(save.getVideo_title());
+            video.setVideoThumbnailB(save.getVideo_image());
+            video.setVideoUrl(save.getVideo_url());
+            video.setVideoDescription(save.getVideo_description());
+            video.setVideoDuration(save.getVideo_time());
 
-                Intent intent = new Intent(context,VideoPlayerActivity.class);
-                intent.putExtra("video",video);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(intent);
-            }
+            Intent intent = new Intent(context,VideoPlayerActivity.class);
+            intent.putExtra("video",video);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
         });
 
     }

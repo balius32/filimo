@@ -62,45 +62,31 @@ public class PlayerActivity extends AppCompatActivity {
 
         txt_name.setText(videoName);
 
-        img_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
+        img_back.setOnClickListener(view -> finish());
+
+        lock.setOnClickListener(view -> {
+            isLocked = !isLocked;
+            lockScreen(isLocked);
+
+
         });
 
-        lock.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                isLocked = !isLocked;
-                lockScreen(isLocked);
-
-
-            }
-        });
-
-        img_open_lock.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                isLocked = !isLocked;
-                lockScreen(isLocked);
-            }
+        img_open_lock.setOnClickListener(view -> {
+            isLocked = !isLocked;
+            lockScreen(isLocked);
         });
 
 
-        fullscreen.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (!isFullScreen) {
-                    fullscreen.setBackgroundResource(R.drawable.ic_baseline_fullscreen_exit_24);
-                    binding.playerView.setResizeMode(AspectRatioFrameLayout.RESIZE_MODE_FILL);
+        fullscreen.setOnClickListener(view -> {
+            if (!isFullScreen) {
+                fullscreen.setBackgroundResource(R.drawable.ic_baseline_fullscreen_exit_24);
+                binding.playerView.setResizeMode(AspectRatioFrameLayout.RESIZE_MODE_FILL);
 
-                } else {
-                    fullscreen.setBackgroundResource(R.drawable.ic_baseline_fullscreen_24);
-                    binding.playerView.setResizeMode(AspectRatioFrameLayout.RESIZE_MODE_FIT);
-                }
-                isFullScreen = !isFullScreen;
+            } else {
+                fullscreen.setBackgroundResource(R.drawable.ic_baseline_fullscreen_24);
+                binding.playerView.setResizeMode(AspectRatioFrameLayout.RESIZE_MODE_FIT);
             }
+            isFullScreen = !isFullScreen;
         });
 
         player = new ExoPlayer.Builder(this)

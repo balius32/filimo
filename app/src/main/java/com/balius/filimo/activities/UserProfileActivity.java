@@ -18,12 +18,9 @@ public class UserProfileActivity extends AppCompatActivity {
         binding = ActivityUserProfileBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.btnLoginSighnup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
-                startActivity(intent);
-            }
+        binding.btnLoginSighnup.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
+            startActivity(intent);
         });
 
     }

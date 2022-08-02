@@ -57,32 +57,26 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        binding.imgAccount.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                List<Login> loginList = db.iDao().getAllAccount();
-                Login login = new Login();
+        binding.imgAccount.setOnClickListener(view -> {
+            List<Login> loginList = db.iDao().getAllAccount();
+            Login login = new Login();
 
-                if (loginList.size() > 0) {
-                    login = loginList.get(0);
-                    Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
-                    intent.putExtra("login", login);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(intent);
-                } else {
-                    Intent intent = new Intent(getApplicationContext(), UserProfileActivity.class);
-                    startActivity(intent);
-                }
-
-            }
-        });
-
-        binding.imgSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
+            if (loginList.size() > 0) {
+                login = loginList.get(0);
+                Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
+                intent.putExtra("login", login);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+            } else {
+                Intent intent = new Intent(getApplicationContext(), UserProfileActivity.class);
                 startActivity(intent);
             }
+
+        });
+
+        binding.imgSearch.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
+            startActivity(intent);
         });
 
     }
