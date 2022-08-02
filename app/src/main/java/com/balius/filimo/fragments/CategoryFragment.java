@@ -36,16 +36,21 @@ public class CategoryFragment extends Fragment {
         webserviceCaller.getCategory(new IResponseListener() {
             @Override
             public void onSuccess(Object responseMessage) {
-                CategoryModel ctmodel = new CategoryModel();
-                ctmodel = (CategoryModel) responseMessage;
+                if (responseMessage !=null){
 
+                    CategoryModel ctmodel = (CategoryModel) responseMessage;
 
-                binding.recycleCategory.setAdapter(new CategoryAdapter(ctmodel.getAllInOneVideo(),getActivity()));
+                    binding.recycleCategory.setAdapter(new CategoryAdapter(ctmodel.getAllInOneVideo(),getActivity()));
 
-                binding.recycleCategory.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL,false));
+                    binding.recycleCategory.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL,false));
 
-                Log.e(""+responseMessage,"");
-                binding.progressCategory.setVisibility(View.GONE);
+                    binding.progressCategory.setVisibility(View.GONE);
+                }
+                else {
+                    binding.relCategory.setVisibility(View.GONE);
+                    binding.constraintNoSignal.setVisibility(View.VISIBLE);
+
+                }
             }
 
             @Override
@@ -57,9 +62,6 @@ public class CategoryFragment extends Fragment {
                 Log.e(""+onErrorMessage,"");
             }
         });
-
-
-
 
         return binding.getRoot();
     }

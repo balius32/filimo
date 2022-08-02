@@ -23,7 +23,6 @@ public class WebserviceCaller {
     public WebserviceCaller() {
 
         iService = ApiClient.getClient().create(IService.class);
-
     }
 
     public void getCategory(IResponseListener listener) {
@@ -33,15 +32,12 @@ public class WebserviceCaller {
             @Override
             public void onResponse(@NonNull Call<CategoryModel> call, @NonNull Response<CategoryModel> response) {
               listener.onSuccess(response.body());
-                Log.e(""+response.body(),"");
             }
 
             @Override
-            public void onFailure(@NonNull Call<CategoryModel> call, Throwable t) {
+            public void onFailure(@NonNull Call<CategoryModel> call, @NonNull Throwable t) {
 
-                listener.onFailure(t.getMessage().toString());
-                Log.e(""+t.getMessage().toString(),"");
-
+                listener.onFailure(t.getMessage());
             }
         });
     }
@@ -54,62 +50,15 @@ public class WebserviceCaller {
             @Override
             public void onResponse(@NonNull Call<VideoModel> call, @NonNull Response<VideoModel> response) {
                 listener.onSuccess(response.body());
-                Log.e(""+response.body(),"");
             }
 
             @Override
-            public void onFailure(@NonNull Call<VideoModel> call, Throwable t) {
+            public void onFailure(@NonNull Call<VideoModel> call, @NonNull Throwable t) {
 
-                listener.onFailure(t.getMessage().toString());
-                Log.e(""+t.getMessage().toString(),"");
-
+                listener.onFailure(t.getMessage());
             }
         });
     }
-
-
-    public void searchSpacialVideos(IResponseListener listener) {
-
-        Call<VideoModel> call = iService.spacialCategory();
-
-        call.enqueue(new Callback<VideoModel>() {
-            @Override
-            public void onResponse(@NonNull Call<VideoModel> call, @NonNull Response<VideoModel> response) {
-                listener.onSuccess(response.body());
-                Log.e(""+response.body(),"");
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<VideoModel> call, Throwable t) {
-
-                listener.onFailure(t.getMessage().toString());
-                Log.e(""+t.getMessage().toString(),"");
-
-            }
-        });
-    }
-
-    public void searchSportVideos(IResponseListener listener) {
-
-        Call<VideoModel> call = iService.sportCategory();
-
-        call.enqueue(new Callback<VideoModel>() {
-            @Override
-            public void onResponse(@NonNull Call<VideoModel> call, @NonNull Response<VideoModel> response) {
-                listener.onSuccess(response.body());
-                Log.e(""+response.body(),"");
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<VideoModel> call, Throwable t) {
-
-                listener.onFailure(t.getMessage().toString());
-                Log.e(""+t.getMessage().toString(),"");
-
-            }
-        });
-    }
-
 
 
     public void searchCategory(int id,IResponseListener listener) {
@@ -119,16 +68,14 @@ public class WebserviceCaller {
         call.enqueue(new Callback<VideoModel>() {
             @Override
             public void onResponse(@NonNull Call<VideoModel> call, @NonNull Response<VideoModel> response) {
+
                 listener.onSuccess(response.body());
-                Log.e(""+response.body(),"");
             }
 
             @Override
-            public void onFailure(@NonNull Call<VideoModel> call, Throwable t) {
+            public void onFailure(@NonNull Call<VideoModel> call, @NonNull Throwable t) {
 
-                listener.onFailure(t.getMessage().toString());
-                Log.e(""+t.getMessage().toString(),"");
-
+                listener.onFailure(t.getMessage());
             }
         });
     }
@@ -142,15 +89,12 @@ public class WebserviceCaller {
             @Override
             public void onResponse(@NonNull Call<SighnupModel> call, @NonNull Response<SighnupModel> response) {
                 listener.onSuccess(response.body());
-                Log.e(""+response.body(),"");
             }
 
             @Override
-            public void onFailure(@NonNull Call<SighnupModel> call, Throwable t) {
+            public void onFailure(@NonNull Call<SighnupModel> call, @NonNull Throwable t) {
 
-                listener.onFailure(t.getMessage().toString());
-                Log.e(""+t.getMessage().toString(),"");
-
+                listener.onFailure(t.getMessage());
             }
         });
     }
@@ -163,14 +107,12 @@ public class WebserviceCaller {
             @Override
             public void onResponse(@NonNull Call<LoginModel> call, @NonNull Response<LoginModel> response) {
                 listener.onSuccess(response.body());
-                Log.e(""+response.body(),"");
             }
 
             @Override
-            public void onFailure(@NonNull Call<LoginModel> call, Throwable t) {
+            public void onFailure(@NonNull Call<LoginModel> call, @NonNull Throwable t) {
 
-                listener.onFailure(t.getMessage().toString());
-                Log.e(""+t.getMessage().toString(),"");
+                listener.onFailure(t.getMessage());
 
             }
         });
@@ -184,15 +126,13 @@ public class WebserviceCaller {
             @Override
             public void onResponse(@NonNull Call<SighnupModel> call, @NonNull Response<SighnupModel> response) {
                 listener.onSuccess(response.body());
-                Log.e(""+response.body(),"");
+
             }
 
             @Override
-            public void onFailure(@NonNull Call<SighnupModel> call, Throwable t) {
+            public void onFailure(@NonNull Call<SighnupModel> call, @NonNull Throwable t) {
 
-                listener.onFailure(t.getMessage().toString());
-                Log.e(""+t.getMessage().toString(),"");
-
+                listener.onFailure(t.getMessage());
             }
         });
     }
@@ -206,14 +146,12 @@ public class WebserviceCaller {
             @Override
             public void onResponse(@NonNull Call<VideoModel> call, @NonNull Response<VideoModel> response) {
                 listener.onSuccess(response.body());
-                Log.e(""+response.body(),"");
             }
 
             @Override
-            public void onFailure(@NonNull Call<VideoModel> call, Throwable t) {
+            public void onFailure(@NonNull Call<VideoModel> call, @NonNull Throwable t) {
 
                 listener.onFailure(t.getMessage());
-                Log.e(""+ t.getMessage(),"");
 
             }
         });
@@ -231,12 +169,8 @@ public class WebserviceCaller {
                 Log.e("","");
             }
             @Override
-            public void onFailure(@NonNull Call<SingleVideoModel> call, Throwable t) {
-
+            public void onFailure(@NonNull Call<SingleVideoModel> call, @NonNull Throwable t) {
                 listener.onFailure(t.getMessage());
-                Log.e("","");
-
-
             }
         });
     }
@@ -253,12 +187,9 @@ public class WebserviceCaller {
                 Log.e("","");
             }
             @Override
-            public void onFailure(@NonNull Call<CVideoModel> call, Throwable t) {
+            public void onFailure(@NonNull Call<CVideoModel> call, @NonNull Throwable t) {
 
                 listener.onFailure(t.getMessage());
-                Log.e("","");
-
-
             }
         });
     }
@@ -271,18 +202,13 @@ public class WebserviceCaller {
             @Override
             public void onResponse(@NonNull Call<SighnupModel> call, @NonNull Response<SighnupModel> response) {
                 listener.onSuccess(response.body());
-                Log.e(""+response.body(),"");
             }
-
             @Override
-            public void onFailure(@NonNull Call<SighnupModel> call, Throwable t) {
+            public void onFailure(@NonNull Call<SighnupModel> call, @NonNull Throwable t) {
 
-                listener.onFailure(t.getMessage().toString());
-                Log.e(""+t.getMessage().toString(),"");
-
+                listener.onFailure(t.getMessage());
             }
         });
     }
-
 
 }

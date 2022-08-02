@@ -24,7 +24,7 @@
                 android:layout_centerVertical="true"
                 app:srcCompat="@drawable/ic_baseline_arrow_forward_24" />
 
-            <com.balius.filimo.customview.PersianTextView
+            <com.balius.filimo.customview.PersianBoldTextView
                 android:id="@+id/txt_category_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

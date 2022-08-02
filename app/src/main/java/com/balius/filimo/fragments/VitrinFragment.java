@@ -1,10 +1,8 @@
 package com.balius.filimo.fragments;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,9 +10,7 @@ import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.balius.filimo.R;
 import com.balius.filimo.activities.CategoryActivity;
 import com.balius.filimo.activities.ProfileActivity;
 import com.balius.filimo.activities.SearchActivity;
@@ -28,7 +24,6 @@ import com.balius.filimo.model.lastesvideo.VideoModel;
 import com.balius.filimo.model.login.Login;
 import com.balius.filimo.webservice.IResponseListener;
 import com.balius.filimo.webservice.WebserviceCaller;
-import com.google.android.material.appbar.AppBarLayout;
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
 import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
@@ -46,8 +41,9 @@ public class VitrinFragment extends Fragment {
         // Required empty public constructor
     }
 
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@androidx.annotation.NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         binding = FragmentVitrinBinding.inflate(getLayoutInflater());
         webserviceCaller = new WebserviceCaller();
@@ -58,13 +54,21 @@ public class VitrinFragment extends Fragment {
         webserviceCaller.getLastestVideo(new IResponseListener() {
             @Override
             public void onSuccess(Object responseMessage) {
-                Log.e("" + responseMessage, " eeeeeee");
 
-                VideoModel videoModel = (VideoModel) responseMessage;
+                if (responseMessage !=null) {
 
-                binding.recycleLastestVideo.setAdapter(new VideoAdapter(getActivity(), videoModel.getAllInOneVideo()));
-                binding.recycleLastestVideo.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
-                binding.progressLatest.setVisibility(View.GONE);
+                    VideoModel videoModel = (VideoModel) responseMessage;
+
+                    binding.recycleLastestVideo.setAdapter(new VideoAdapter(getActivity(), videoModel.getAllInOneVideo()));
+                    binding.recycleLastestVideo.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
+                    binding.progressLatest.setVisibility(View.GONE);
+                } else {
+                    binding.scrollView.setVisibility(View.GONE);
+                    binding.appBarLayout.setVisibility(View.GONE);
+                    binding.constraintNoSignal.setVisibility(View.VISIBLE);
+
+                }
+
             }
 
             @Override
@@ -76,34 +80,39 @@ public class VitrinFragment extends Fragment {
             }
         });
 
-        // binding.progressPager.setVisibility(View.VISIBLE);
+        binding.progressPager.setVisibility(View.VISIBLE);
         binding.progressSpacial.setVisibility(View.VISIBLE);
         //spacial catId = 14
         webserviceCaller.searchCategory(14, new IResponseListener() {
             @Override
             public void onSuccess(Object responseMessage) {
-                VideoModel videoModel = (VideoModel) responseMessage;
 
-                binding.recycleSpacial.setAdapter(new HorizontalVideoAdapter(getActivity(), videoModel.getAllInOneVideo()));
-                binding.recycleSpacial.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
-                binding.progressSpacial.setVisibility(View.GONE);
+                if (responseMessage !=null) {
+                    VideoModel videoModel = (VideoModel) responseMessage;
+                    binding.recycleSpacial.setAdapter(new HorizontalVideoAdapter(getActivity(), videoModel.getAllInOneVideo()));
+                    binding.recycleSpacial.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
+                    binding.progressSpacial.setVisibility(View.GONE);
 
-/*
-                binding.pager.setAdapter(new PageAdapter(getActivity(), videoModel.getAllInOneVideo()));
-                binding.springDotsIndicator.setViewPager(binding.pager);*/
+                    binding.imageSlider.setSliderAdapter(new SliderPagerAdapter(getActivity(), videoModel.getAllInOneVideo()));
 
+                    binding.imageSlider.setIndicatorAnimation(IndicatorAnimationType.WORM);
 
-                binding.imageSlider.setSliderAdapter(new SliderPagerAdapter(getActivity(), videoModel.getAllInOneVideo()));
+                    binding.imageSlider.setSliderTransformAnimation(SliderAnimations.CUBEINROTATIONTRANSFORMATION);
+                    binding.imageSlider.setAutoCycleDirection(SliderView.LAYOUT_DIRECTION_RTL);
+                    binding.imageSlider.setIndicatorSelectedColor(Color.YELLOW);
+                    binding.imageSlider.setIndicatorUnselectedColor(Color.DKGRAY);
+                    binding.imageSlider.setScrollTimeInSec(4);
+                    binding.imageSlider.startAutoCycle();
 
-                binding.imageSlider.setIndicatorAnimation(IndicatorAnimationType.WORM); //set indicator animation by using IndicatorAnimationType. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
-                binding.imageSlider.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
-                binding.imageSlider.setAutoCycleDirection(SliderView.AUTO_CYCLE_DIRECTION_BACK_AND_FORTH);
-                binding.imageSlider.setIndicatorSelectedColor(Color.YELLOW);
-                binding.imageSlider.setIndicatorUnselectedColor(Color.DKGRAY);
-                binding.imageSlider.setScrollTimeInSec(4); //set scroll delay in seconds :
-                binding.imageSlider.startAutoCycle();
+                    binding.progressPager.setVisibility(View.GONE);
 
-                // binding.progressPager.setVisibility(View.GONE);
+                } else {
+                    binding.scrollView.setVisibility(View.GONE);
+                    binding.appBarLayout.setVisibility(View.GONE);
+                    binding.constraintNoSignal.setVisibility(View.VISIBLE);
+
+                }
+
             }
 
             @Override
@@ -117,10 +126,18 @@ public class VitrinFragment extends Fragment {
         webserviceCaller.searchCategory(9, new IResponseListener() {
             @Override
             public void onSuccess(Object responseMessage) {
-                VideoModel videoModel = (VideoModel) responseMessage;
-                binding.recycleSportVideo.setAdapter(new VideoAdapter(getActivity(), videoModel.getAllInOneVideo()));
-                binding.recycleSportVideo.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
-                binding.progressSport.setVisibility(View.GONE);
+                if (responseMessage !=null) {
+                    VideoModel videoModel = (VideoModel) responseMessage;
+                    binding.recycleSportVideo.setAdapter(new VideoAdapter(getActivity(), videoModel.getAllInOneVideo()));
+                    binding.recycleSportVideo.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
+                    binding.progressSport.setVisibility(View.GONE);
+                } else {
+                    binding.scrollView.setVisibility(View.GONE);
+                    binding.appBarLayout.setVisibility(View.GONE);
+                    binding.constraintNoSignal.setVisibility(View.VISIBLE);
+
+                }
+
             }
 
             @Override
@@ -128,70 +145,69 @@ public class VitrinFragment extends Fragment {
 
             }
         });
-        binding.relSpacial.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), CategoryActivity.class);
+        binding.relSpacial.setOnClickListener(view -> {
+            Intent intent = new Intent(getActivity(), CategoryActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.putExtra("catId", "14");
+            startActivity(intent);
+        });
+
+
+        binding.relLastestVideo.setOnClickListener(view -> {
+            Intent intent = new Intent(getActivity(), CategoryActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.putExtra("catId", "85");
+            startActivity(intent);
+
+        });
+
+
+        binding.relSportVideo.setOnClickListener(view -> {
+            Intent intent = new Intent(getActivity(), CategoryActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.putExtra("catId", "9");
+            startActivity(intent);
+
+        });
+
+        binding.imgAccount.setOnClickListener(view -> {
+            List<Login> loginList = db.iDao().getAllAccount();
+
+            if (loginList.size() > 0) {
+                Login login = loginList.get(0);
+                Intent intent = new Intent(getActivity(), ProfileActivity.class);
+                intent.putExtra("login", login);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra("catId", "14");
+                startActivity(intent);
+            } else {
+                Intent intent = new Intent(getActivity(), UserProfileActivity.class);
                 startActivity(intent);
             }
         });
 
-
-        binding.relLastestVideo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), CategoryActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra("catId", "85");
-                startActivity(intent);
-
-            }
+        binding.imgSearch.setOnClickListener(view -> {
+            Intent intent = new Intent(getActivity(), SearchActivity.class);
+            startActivity(intent);
         });
 
 
-        binding.relSportVideo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), CategoryActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra("catId", "9");
-                startActivity(intent);
-
-            }
+        binding.refreshLayout.setOnRefreshListener(() -> {
+            requireActivity().finish();
+            requireActivity().overridePendingTransition(0, 0);
+            binding.refreshLayout.setVisibility(View.GONE);
+            requireActivity().startActivity(requireActivity().getIntent());
+            requireActivity().overridePendingTransition(0, 0);
+            binding.refreshLayout.setVisibility(View.VISIBLE);
+            binding.refreshLayout.setRefreshing(false);
         });
 
-        binding.imgAccount.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                List<Login> loginList = db.iDao().getAllAccount();
-                Login login = new Login();
+        binding.refreshLayout.setOnChildScrollUpCallback((parent, child) -> {
 
-                if (loginList.size() > 0) {
-                    login = loginList.get(0);
-                    Intent intent = new Intent(getActivity(), ProfileActivity.class);
-                    intent.putExtra("login", login);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(intent);
-                } else {
-                    Intent intent = new Intent(getActivity(), UserProfileActivity.class);
-                    startActivity(intent);
-                }
-
+            if (binding.scrollView != null) {
+                return binding.scrollView.canScrollVertically(-1);
             }
+            return false;
         });
-
-        binding.imgSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), SearchActivity.class);
-                startActivity(intent);
-            }
-        });
-
-
-
 
         return binding.getRoot();
     }

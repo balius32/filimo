@@ -1,18 +1,14 @@
 package com.balius.filimo.fragments.myfilm;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.GridLayout;
-
-import com.balius.filimo.R;
 import com.balius.filimo.adapter.SaveAdapter;
-import com.balius.filimo.adapter.VideoAdapter;
 import com.balius.filimo.database.Db;
 import com.balius.filimo.databinding.FragmentSavedBinding;
 import com.balius.filimo.model.Save;

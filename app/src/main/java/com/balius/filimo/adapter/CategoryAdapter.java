@@ -3,6 +3,7 @@ package com.balius.filimo.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.graphics.drawable.GradientDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import com.balius.filimo.R;
 import com.balius.filimo.activities.CategoryActivity;
 import com.balius.filimo.model.category.VideoCategories;
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Transformation;
 
 import java.util.List;
 
@@ -47,7 +49,11 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         holder.txt_title.setText(categories.getCategoryName());
         holder.txt_title.setTypeface(null, Typeface.BOLD);
 
-        Picasso.get().load(categories.getCategoryImageThumb()).into(holder.img_categories);
+        GradientDrawable gradientDrawable = new GradientDrawable();
+        gradientDrawable.setShape(GradientDrawable.RECTANGLE);
+        gradientDrawable.setColor(000000);
+
+        Picasso.get().load(categories.getCategoryImageThumb()).placeholder(gradientDrawable).into(holder.img_categories);
 
         holder.img_categories.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,7 +64,6 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                 context.startActivity(intent);
             }
         });
-
 
     }
 
@@ -77,4 +82,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
             txt_title = itemView.findViewById(R.id.txt_title);
         }
     }
+
+
+
 }

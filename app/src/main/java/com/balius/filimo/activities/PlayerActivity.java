@@ -111,6 +111,7 @@ public class PlayerActivity extends AppCompatActivity {
         player.addListener(new Player.Listener() {
             @Override
             public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {
+
                 Player.Listener.super.onPlayerStateChanged(playWhenReady, playbackState);
 
                 if (playbackState == Player.STATE_BUFFERING) {

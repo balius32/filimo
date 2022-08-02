@@ -22,5 +22,8 @@
     <dimen name="margin_20">20dp</dimen>
     <dimen name="margin_320">320dp</dimen>
     <dimen name="margin_260">260dp</dimen>
+    <dimen name="margin_30">30dp</dimen>
+    <dimen name="margin_400">400dp</dimen>
+    <dimen name="margin_460">460dp</dimen>
 
 </resources>

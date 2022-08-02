@@ -7,14 +7,22 @@
         <entry key="..\:/Work/projects/filimo/filimo/app/src/main/res/drawable/background_splashscreen.xml" value="0.133" />
         <entry key="..\:/Work/projects/filimo/filimo/app/src/main/res/drawable/btn_style.xml" value="0.1695" />
         <entry key="..\:/Work/projects/filimo/filimo/app/src/main/res/drawable/btn_style_green.xml" value="0.1415" />
+        <entry key="..\:/Work/projects/filimo/filimo/app/src/main/res/drawable/btn_white_shape.xml" value="0.1195" />
+        <entry key="..\:/Work/projects/filimo/filimo/app/src/main/res/drawable/category_shape.xml" value="0.1195" />
         <entry key="..\:/Work/projects/filimo/filimo/app/src/main/res/drawable/custom_input.xml" value="0.1465" />
         <entry key="..\:/Work/projects/filimo/filimo/app/src/main/res/drawable/ic_baseline_account_circle_24.xml" value="0.1465" />
+        <entry key="..\:/Work/projects/filimo/filimo/app/src/main/res/drawable/ic_baseline_bookmark_24.xml" value="0.1195" />
+        <entry key="..\:/Work/projects/filimo/filimo/app/src/main/res/drawable/ic_baseline_bookmark_border_24.xml" value="0.1195" />
+        <entry key="..\:/Work/projects/filimo/filimo/app/src/main/res/drawable/ic_baseline_category_24.xml" value="0.169" />
         <entry key="..\:/Work/projects/filimo/filimo/app/src/main/res/drawable/ic_baseline_email_24.xml" value="0.1245" />
+        <entry key="..\:/Work/projects/filimo/filimo/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.169" />
         <entry key="..\:/Work/projects/filimo/filimo/app/src/main/res/drawable/ic_baseline_key_24.xml" value="0.1465" />
         <entry key="..\:/Work/projects/filimo/filimo/app/src/main/res/drawable/ic_baseline_pause_circle_outline_24.xml" value="0.1" />
         <entry key="..\:/Work/projects/filimo/filimo/app/src/main/res/drawable/ic_baseline_phone_android_24.xml" value="0.1245" />
+        <entry key="..\:/Work/projects/filimo/filimo/app/src/main/res/drawable/ic_baseline_play_arrow_24.xml" value="0.1195" />
         <entry key="..\:/Work/projects/filimo/filimo/app/src/main/res/drawable/ic_baseline_play_circle_filled_24.xml" value="0.1555" />
         <entry key="..\:/Work/projects/filimo/filimo/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.142" />
+        <entry key="..\:/Work/projects/filimo/filimo/app/src/main/res/drawable/ic_baseline_video_library_24.xml" value="0.169" />
         <entry key="..\:/Work/projects/filimo/filimo/app/src/main/res/drawable/img_btn_shape.xml" value="0.2025" />
         <entry key="..\:/Work/projects/filimo/filimo/app/src/main/res/drawable/search.xml" value="0.1265" />
         <entry key="..\:/Work/projects/filimo/filimo/app/src/main/res/layout/activity_category.xml" value="0.25416666666666665" />
@@ -39,7 +47,7 @@
         <entry key="..\:/Work/projects/filimo/filimo/app/src/main/res/layout/fragment_vitrin.xml" value="0.2" />
         <entry key="..\:/Work/projects/filimo/filimo/app/src/main/res/layout/fragment_watched_film.xml" value="0.25416666666666665" />
         <entry key="..\:/Work/projects/filimo/filimo/app/src/main/res/layout/horizon_video_row.xml" value="0.25" />
-        <entry key="..\:/Work/projects/filimo/filimo/app/src/main/res/layout/pager_row.xml" value="0.176" />
+        <entry key="..\:/Work/projects/filimo/filimo/app/src/main/res/layout/pager_row.xml" value="0.2" />
         <entry key="..\:/Work/projects/filimo/filimo/app/src/main/res/layout/player_layout.xml" value="0.253125" />
         <entry key="..\:/Work/projects/filimo/filimo/app/src/main/res/layout/save_row.xml" value="0.253125" />
         <entry key="..\:/Work/projects/filimo/filimo/app/src/main/res/layout/search_row.xml" value="0.20854700854700856" />
@@ -47,6 +55,7 @@
         <entry key="..\:/Work/projects/filimo/filimo/app/src/main/res/menu/bottom_menu.xml" value="0.25416666666666665" />
         <entry key="..\:/Work/projects/filimo/filimo/app/src/main/res/menu/myfil_menu.xml" value="0.25416666666666665" />
         <entry key="..\:/Work/projects/filimo/filimo/app/src/main/res/menu/myfilm_menu.xml" value="0.25416666666666665" />
+        <entry key="..\:/Work/projects/filimo/filimo/app/src/main/res/menu/nav_bottom.xml" value="0.253125" />
       </map>
     </option>
   </component>

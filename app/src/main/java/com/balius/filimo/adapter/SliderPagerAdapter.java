@@ -70,7 +70,7 @@ public class SliderPagerAdapter extends
         return mSliderItems.size();
     }
 
-    class SliderAdapterVH extends SliderViewAdapter.ViewHolder {
+    static class SliderAdapterVH extends SliderViewAdapter.ViewHolder {
         AppCompatImageView img_pager;
         AppCompatImageView img_pager_blur;
 

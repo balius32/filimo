@@ -12,8 +12,8 @@
         android:layout_height="wrap_content"
         app:menu="@menu/myfil_menu" />
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/pager"
+    <FrameLayout
+        android:id="@+id/frame_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/nav_myfilms"/>

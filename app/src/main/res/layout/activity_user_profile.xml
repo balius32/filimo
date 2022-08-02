@@ -33,35 +33,6 @@
 
 
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/rel_login">
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/img_info"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="@dimen/margin_8"
-            app:srcCompat="@drawable/ic_baseline_info_24" />
-
-        <com.balius.filimo.customview.PersianTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/margin_8"
-            android:layout_toStartOf="@id/img_info"
-            android:text="@string/info" />
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/img_go_info"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_8"
-            app:srcCompat="@drawable/ic_baseline_arrow_back_ios_24" />
-
-    </RelativeLayout>
-
 
 
 </RelativeLayout>

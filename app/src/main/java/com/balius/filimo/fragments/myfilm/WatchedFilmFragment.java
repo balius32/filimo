@@ -15,6 +15,7 @@ import com.balius.filimo.adapter.WatchedAdapter;
 import com.balius.filimo.database.Db;
 import com.balius.filimo.databinding.FragmentWatchedFilmBinding;
 import com.balius.filimo.model.Save;
+import com.balius.filimo.model.Watched;
 
 import java.util.List;
 
@@ -33,6 +34,7 @@ public class WatchedFilmFragment extends Fragment {
 
         db = Db.getInstance(getActivity());
 
+      //  history();
         // Inflate the layout for this fragment
         return binding.getRoot();
     }
@@ -44,11 +46,20 @@ public class WatchedFilmFragment extends Fragment {
         binding.recycleWatched.setAdapter(new WatchedAdapter( db.iDao().getAllWatchedVideos(),getActivity()));
         GridLayoutManager manager = new GridLayoutManager(getActivity(),3);
         binding.recycleWatched.setLayoutManager(manager);
-        history();
+       // history();
+
+        List<Watched> watchedList = db.iDao().getAllWatchedVideos();
+
+        if (watchedList.size()>0){
+            binding.relWatched.setVisibility(View.VISIBLE);
+        }else {
+            binding.relWatched.setVisibility(View.GONE);
+            binding.constraintNoWatched.setVisibility(View.VISIBLE);
+        }
 
     }
 
-    public void history(){
+   /* public void history(){
 
         List<Save> saveList = db.iDao().getAllSaveVideos();
 
@@ -59,5 +70,5 @@ public class WatchedFilmFragment extends Fragment {
             binding.constraintNoWatched.setVisibility(View.VISIBLE);
         }
 
-    }
+    }*/
 }

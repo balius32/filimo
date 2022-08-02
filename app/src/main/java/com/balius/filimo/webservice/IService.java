@@ -20,13 +20,6 @@ public interface IService {
     Call<VideoModel> getLastestVideo();
 
 
-   @GET("api.php?cat_id=14")
-    Call<VideoModel> spacialCategory();
-
-    @GET("api.php?cat_id=9")
-    Call<VideoModel> sportCategory();
-
-
     @GET("api.php")
     Call<VideoModel> searchCategory(@Query("cat_id") int cat_id);
 

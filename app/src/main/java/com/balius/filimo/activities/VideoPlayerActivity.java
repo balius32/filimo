@@ -1,5 +1,6 @@
 package com.balius.filimo.activities;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,8 +15,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 import com.balius.filimo.R;
 import com.balius.filimo.adapter.CommentAdapter;
 import com.balius.filimo.adapter.RelatedAdapter;
@@ -57,6 +56,7 @@ public class VideoPlayerActivity extends AppCompatActivity {
     int vid;
     List<Related> relatedList;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,7 +94,7 @@ public class VideoPlayerActivity extends AppCompatActivity {
         });
 
         Picasso.get().load(video.getVideoThumbnailB()).into(binding.imgCover);
-        Picasso.get().load(video.getVideoThumbnailS())
+        Picasso.get().load(video.getVideoThumbnailB())
                 .transform(new BlurTransformation(getApplicationContext(), 15, 1))
                 .into(binding.imgCoverMat);
 
@@ -131,9 +131,9 @@ public class VideoPlayerActivity extends AppCompatActivity {
 
         if (saveList.size() > 0) {
 
-            binding.imgSave.setBackgroundResource(R.drawable.icon_save_dark);
+            binding.imgSave.setBackgroundResource(R.drawable.ic_baseline_bookmark_24);
         } else {
-            binding.imgSave.setBackgroundResource(R.drawable.icon_save);
+            binding.imgSave.setBackgroundResource(R.drawable.ic_baseline_bookmark_border_24);
         }
 
         List<LikedVideos> likedVideosList = db.iDao().getLikeVideos(video.getVideoTitle());
@@ -170,10 +170,11 @@ public class VideoPlayerActivity extends AppCompatActivity {
                 List<Save> saveList = db.iDao().getSaveVideos(video.getVideoTitle());
 
                 if (saveList.size() > 0) {
-                    binding.imgSave.setBackgroundResource(R.drawable.icon_save);
+                    binding.imgSave.setBackgroundResource(R.drawable.ic_baseline_bookmark_border_24);
                     db.iDao().deleteSave(video.getId());
                 } else {
-                    binding.imgSave.setBackgroundResource(R.drawable.icon_save_dark);
+                    binding.imgSave.setBackgroundResource(R.drawable.ic_baseline_bookmark_24);
+
                     video.setSave("1");
                     Save save = new Save(video.getId(), video.getVideoTitle(), video.getVideoThumbnailB(),
                             video.getVideoUrl(), video.getVideoDescription(), video.getVideoDuration());
@@ -310,15 +311,16 @@ public class VideoPlayerActivity extends AppCompatActivity {
                                 R.color.black), android.graphics.PorterDuff.Mode.SRC_IN);
                         binding.imgDislike.setColorFilter(ContextCompat.getColor(getApplicationContext(),
                                 R.color.red), android.graphics.PorterDuff.Mode.SRC_IN);
+                        boolean like = false;
+                        boolean dislike = true;
+                        db.iDao().updateLike(like, video.getVideoTitle());
+                        db.iDao().updateDisLike(dislike, video.getVideoTitle());
                     } else {
                         binding.imgLike.setColorFilter(ContextCompat.getColor(getApplicationContext(),
                                 R.color.black), android.graphics.PorterDuff.Mode.SRC_IN);
                         binding.imgDislike.setColorFilter(ContextCompat.getColor(getApplicationContext(),
                                 R.color.red), android.graphics.PorterDuff.Mode.SRC_IN);
-                        boolean like = false;
-                        boolean dislike = true;
-                        db.iDao().updateLike(like, video.getVideoTitle());
-                        db.iDao().updateDisLike(dislike, video.getVideoTitle());
+
                     }
 
                 } else {
@@ -334,21 +336,6 @@ public class VideoPlayerActivity extends AppCompatActivity {
         });
 
 
-        SwipeRefreshLayout swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.refreshLayout);
-
-
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-                                                    @Override
-                                                    public void onRefresh() {//  binding.tv1.setText("refreshed");
-
-                                                        finish();
-                                                        overridePendingTransition(0, 0);
-                                                        startActivity(getIntent());
-                                                        overridePendingTransition(0, 0);
-                                                        swipeRefreshLayout.setRefreshing(false);
-                                                        }
-                                                }
-        );
 
     }
 
