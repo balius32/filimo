@@ -8,10 +8,84 @@
     tools:context=".activities.VideoPlayerActivity">
 
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint_no_signal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_no_internet"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/dark_yellow"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.balius.filimo.customview.PersianTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/margin_8"
+                    android:text="@string/app_name"
+                    android:textSize="@dimen/text_16"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img_search_not_internet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_baseline_search_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img_account_no_internet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_24"
+                    android:src="@drawable/account_gray"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/img_search_not_internet"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.appcompat.widget.Toolbar>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/appCompatImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="188dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/no_internet" />
+
+        <com.balius.filimo.customview.PersianTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/no_internet"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appCompatImageView" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layoutDirection="ltr"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
@@ -23,7 +97,7 @@
             <RelativeLayout
                 android:id="@+id/rel_cover"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/margin_200"
+                android:layout_height="@dimen/margin_240"
                 android:background="@color/white"
                 app:layout_collapseMode="none"
                 app:layout_constraintStart_toStartOf="parent"
@@ -32,14 +106,14 @@
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/img_cover_mat"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/margin_180"
+                    android:layout_height="@dimen/margin_220"
                     android:background="@color/gray"
                     android:scaleType="fitXY" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/img_cover"
-                    android:layout_width="@dimen/margin_100"
-                    android:layout_height="@dimen/margin_144"
+                    android:layout_width="@dimen/margin_120"
+                    android:layout_height="@dimen/margin_150"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentBottom="true"
                     android:layout_marginEnd="@dimen/margin_16" />
@@ -72,6 +146,7 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
+                android:layoutDirection="ltr"
                 app:layout_collapseMode="pin"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Dark">
 
@@ -80,51 +155,88 @@
                     android:layout_height="match_parent">
 
                     <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/img_back"
+                        android:id="@+id/img_back_black"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:tint="@color/darker_gray"
+                        android:layout_marginEnd="@dimen/margin_8"
+                        android:tint="@color/black"
+                        android:visibility="gone"
                         app:srcCompat="@drawable/ic_baseline_arrow_forward_24" />
 
-                    <com.balius.filimo.customview.PersianTextView
-                        android:id="@+id/lbl_name"
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/img_back_white"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/margin_8"
+                        android:tint="@color/white"
+                        app:srcCompat="@drawable/ic_baseline_arrow_forward_24" />
+
+
+                    <com.balius.filimo.customview.PersianBoldTextView
+                        android:id="@+id/lbl_name_black"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginEnd="@dimen/margin_8"
-                        android:layout_toStartOf="@id/img_back"
+                        android:layout_toStartOf="@id/img_back_black"
                         android:text="alkjdlfjdsa"
-                        android:textSize="@dimen/text_16" />
+                        android:textColor="@color/black"
+                        android:visibility="gone" />
 
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/img_share"
+
+                    <com.balius.filimo.customview.PersianBoldTextView
+                        android:id="@+id/lbl_name_white"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:tint="@color/darker_gray"
+                        android:layout_marginEnd="@dimen/margin_8"
+                        android:layout_toStartOf="@id/img_back_white"
+                        android:text="alkjdlfjdsa"
+                        android:textColor="@color/white" />
+
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/img_share_black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:tint="@color/black"
+                        android:visibility="gone"
                         app:srcCompat="@drawable/ic_baseline_share_24" />
 
                     <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/img_download"
+                        android:id="@+id/img_share_white"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_marginStart="@dimen/margin_8"
-                        android:layout_toEndOf="@id/img_share"
-                        android:tint="@color/darker_gray"
-                        app:srcCompat="@drawable/ic_baseline_cloud_download_24" />
+                        android:tint="@color/white"
+                        app:srcCompat="@drawable/ic_baseline_share_24" />
 
                     <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/img_save"
+                        android:id="@+id/img_save_white"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginStart="@dimen/margin_8"
-                        android:layout_toEndOf="@id/img_download"
+                        android:layout_toEndOf="@id/img_share_white"
                         app:srcCompat="@drawable/ic_baseline_bookmark_border_24"
                         app:tint="@color/white" />
+
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/img_save_black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/margin_8"
+                        android:layout_toEndOf="@id/img_share_black"
+                        android:visibility="gone"
+                        app:srcCompat="@drawable/ic_baseline_bookmark_border_24"
+                        app:tint="@color/black" />
 
 
                 </RelativeLayout>
@@ -133,6 +245,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/scroll_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/toolbar"
@@ -147,8 +260,8 @@
                 android:id="@+id/rel_like"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/margin_100"
-
-                android:background="@color/white">
+                android:background="@color/white"
+                android:layoutDirection="ltr">
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btn_watch"
@@ -179,21 +292,23 @@
                     android:layout_height="@dimen/margin_40"
                     android:layout_alignParentBottom="true"
                     android:layout_marginStart="@dimen/margin_8"
-                    android:layout_marginBottom="@dimen/margin_4"
+                    android:layout_marginBottom="@dimen/margin_8"
                     android:background="@drawable/img_btn_shape"
-                    app:srcCompat="@drawable/dislike_32" />
+                    android:elevation="@dimen/margin_16"
+                    app:srcCompat="@drawable/ic__055236_bxs_dislike_icon" />
 
                 <androidx.appcompat.widget.AppCompatImageButton
                     android:id="@+id/img_like"
                     android:layout_width="@dimen/margin_40"
                     android:layout_height="@dimen/margin_40"
+                    android:layout_alignBottom="@id/img_dislike"
                     android:layout_alignParentBottom="true"
                     android:layout_marginStart="@dimen/margin_8"
                     android:layout_marginBottom="@dimen/margin_8"
                     android:layout_toEndOf="@id/img_dislike"
                     android:background="@drawable/img_btn_shape"
                     android:elevation="@dimen/margin_16"
-                    app:srcCompat="@drawable/like_32" />
+                    app:srcCompat="@drawable/ic_icon_like" />
 
             </RelativeLayout>
 
@@ -209,14 +324,15 @@
                 android:id="@+id/rel_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/view_description">
+                android:layout_below="@id/view_description"
+                android:layoutDirection="ltr">
 
-                <com.balius.filimo.customview.PersianTextView
+                <com.balius.filimo.customview.PersianBoldTextView
                     android:id="@+id/lbl_description"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-
+                    android:layout_marginEnd="@dimen/margin_8"
                     android:text="@string/story"
                     android:textSize="@dimen/text_16" />
 
@@ -225,7 +341,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/lbl_description"
+                    android:layout_marginStart="@dimen/margin_8"
                     android:layout_marginTop="@dimen/margin_8"
+                    android:layout_marginEnd="@dimen/margin_8"
                     android:layout_marginBottom="@dimen/margin_8" />
 
             </RelativeLayout>
@@ -235,14 +353,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@id/rel_description"
-                android:layout_marginTop="@dimen/margin_8">
+                android:layout_marginTop="@dimen/margin_8"
+                android:layoutDirection="ltr">
 
-                <com.balius.filimo.customview.PersianTextView
+                <com.balius.filimo.customview.PersianBoldTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_marginEnd="@dimen/margin_8"
-                    android:text="@string/related" />
+                    android:text="@string/related"
+                    android:textSize="@dimen/text_16" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -256,8 +376,8 @@
                     android:id="@+id/recycle_related"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:nestedScrollingEnabled="false"
-                    android:layoutDirection="rtl"/>
+                    android:layoutDirection="rtl"
+                    android:nestedScrollingEnabled="false" />
 
             </RelativeLayout>
 
@@ -265,9 +385,10 @@
                 android:id="@+id/rel_lbl_trailer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/rel_recycle_related">
+                android:layout_below="@id/rel_recycle_related"
+                android:layoutDirection="ltr">
 
-                <com.balius.filimo.customview.PersianTextView
+                <com.balius.filimo.customview.PersianBoldTextView
                     android:id="@+id/lbl_trailer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -317,7 +438,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/rel_player"
-                android:layout_marginTop="@dimen/margin_8">
+                android:layout_marginTop="@dimen/margin_8"
+                android:layoutDirection="ltr">
 
                 <com.balius.filimo.customview.PersianTextView
                     android:layout_width="wrap_content"
@@ -325,23 +447,6 @@
                     android:layout_alignParentEnd="true"
                     android:layout_marginEnd="@dimen/margin_8"
                     android:text="@string/comments"
-                    android:textSize="@dimen/text_16" />
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/img_arrow"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="@dimen/margin_8"
-                    app:srcCompat="@drawable/ic_baseline_arrow_back_ios_24"
-                    app:tint="@color/red" />
-
-                <com.balius.filimo.customview.PersianTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toEndOf="@id/img_arrow"
-                    android:text="@string/see_all"
-                    android:textColor="@color/red"
                     android:textSize="@dimen/text_16" />
 
             </RelativeLayout>
@@ -383,13 +488,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/rel_comments"
-                android:layout_marginTop="@dimen/margin_8">
+                android:layout_marginTop="@dimen/margin_8"
+                android:layoutDirection="ltr">
 
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/edt_comment"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/margin_40"
+                    android:layout_marginStart="@dimen/margin_8"
                     android:layout_marginEnd="@dimen/margin_8"
                     android:layout_toEndOf="@id/img_send_comment"
                     android:background="@drawable/custom_input"
@@ -401,9 +508,9 @@
                     android:id="@+id/img_send_comment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/margin_8"
                     app:srcCompat="@drawable/ic_baseline_keyboard_arrow_left_24" />
 
             </RelativeLayout>

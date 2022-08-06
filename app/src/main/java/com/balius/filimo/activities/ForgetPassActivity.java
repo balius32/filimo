@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -48,7 +49,6 @@ public class ForgetPassActivity extends AppCompatActivity {
                                     .setPositiveButton("ok", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialogInterface, int i) {
-
                                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                             startActivity(intent);
                                         }
@@ -63,6 +63,12 @@ public class ForgetPassActivity extends AppCompatActivity {
                     }
                 }));
 
+
+
+
+        Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/IRANSansMobile.ttf");
+        binding.edtEmail.setTypeface(typeface);
+        binding.btnForgetPass.setTypeface(typeface);
 
     }
 }

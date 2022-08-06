@@ -48,10 +48,6 @@ public class SliderPagerAdapter extends
         Picasso.get().load(video.getVideoThumbnailB())
                 .into(viewHolder.img_pager);
 
-        Picasso.get().load(video.getVideoThumbnailS())
-                .transform(new BlurTransformation(context, 15, 1))
-                .into(viewHolder.img_pager_blur);
-
 
         viewHolder.img_pager.setOnClickListener(view -> {
             Intent intent = new Intent(context, VideoPlayerActivity.class);
@@ -69,12 +65,11 @@ public class SliderPagerAdapter extends
 
     static class SliderAdapterVH extends SliderViewAdapter.ViewHolder {
         AppCompatImageView img_pager;
-        AppCompatImageView img_pager_blur;
 
         public SliderAdapterVH(View itemView) {
             super(itemView);
             img_pager = itemView.findViewById(R.id.img_pager);
-            img_pager_blur = itemView.findViewById(R.id.img_pager_blur);
+
         }
     }
 

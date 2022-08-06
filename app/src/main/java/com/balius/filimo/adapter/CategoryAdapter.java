@@ -7,6 +7,7 @@ import android.graphics.drawable.GradientDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageView;
@@ -25,9 +26,10 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     List<VideoCategories> categoriesList;
     Context context;
     LayoutInflater inflater;
+
     public CategoryAdapter(List<VideoCategories> categoriesList, Context context) {
-        this.categoriesList=categoriesList;
-        this.context=context;
+        this.categoriesList = categoriesList;
+        this.context = context;
         inflater = LayoutInflater.from(context);
     }
 
@@ -35,7 +37,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     @Override
     public CategoryVH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view =inflater.inflate(R.layout.cat_row,null);
+        View view = inflater.inflate(R.layout.cat_row, null);
 
         return new CategoryVH(view);
     }
@@ -45,19 +47,18 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
 
 
         VideoCategories categories = categoriesList.get(position);
-
         holder.txt_title.setText(categories.getCategoryName());
-        holder.txt_title.setTypeface(null, Typeface.BOLD);
 
-        GradientDrawable gradientDrawable = new GradientDrawable();
-        gradientDrawable.setShape(GradientDrawable.RECTANGLE);
-        gradientDrawable.setColor(000000);
 
-        Picasso.get().load(categories.getCategoryImageThumb()).placeholder(gradientDrawable).into(holder.img_categories);
+        Picasso.get().load(categories.getCategoryImageThumb()).into(holder.img_categories);
+
+        holder.view.bringToFront();
+        holder.txt_title.bringToFront();
+
 
         holder.img_categories.setOnClickListener(view -> {
             Intent intent = new Intent(context, CategoryActivity.class);
-            intent.putExtra("catId",categories.getCid());
+            intent.putExtra("catId", categories.getCid());
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);
         });
@@ -69,17 +70,19 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         return categoriesList.size();
     }
 
-    class CategoryVH extends RecyclerView.ViewHolder{
+    class CategoryVH extends RecyclerView.ViewHolder {
         AppCompatImageView img_categories;
         AppCompatTextView txt_title;
+        View view;
 
         public CategoryVH(@NonNull View itemView) {
             super(itemView);
             img_categories = itemView.findViewById(R.id.img_categories);
             txt_title = itemView.findViewById(R.id.txt_title);
+            view = itemView.findViewById(R.id.view);
+
         }
     }
-
 
 
 }

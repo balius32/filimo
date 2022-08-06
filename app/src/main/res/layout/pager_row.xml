@@ -3,21 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/img_pager_blur"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="fitXY"/>
+
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/img_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="@dimen/margin_24"
-        android:layout_marginTop="@dimen/margin_24"
-        android:layout_marginEnd="@dimen/margin_24"
-        android:layout_marginBottom="@dimen/margin_24"
-        android:scaleType="fitXY" />
+        android:scaleType="fitXY"
+        />
 
     <RelativeLayout
         android:id="@+id/rel_more_info"

@@ -3,6 +3,7 @@ package com.balius.filimo.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -16,6 +17,7 @@ import com.balius.filimo.webservice.IResponseListener;
 import com.balius.filimo.webservice.WebserviceCaller;
 
 import java.util.List;
+import java.util.Objects;
 
 public class CreateAccountActivity extends AppCompatActivity {
 
@@ -34,48 +36,56 @@ public class CreateAccountActivity extends AppCompatActivity {
         bundle = getIntent().getExtras();
         phone = bundle.getString("phone");
 
-        binding.btnAddAccount.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-           add();
-            }
-        });
 
-        binding.imgBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                startActivity(intent);
-            }
+        Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/IRANSansMobile.ttf");
+        binding.btnAddAccount.setTypeface(typeface);
+        binding.edtEmail.setTypeface(typeface);
+        binding.edtPassword.setTypeface(typeface);
+        binding.edtUsername.setTypeface(typeface);
+
+
+        binding.btnAddAccount.setOnClickListener(view -> add());
+
+        binding.imgBack.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+            startActivity(intent);
         });
     }
 
-    private void add(){
+    private void add() {
         binding.cardCreateAccount.setVisibility(View.INVISIBLE);
         binding.progressCreateAccount.setVisibility(View.VISIBLE);
 
-        String name = binding.edtUsername.getText().toString();
-        String email = binding.edtEmail.getText().toString();
-        String password = binding.edtPassword.getText().toString();
+        String name = Objects.requireNonNull(binding.edtUsername.getText()).toString();
+        String email = Objects.requireNonNull(binding.edtEmail.getText()).toString();
+        String password = Objects.requireNonNull(binding.edtPassword.getText()).toString();
 
 
         webserviceCaller.sighnup(name, email, password, phone, new IResponseListener() {
             @Override
             public void onSuccess(Object responseMessage) {
-                SighnupModel sighnupModel = (SighnupModel) responseMessage;
 
-                Sighnup sighnupObject = sighnupModel.getAllInOneVideo().get(0);
+                if (responseMessage != null) {
 
-                if (sighnupObject.getSuccess().toString().equals("1")) {
+                    SighnupModel sighnupModel = (SighnupModel) responseMessage;
 
-                    Toast.makeText(CreateAccountActivity.this, R.string.account_created, Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                    startActivity(intent);
-                    binding.progressCreateAccount.setVisibility(View.GONE);
+                    Sighnup sighnupObject = sighnupModel.getAllInOneVideo().get(0);
 
+                    if (sighnupObject.getSuccess().toString().equals("1")) {
+
+                        Toast.makeText(CreateAccountActivity.this, R.string.account_created, Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                        startActivity(intent);
+                        binding.progressCreateAccount.setVisibility(View.GONE);
+
+                    } else {
+                        Toast.makeText(CreateAccountActivity.this, R.string.email_duplicate, Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
                 } else {
-                    Toast.makeText(CreateAccountActivity.this, R.string.email_duplicate, Toast.LENGTH_SHORT).show();
-                    finish();
+                    binding.toolbar.setVisibility(View.GONE);
+                    binding.cardCreateAccount.setVisibility(View.GONE);
+                    binding.constraintNoSignal.setVisibility(View.VISIBLE);
                 }
             }
 

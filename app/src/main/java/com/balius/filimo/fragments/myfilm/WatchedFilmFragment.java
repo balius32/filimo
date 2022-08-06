@@ -4,12 +4,14 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.OrientationHelper;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.balius.filimo.R;
+import com.balius.filimo.VarColumnGridLayoutManager;
 import com.balius.filimo.adapter.SaveAdapter;
 import com.balius.filimo.adapter.WatchedAdapter;
 import com.balius.filimo.database.Db;
@@ -27,14 +29,13 @@ public class WatchedFilmFragment extends Fragment {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentWatchedFilmBinding.inflate(getLayoutInflater());
 
         db = Db.getInstance(getActivity());
 
-      //  history();
+         //history();
         // Inflate the layout for this fragment
         return binding.getRoot();
     }
@@ -44,9 +45,16 @@ public class WatchedFilmFragment extends Fragment {
         super.onResume();
 
         binding.recycleWatched.setAdapter(new WatchedAdapter( db.iDao().getAllWatchedVideos(),getActivity()));
-        GridLayoutManager manager = new GridLayoutManager(getActivity(),3);
-        binding.recycleWatched.setLayoutManager(manager);
-       // history();
+
+        final VarColumnGridLayoutManager layoutManager
+                = new VarColumnGridLayoutManager(getContext(), OrientationHelper.VERTICAL, false);
+        VarColumnGridLayoutManager.ColumnCountProvider columnProvider
+                = new VarColumnGridLayoutManager.DefaultColumnCountProvider(getContext());
+        layoutManager.setColumnCountProvider(columnProvider);
+
+        binding.recycleWatched.setLayoutManager(layoutManager);
+
+        // history();
 
         List<Watched> watchedList = db.iDao().getAllWatchedVideos();
 

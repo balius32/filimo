@@ -65,41 +65,81 @@
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     app:layout_collapseMode="pin"
-                    app:popupTheme="@style/ThemeOverlay.AppCompat.Dark">
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
+                    android:layoutDirection="ltr">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
                         <com.balius.filimo.customview.PersianBoldTextView
+                            android:id="@+id/txt_app_name_black"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="@dimen/margin_8"
                             android:text="@string/app_name"
-                            android:textColor="@color/darker_gray"
                             android:textSize="@dimen/text_16"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:textColor="@color/black"/>
+
+                        <com.balius.filimo.customview.PersianBoldTextView
+                            android:id="@+id/txt_app_name_white"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/margin_8"
+                            android:text="@string/app_name"
+                            android:textSize="@dimen/text_16"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:textColor="@color/white"/>
 
                         <androidx.appcompat.widget.AppCompatImageView
-                            android:id="@+id/img_search"
+                            android:id="@+id/img_search_black"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/ic_baseline_search_24"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:tint="@color/black"/>
 
                         <androidx.appcompat.widget.AppCompatImageView
-                            android:id="@+id/img_account"
+                            android:id="@+id/img_search_white"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_baseline_search_24"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:tint="@color/white"/>
+
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/img_account_black"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/margin_24"
                             android:src="@drawable/account_gray"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="@id/img_search"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintStart_toStartOf="@id/img_search_black"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:tint="@color/black"/>
+
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/img_account_white"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/margin_24"
+                            android:src="@drawable/account_gray"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="@id/img_search_black"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:tint="@color/white"/>
+
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.appcompat.widget.Toolbar>
 
@@ -195,7 +235,8 @@
                     android:id="@+id/rel_spacial"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_8">
+                    android:layout_marginTop="@dimen/margin_8"
+                    android:layoutDirection="ltr">
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/img_arrow"
@@ -256,7 +297,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/rel_recycle_spacial"
-                    android:layout_marginTop="@dimen/margin_8">
+                    android:layout_marginTop="@dimen/margin_8"
+                    android:layoutDirection="ltr">
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/img_arrow_lastest"
@@ -317,7 +359,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/rel_recycle_lastest_video"
-                    android:layout_marginTop="@dimen/margin_8">
+                    android:layout_marginTop="@dimen/margin_8"
+                    android:layoutDirection="ltr">
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/img_arrow_sport"

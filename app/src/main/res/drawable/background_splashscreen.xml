@@ -5,13 +5,8 @@
     <item>
         <bitmap
             android:gravity="center"
-            android:src="@drawable/logo_white_64" />
-    </item>
+            android:src="@drawable/logo_64" />
 
-    <item>
-        <bitmap
-            android:gravity="bottom"
-            android:src="@drawable/logo_icon_32" />
     </item>
 
 </layer-list>

@@ -1,8 +1,8 @@
 package com.balius.filimo.activities;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +18,11 @@ public class PhoneSighnupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityPhoneSighnUpBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/IRANSansMobile.ttf");
+        binding.btnAddAccount.setTypeface(typeface);
+        binding.edtPhone.setTypeface(typeface);
+
 
         binding.btnAddAccount.setOnClickListener(view -> {
             String phone = binding.edtPhone.getText().toString();

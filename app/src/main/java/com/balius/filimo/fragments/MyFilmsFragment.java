@@ -21,11 +21,11 @@ public class MyFilmsFragment extends Fragment {
     public MyFilmsFragment() {
     }
 
-
     @SuppressLint("NonConstantResourceId")
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentMyFilmsBinding.inflate(getLayoutInflater());
+
 
 
         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout,new SavedFragment()).commit();

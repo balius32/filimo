@@ -7,7 +7,9 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.OrientationHelper;
 
+import com.balius.filimo.VarColumnGridLayoutManager;
 import com.balius.filimo.adapter.SaveAdapter;
 import com.balius.filimo.database.Db;
 import com.balius.filimo.databinding.FragmentSavedBinding;
@@ -38,19 +40,27 @@ public class SavedFragment extends Fragment {
     public void onResume() {
         super.onResume();
         binding.recycleSaved.setAdapter(new SaveAdapter(getActivity(), db.iDao().getAllSaveVideos()));
-        GridLayoutManager manager = new GridLayoutManager(getActivity(),3);
-        binding.recycleSaved.setLayoutManager(manager);
+
+        final VarColumnGridLayoutManager layoutManager
+                = new VarColumnGridLayoutManager(getContext(), OrientationHelper.VERTICAL, false);
+        VarColumnGridLayoutManager.ColumnCountProvider columnProvider
+                = new VarColumnGridLayoutManager.DefaultColumnCountProvider(getContext());
+        layoutManager.setColumnCountProvider(columnProvider);
+
+        binding.recycleSaved.setLayoutManager(layoutManager);
+
+
         checkNull();
 
     }
 
-    public void checkNull(){
+    public void checkNull() {
 
         List<Save> saveList = db.iDao().getAllSaveVideos();
 
-        if (saveList.size()>0){
+        if (saveList.size() > 0) {
             binding.relSaveVideo.setVisibility(View.VISIBLE);
-        }else {
+        } else {
             binding.relSaveVideo.setVisibility(View.GONE);
             binding.constraintNoSave.setVisibility(View.VISIBLE);
         }

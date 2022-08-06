@@ -48,7 +48,7 @@ public interface IService {
     @GET("api.php?video_comment")
     Call<SighnupModel> insertComment(
             @Query("comment_text") String tex
-            ,@Query("video&user_name") String username
+            ,@Query("user_name") String username
             ,@Query("post_id") int post_id);
 
 }

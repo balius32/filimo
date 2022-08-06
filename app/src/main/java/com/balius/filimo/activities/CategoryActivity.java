@@ -6,12 +6,11 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.OrientationHelper;
 
 import com.balius.filimo.R;
+import com.balius.filimo.VarColumnGridLayoutManager;
 import com.balius.filimo.adapter.VideoCategoryAdapter;
-import com.balius.filimo.adapter.VideoCategoryHAdapter;
 import com.balius.filimo.databinding.ActivityCategoryBinding;
 import com.balius.filimo.model.lastesvideo.Video;
 import com.balius.filimo.model.lastesvideo.VideoModel;
@@ -43,13 +42,8 @@ public class CategoryActivity extends AppCompatActivity {
           getCategory();
         }
 
-
-        binding.imgBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        binding.imgBack.setOnClickListener(view ->
+                finish());
     }
     private void latestVideo(){
 
@@ -57,7 +51,6 @@ public class CategoryActivity extends AppCompatActivity {
         binding.lblCatName.setText(R.string.lastest_video);
 
 
-        binding.progressHorizontal.setVisibility(View.VISIBLE);
         binding.progressVertical.setVisibility(View.VISIBLE);
         webserviceCaller.getLastestVideo(new IResponseListener() {
             @Override
@@ -66,15 +59,15 @@ public class CategoryActivity extends AppCompatActivity {
                 video = videoModel.getAllInOneVideo().get(0);
 
                 binding.recycleVertical.setAdapter(new VideoCategoryAdapter(videoModel.getAllInOneVideo(), getApplicationContext()));
-                GridLayoutManager manager = new GridLayoutManager(getApplicationContext(),3);
-                binding.recycleVertical.setLayoutManager(manager);
+
+                final VarColumnGridLayoutManager layoutManager
+                        = new VarColumnGridLayoutManager(getApplicationContext(), OrientationHelper.VERTICAL, false);
+                VarColumnGridLayoutManager.ColumnCountProvider columnProvider
+                        = new VarColumnGridLayoutManager.DefaultColumnCountProvider(getApplicationContext());
+                layoutManager.setColumnCountProvider(columnProvider);
+
+                binding.recycleVertical.setLayoutManager(layoutManager);
                 binding.progressVertical.setVisibility(View.GONE);
-
-
-                binding.recycleHorizontal.setAdapter(new VideoCategoryHAdapter(videoModel.getAllInOneVideo(), getApplicationContext()));
-                LinearLayoutManager manager1 = new LinearLayoutManager(getApplicationContext(), RecyclerView.HORIZONTAL,false);
-                binding.recycleHorizontal.setLayoutManager(manager1);
-                binding.progressHorizontal.setVisibility(View.GONE);
             }
 
             @Override
@@ -87,7 +80,6 @@ public class CategoryActivity extends AppCompatActivity {
 
     private void getCategory(){
 
-        binding.progressHorizontal.setVisibility(View.VISIBLE);
         binding.progressVertical.setVisibility(View.VISIBLE);
         webserviceCaller.searchCategory(catId, new IResponseListener() {
             @Override
@@ -99,11 +91,6 @@ public class CategoryActivity extends AppCompatActivity {
                 GridLayoutManager manager = new GridLayoutManager(getApplicationContext(),3);
                 binding.recycleVertical.setLayoutManager(manager);
                 binding.progressVertical.setVisibility(View.GONE);
-
-                binding.recycleHorizontal.setAdapter(new VideoCategoryHAdapter(videoModel.getAllInOneVideo(), getApplicationContext()));
-                LinearLayoutManager manager1 = new LinearLayoutManager(getApplicationContext(), RecyclerView.HORIZONTAL,false);
-                binding.recycleHorizontal.setLayoutManager(manager1);
-                binding.progressHorizontal.setVisibility(View.GONE);
 
                 binding.txtCategoryName.setText(video.getCategoryName());
                 binding.lblCatName.setText(video.getCategoryName());

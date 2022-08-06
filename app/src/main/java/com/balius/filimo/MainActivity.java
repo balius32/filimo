@@ -1,24 +1,35 @@
 package com.balius.filimo;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.balius.filimo.activities.LoginActivity;
 import com.balius.filimo.activities.ProfileActivity;
 import com.balius.filimo.activities.SearchActivity;
-import com.balius.filimo.activities.UserProfileActivity;
 import com.balius.filimo.database.Db;
 import com.balius.filimo.databinding.ActivityMainBinding;
 import com.balius.filimo.fragments.CategoryFragment;
 import com.balius.filimo.fragments.MyFilmsFragment;
 import com.balius.filimo.fragments.VitrinFragment;
 import com.balius.filimo.model.login.Login;
+
+import java.net.InetAddress;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
     Db db;
+    boolean doubleBackToExitPressedOnce = false;
 
     @SuppressLint("NonConstantResourceId")
     @Override
@@ -26,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
         db = Db.getInstance(getApplicationContext());
 
         getSupportFragmentManager().beginTransaction().replace(R.id.frame_container,new VitrinFragment()).commit();
@@ -52,26 +64,22 @@ public class MainActivity extends AppCompatActivity {
                     binding.toolbar.setVisibility(View.VISIBLE);
                     break;
             }
-
             return false;
         });
 
-
         binding.imgAccount.setOnClickListener(view -> {
             List<Login> loginList = db.iDao().getAllAccount();
-            Login login = new Login();
 
             if (loginList.size() > 0) {
-                login = loginList.get(0);
+                Login login = loginList.get(0);
                 Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
                 intent.putExtra("login", login);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
             } else {
-                Intent intent = new Intent(getApplicationContext(), UserProfileActivity.class);
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(intent);
             }
-
         });
 
         binding.imgSearch.setOnClickListener(view -> {
@@ -81,4 +89,22 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            return;
+        }
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, R.string.back_agin, Toast.LENGTH_SHORT).show();
+
+        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce=false;
+            }
+        }, 2000);
+    }
 }

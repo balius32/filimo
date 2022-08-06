@@ -24,13 +24,13 @@
                 android:layout_marginEnd="@dimen/margin_8"
                 app:srcCompat="@drawable/ic_baseline_arrow_forward_24" />
 
-            <com.balius.filimo.customview.PersianTextView
+            <com.balius.filimo.customview.PersianBoldTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
                 android:layout_marginEnd="@dimen/margin_8"
                 android:layout_toStartOf="@id/img_back"
                 android:text="@string/forget_pass"
-                android:layout_centerVertical="true"
                 android:textSize="@dimen/text_16" />
 
 
@@ -84,6 +84,7 @@
                 android:background="@drawable/custom_input"
                 android:drawableEnd="@drawable/ic_baseline_email_24"
                 android:drawablePadding="@dimen/margin_8"
+
                 android:hint="@string/enter_email"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

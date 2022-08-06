@@ -1,5 +1,6 @@
 package com.balius.filimo.fragments;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -12,9 +13,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.balius.filimo.activities.CategoryActivity;
+import com.balius.filimo.activities.LoginActivity;
 import com.balius.filimo.activities.ProfileActivity;
 import com.balius.filimo.activities.SearchActivity;
-import com.balius.filimo.activities.UserProfileActivity;
 import com.balius.filimo.adapter.HorizontalVideoAdapter;
 import com.balius.filimo.adapter.SliderPagerAdapter;
 import com.balius.filimo.adapter.VideoAdapter;
@@ -24,6 +25,7 @@ import com.balius.filimo.model.lastesvideo.VideoModel;
 import com.balius.filimo.model.login.Login;
 import com.balius.filimo.webservice.IResponseListener;
 import com.balius.filimo.webservice.WebserviceCaller;
+import com.google.android.material.appbar.AppBarLayout;
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
 import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
@@ -41,7 +43,7 @@ public class VitrinFragment extends Fragment {
         // Required empty public constructor
     }
 
-
+    @SuppressLint("ResourceAsColor")
     @Override
     public View onCreateView(@androidx.annotation.NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -55,7 +57,7 @@ public class VitrinFragment extends Fragment {
             @Override
             public void onSuccess(Object responseMessage) {
 
-                if (responseMessage !=null) {
+                if (responseMessage != null) {
 
                     VideoModel videoModel = (VideoModel) responseMessage;
 
@@ -66,9 +68,7 @@ public class VitrinFragment extends Fragment {
                     binding.scrollView.setVisibility(View.GONE);
                     binding.appBarLayout.setVisibility(View.GONE);
                     binding.constraintNoSignal.setVisibility(View.VISIBLE);
-
                 }
-
             }
 
             @Override
@@ -87,7 +87,7 @@ public class VitrinFragment extends Fragment {
             @Override
             public void onSuccess(Object responseMessage) {
 
-                if (responseMessage !=null) {
+                if (responseMessage != null) {
                     VideoModel videoModel = (VideoModel) responseMessage;
                     binding.recycleSpacial.setAdapter(new HorizontalVideoAdapter(getActivity(), videoModel.getAllInOneVideo()));
                     binding.recycleSpacial.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
@@ -110,9 +110,7 @@ public class VitrinFragment extends Fragment {
                     binding.scrollView.setVisibility(View.GONE);
                     binding.appBarLayout.setVisibility(View.GONE);
                     binding.constraintNoSignal.setVisibility(View.VISIBLE);
-
                 }
-
             }
 
             @Override
@@ -126,7 +124,7 @@ public class VitrinFragment extends Fragment {
         webserviceCaller.searchCategory(9, new IResponseListener() {
             @Override
             public void onSuccess(Object responseMessage) {
-                if (responseMessage !=null) {
+                if (responseMessage != null) {
                     VideoModel videoModel = (VideoModel) responseMessage;
                     binding.recycleSportVideo.setAdapter(new VideoAdapter(getActivity(), videoModel.getAllInOneVideo()));
                     binding.recycleSportVideo.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
@@ -135,9 +133,7 @@ public class VitrinFragment extends Fragment {
                     binding.scrollView.setVisibility(View.GONE);
                     binding.appBarLayout.setVisibility(View.GONE);
                     binding.constraintNoSignal.setVisibility(View.VISIBLE);
-
                 }
-
             }
 
             @Override
@@ -145,13 +141,14 @@ public class VitrinFragment extends Fragment {
 
             }
         });
+
+
         binding.relSpacial.setOnClickListener(view -> {
             Intent intent = new Intent(getActivity(), CategoryActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.putExtra("catId", "14");
             startActivity(intent);
         });
-
 
         binding.relLastestVideo.setOnClickListener(view -> {
             Intent intent = new Intent(getActivity(), CategoryActivity.class);
@@ -170,24 +167,70 @@ public class VitrinFragment extends Fragment {
 
         });
 
-        binding.imgAccount.setOnClickListener(view -> {
-            List<Login> loginList = db.iDao().getAllAccount();
+        //white
+        binding.imgAccountBlack.setVisibility(View.GONE);
+        binding.imgSearchBlack.setVisibility(View.GONE);
+        binding.imgAccountWhite.setVisibility(View.VISIBLE);
+        binding.imgSearchWhite.setVisibility(View.VISIBLE);
+        binding.txtAppNameBlack.setVisibility(View.GONE);
+        binding.txtAppNameWhite.setVisibility(View.VISIBLE);
 
-            if (loginList.size() > 0) {
-                Login login = loginList.get(0);
-                Intent intent = new Intent(getActivity(), ProfileActivity.class);
-                intent.putExtra("login", login);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
-            } else {
-                Intent intent = new Intent(getActivity(), UserProfileActivity.class);
-                startActivity(intent);
+
+        binding.appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+
+            boolean isShow;
+            int scrollRange = -1;
+
+            @SuppressLint("ResourceAsColor")
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                if (scrollRange == -1) {
+                    scrollRange = appBarLayout.getTotalScrollRange();
+                }
+                if (scrollRange + verticalOffset == 0) {
+                    //collapse map
+                    //black
+                    binding.imgAccountBlack.setVisibility(View.VISIBLE);
+                    binding.imgSearchBlack.setVisibility(View.VISIBLE);
+                    binding.imgAccountWhite.setVisibility(View.GONE);
+                    binding.imgSearchWhite.setVisibility(View.GONE);
+                    binding.txtAppNameBlack.setVisibility(View.VISIBLE);
+                    binding.txtAppNameWhite.setVisibility(View.GONE);
+                    isShow = true;
+
+                } else if (isShow) {
+                    //expanded map
+                    //white
+                    binding.imgAccountBlack.setVisibility(View.GONE);
+                    binding.imgSearchBlack.setVisibility(View.GONE);
+                    binding.imgAccountWhite.setVisibility(View.VISIBLE);
+                    binding.imgSearchWhite.setVisibility(View.VISIBLE);
+                    binding.txtAppNameBlack.setVisibility(View.GONE);
+                    binding.txtAppNameWhite.setVisibility(View.VISIBLE);
+
+                    isShow = false;
+                }
             }
         });
 
-        binding.imgSearch.setOnClickListener(view -> {
-            Intent intent = new Intent(getActivity(), SearchActivity.class);
-            startActivity(intent);
+
+
+
+
+        binding.imgAccountBlack.setOnClickListener(view -> {
+         account();
+        });
+
+        binding.imgAccountWhite.setOnClickListener(view -> {
+            account();
+        });
+
+        binding.imgSearchBlack.setOnClickListener(view -> {
+          search();
+        });
+
+        binding.imgSearchWhite.setOnClickListener(view -> {
+            search();
         });
 
 
@@ -210,5 +253,25 @@ public class VitrinFragment extends Fragment {
         });
 
         return binding.getRoot();
+    }
+
+    private void account() {
+        List<Login> loginList = db.iDao().getAllAccount();
+
+        if (loginList.size() > 0) {
+            Login login = loginList.get(0);
+            Intent intent = new Intent(getActivity(), ProfileActivity.class);
+            intent.putExtra("login", login);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        } else {
+            Intent intent = new Intent(getActivity(), LoginActivity.class);
+            startActivity(intent);
+        }
+    }
+
+    private void search() {
+        Intent intent = new Intent(getActivity(), SearchActivity.class);
+        startActivity(intent);
     }
 }

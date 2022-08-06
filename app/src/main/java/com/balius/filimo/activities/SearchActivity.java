@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.TargetApi;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -33,6 +34,8 @@ public class SearchActivity extends AppCompatActivity {
 
         webserviceCaller =new WebserviceCaller();
 
+        Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/IRANSansMobile.ttf");
+
 
         binding.edtSearch.setOnEditorActionListener((textView, i, keyEvent) -> {
             if (i == EditorInfo.IME_ACTION_SEARCH) {
@@ -50,11 +53,20 @@ public class SearchActivity extends AppCompatActivity {
         webserviceCaller.searchVideo(binding.edtSearch.getText().toString(), new IResponseListener() {
             @Override
             public void onSuccess(Object responseMessage) {
+                if (responseMessage !=null){
+
+
                 VideoModel videoModel= (VideoModel) responseMessage;
 
                 binding.recycleSearch.setAdapter(new SearchAdapter(getApplicationContext(),videoModel.getAllInOneVideo()));
                 binding.recycleSearch.setLayoutManager(new LinearLayoutManager(getApplicationContext(),
                         RecyclerView.VERTICAL,false));
+                }else {
+                    binding.constraintSearch.setVisibility(View.GONE);
+                    binding.recycleSearch.setVisibility(View.GONE);
+                    binding.constraintNoSignal.setVisibility(View.VISIBLE);
+
+                }
             }
 
             @Override
@@ -68,8 +80,7 @@ public class SearchActivity extends AppCompatActivity {
 
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
-    private void forceRTLIfSupported()
-    {
+    private void forceRTLIfSupported() {
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1){
             getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
         }
