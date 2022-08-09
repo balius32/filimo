@@ -44,6 +44,8 @@ public class VarColumnGridLayoutManager extends GridLayoutManager {
             } else if (widthDp >= 480) {
                 return 3;
             } else if (widthDp >= 320) {
+                return 3;
+            } else if (widthDp >= 310) {
                 return 2;
             } else {
                 return 3;
@@ -51,7 +53,7 @@ public class VarColumnGridLayoutManager extends GridLayoutManager {
         }
 
         public static int dpFromPx(float px) {
-            return (int)(px / context.getResources().getDisplayMetrics().density + 0.5f);
+            return (int) (px / context.getResources().getDisplayMetrics().density + 0.5f);
         }
     }
 

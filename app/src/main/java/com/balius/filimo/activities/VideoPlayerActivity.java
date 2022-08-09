@@ -134,9 +134,7 @@ public class VideoPlayerActivity extends AppCompatActivity {
             player.play();
         });
 
-
         checkSaveWhite();
-
 
         binding.appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             boolean isShow;
@@ -160,7 +158,7 @@ public class VideoPlayerActivity extends AppCompatActivity {
 
                     binding.imgBackBlack.setVisibility(View.VISIBLE);
                     binding.imgBackWhite.setVisibility(View.GONE);
-                    checkSaveBlack();
+
                     isShow = true;
 
                 } else if (isShow) {
@@ -353,7 +351,6 @@ public class VideoPlayerActivity extends AppCompatActivity {
 
     }
 
-
     private void noCommentVideo() {
 
         binding.recycleComments.setVisibility(View.INVISIBLE);
@@ -440,21 +437,10 @@ public class VideoPlayerActivity extends AppCompatActivity {
         if (saveList.size() > 0) {
 
             binding.imgSaveWhite.setBackgroundResource(R.drawable.ic_baseline_bookmark_24);
+            binding.imgSaveBlack.setBackgroundResource(R.drawable.book_dark);
         } else {
             binding.imgSaveWhite.setBackgroundResource(R.drawable.ic_baseline_bookmark_border_24);
-        }
-    }
 
-    private void checkSaveBlack() {
-        List<Save> saveList = db.iDao().getSaveVideos(video.getVideoTitle());
-
-        if (saveList.size() > 0) {
-
-            binding.imgSaveBlack.setBackgroundResource(R.drawable.ic_baseline_bookmark_24);
-
-        } else {
-            binding.imgSaveBlack.setBackgroundResource(R.drawable.book_dark);
-            binding.imgSaveWhite.setVisibility(View.GONE);
         }
     }
 
@@ -463,8 +449,9 @@ public class VideoPlayerActivity extends AppCompatActivity {
         Intent shareIntent = new Intent(Intent.ACTION_SEND);
         shareIntent.setType("text/plain");
         shareIntent.putExtra(Intent.EXTRA_SUBJECT, "My application name");
-        String shareMessage = "Share the video";
-        shareMessage = shareMessage + video.getVideoUrl();
+        String shareMessage = "برای دانلود ";
+        String advertise = "برنامه فیلیمو را نصب کنید";
+        shareMessage = shareMessage + video.getVideoTitle() + advertise;
         shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
         startActivity(Intent.createChooser(shareIntent, "choose one"));
     }

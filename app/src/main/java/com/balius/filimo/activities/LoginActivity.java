@@ -86,14 +86,14 @@ public class LoginActivity extends AppCompatActivity {
 
                 if (login.getSuccess().equals("1")) {
 
-                    Toast.makeText(LoginActivity.this, "login succussfuly", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, R.string.login_success, Toast.LENGTH_SHORT).show();
                     long result = db.iDao().addAccount(login);
 
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
                     binding.progressLogin.setVisibility(View.GONE);
                 } else {
-                    Toast.makeText(LoginActivity.this, "Login faild", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, R.string.login_fail, Toast.LENGTH_SHORT).show();
                     finish();
                     binding.progressLogin.setVisibility(View.GONE);
                 }

@@ -33,7 +33,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="@dimen/margin_8"
                 android:layout_toStartOf="@id/img_back"
-                android:text="category_name" />
+                />
 
         </RelativeLayout>
     </androidx.appcompat.widget.Toolbar>
@@ -52,7 +52,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="@dimen/margin_8"
-            android:text="cat_ name" />
+            />
     </RelativeLayout>
 
 

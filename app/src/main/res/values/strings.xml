@@ -60,4 +60,6 @@
     <string name="story">داستان فیلم</string>
     <string name="more_info">اطلاعات بیشتر</string>
     <string name="back_agin">برای خروج دوباره دکمه بازگشت را فشار دهید</string>
+    <string name="login_success">وردود با موفقیت انجام شد</string>
+    <string name="login_fail">خطا در ورود به حساب کاربری</string>
 </resources>
