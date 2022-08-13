@@ -1,5 +1,6 @@
 package com.balius.filimo.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -22,17 +23,19 @@ import java.util.List;
 public class VideoCategoryAdapter extends RecyclerView.Adapter<VideoCategoryAdapter.CatVH> {
     List<Video> videoList;
     Context context;
-    LayoutInflater inflater;
+
 
     public VideoCategoryAdapter(List<Video> videoList, Context context) {
         this.videoList = videoList;
         this.context = context;
-        inflater = LayoutInflater.from(context);
+
     }
 
     @NonNull
     @Override
     public CatVH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        LayoutInflater inflater = LayoutInflater.from(context);
+        @SuppressLint("InflateParams")
         View view = inflater.inflate(R.layout.save_row,null);
 
         return new CatVH(view);
@@ -62,7 +65,7 @@ public class VideoCategoryAdapter extends RecyclerView.Adapter<VideoCategoryAdap
         return videoList.size();
     }
 
-    class CatVH extends RecyclerView.ViewHolder{
+    static class CatVH extends RecyclerView.ViewHolder{
         AppCompatImageView img_video;
         AppCompatTextView txt_video_name;
         RelativeLayout rel_save_video;

@@ -19,17 +19,17 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentV
 
     Context context;
     List<UserComment> userCommentList;
-    LayoutInflater inflater;
 
     public CommentAdapter(Context context ,List<UserComment> userCommentList) {
-        this.context=context;
-        this.userCommentList=userCommentList;
-        inflater = LayoutInflater.from(context);
+        this.context = context;
+        this.userCommentList = userCommentList;
     }
 
     @NonNull
     @Override
     public CommentVH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
+        LayoutInflater inflater = LayoutInflater.from(context);
 
         View view = inflater.inflate(R.layout.comment_row,null);
 
@@ -50,7 +50,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentV
         return userCommentList.size();
     }
 
-    class CommentVH extends RecyclerView.ViewHolder{
+    static class CommentVH extends RecyclerView.ViewHolder{
         AppCompatTextView txt_username;
         AppCompatTextView txt_comment;
         public CommentVH(@NonNull View itemView) {

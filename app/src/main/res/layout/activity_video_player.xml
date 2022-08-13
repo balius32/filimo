@@ -112,11 +112,12 @@
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/img_cover"
-                    android:layout_width="@dimen/margin_120"
-                    android:layout_height="@dimen/margin_150"
+                    android:layout_width="@dimen/margin_130"
+                    android:layout_height="@dimen/margin_170"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginEnd="@dimen/margin_16" />
+                    android:layout_marginEnd="@dimen/margin_16"
+                    android:scaleType="fitXY" />
 
                 <com.balius.filimo.customview.PersianTextView
                     android:id="@+id/txt_title"
@@ -454,15 +455,22 @@
             <RelativeLayout
                 android:id="@+id/rel_comments"
                 android:layout_width="match_parent"
-
                 android:layout_height="wrap_content"
                 android:layout_below="@id/rel_lbl_comments"
                 android:layout_marginTop="@dimen/margin_8">
 
+                <ProgressBar
+                    android:id="@+id/progress_comment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:indeterminateTint="@color/dark_yellow"
+                    android:visibility="gone" />
+
                 <androidx.cardview.widget.CardView
                     android:id="@+id/card_no_comment"
                     android:layout_width="match_parent"
-                    android:layout_height="120dp">
+                    android:layout_height="80dp">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -481,7 +489,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycle_comments"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="@dimen/margin_120" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -498,6 +506,7 @@
                     android:layout_height="@dimen/margin_40"
                     android:layout_marginStart="@dimen/margin_8"
                     android:layout_marginEnd="@dimen/margin_8"
+                    android:layout_marginBottom="@dimen/margin_8"
                     android:layout_toEndOf="@id/img_send_comment"
                     android:background="@drawable/custom_input"
                     android:drawableEnd="@drawable/ic_baseline_person_24"
@@ -508,10 +517,11 @@
                     android:id="@+id/img_send_comment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/edt_comment"
                     android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/margin_8"
-                    app:srcCompat="@drawable/ic_baseline_keyboard_arrow_left_24" />
+                    android:layout_marginTop="@dimen/margin_8"
+                    app:srcCompat="@drawable/ic__738905_sent_mail_communication_send_message_icon" />
 
             </RelativeLayout>
 

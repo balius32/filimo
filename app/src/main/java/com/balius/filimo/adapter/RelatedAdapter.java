@@ -23,17 +23,19 @@ import java.util.List;
 public class RelatedAdapter extends RecyclerView.Adapter<RelatedAdapter.RelatedVH> {
     List<Related> relatedList ;
     Context context;
-    LayoutInflater inflater;
+
 
     public RelatedAdapter(List<Related> relatedList, Context context) {
         this.relatedList = relatedList;
         this.context = context;
-        inflater = LayoutInflater.from(context);
     }
 
     @NonNull
     @Override
     public RelatedVH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
+        LayoutInflater inflater = LayoutInflater.from(context);
+
         View view = inflater.inflate(R.layout.video_row,null);
         return new RelatedVH(view);
     }
@@ -70,7 +72,7 @@ public class RelatedAdapter extends RecyclerView.Adapter<RelatedAdapter.RelatedV
         return relatedList.size();
     }
 
-    class RelatedVH extends RecyclerView.ViewHolder{
+    static class RelatedVH extends RecyclerView.ViewHolder{
 
         AppCompatImageView img_video;
         AppCompatTextView txt_video_name;

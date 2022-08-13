@@ -82,6 +82,7 @@ public class VitrinFragment extends Fragment {
 
         binding.progressPager.setVisibility(View.VISIBLE);
         binding.progressSpacial.setVisibility(View.VISIBLE);
+
         //spacial catId = 14
         webserviceCaller.searchCategory(14, new IResponseListener() {
             @Override

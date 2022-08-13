@@ -1,20 +1,18 @@
 package com.balius.filimo.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.annotation.TargetApi;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.KeyEvent;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
-import android.widget.TextView;
 
-import com.balius.filimo.R;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.balius.filimo.adapter.SearchAdapter;
 import com.balius.filimo.databinding.ActivitySearchBinding;
 import com.balius.filimo.model.lastesvideo.VideoModel;
@@ -35,6 +33,7 @@ public class SearchActivity extends AppCompatActivity {
         webserviceCaller =new WebserviceCaller();
 
         Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/IRANSansMobile.ttf");
+        binding.edtSearch.setTypeface(typeface);
 
 
         binding.edtSearch.setOnEditorActionListener((textView, i, keyEvent) -> {
@@ -46,6 +45,26 @@ public class SearchActivity extends AppCompatActivity {
 
         });
         binding.imgBack.setOnClickListener(view -> finish());
+
+        binding.edtSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable edit) {
+                if (edit.length() != 0) {
+                    performSearch();
+                    // Business logic for search here
+                }
+            }
+        });
 
     }
 

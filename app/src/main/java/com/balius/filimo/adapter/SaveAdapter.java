@@ -1,5 +1,6 @@
 package com.balius.filimo.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -23,21 +24,21 @@ import java.util.List;
 public class SaveAdapter extends RecyclerView.Adapter<SaveAdapter.SaveVH> {
     List<Save> saveList;
     Context context;
-    LayoutInflater inflater;
+
     Video video;
 
     public SaveAdapter(Context context, List<Save> saveList) {
         this.context = context;
         this.saveList = saveList;
-        inflater = LayoutInflater.from(context);
+
         video = new Video();
     }
 
     @NonNull
     @Override
     public SaveVH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
-        View view = inflater.inflate(R.layout.save_row, null);
+        LayoutInflater inflater = LayoutInflater.from(context);
+        @SuppressLint("InflateParams") View view = inflater.inflate(R.layout.save_row, null);
 
         return new SaveVH(view);
     }
@@ -71,7 +72,7 @@ public class SaveAdapter extends RecyclerView.Adapter<SaveAdapter.SaveVH> {
         return saveList.size();
     }
 
-    class SaveVH extends RecyclerView.ViewHolder {
+    static class SaveVH extends RecyclerView.ViewHolder {
         AppCompatImageView img_video;
         AppCompatTextView txt_video_name;
         RelativeLayout rel_save_video;

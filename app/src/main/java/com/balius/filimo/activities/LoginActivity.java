@@ -91,6 +91,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
+                    finish();
                     binding.progressLogin.setVisibility(View.GONE);
                 } else {
                     Toast.makeText(LoginActivity.this, R.string.login_fail, Toast.LENGTH_SHORT).show();

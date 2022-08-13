@@ -194,7 +194,7 @@ public class VideoPlayerActivity extends AppCompatActivity {
                 binding.imgSaveWhite.setBackgroundResource(R.drawable.ic_baseline_bookmark_24);
                 binding.imgSaveBlack.setBackgroundResource(R.drawable.book_dark);
 
-                video.setSave("1");
+
                 Save save = new Save(video.getId(), video.getVideoTitle(), video.getVideoThumbnailB(),
                         video.getVideoUrl(), video.getVideoDescription(), video.getVideoDuration());
                 db.iDao().addSave(save);
@@ -264,6 +264,27 @@ public class VideoPlayerActivity extends AppCompatActivity {
             }
         });
 
+
+        //check like & dislike
+        List<LikedVideos> likedVideosList = db.iDao().getLikeVideos(video.getVideoTitle());
+
+        if (likedVideosList.size() > 0) {
+            LikedVideos likedVideos1 = likedVideosList.get(0);
+
+            if (likedVideos1.isLike_state()) {
+                binding.imgLike.setColorFilter(ContextCompat.getColor(getApplicationContext(),
+                        R.color.green), android.graphics.PorterDuff.Mode.SRC_IN);
+                binding.imgDislike.setColorFilter(ContextCompat.getColor(getApplicationContext(),
+                        R.color.dark_gray), android.graphics.PorterDuff.Mode.SRC_IN);
+            } else if (likedVideos1.isDislike_state()) {
+                binding.imgDislike.setColorFilter(ContextCompat.getColor(getApplicationContext(),
+                        R.color.red), android.graphics.PorterDuff.Mode.SRC_IN);
+                binding.imgLike.setColorFilter(ContextCompat.getColor(getApplicationContext(),
+                        R.color.dark_gray), android.graphics.PorterDuff.Mode.SRC_IN);
+            }
+        }
+
+
         binding.imgSendComment.setOnClickListener(view -> {
             List<Login> loginList = db.iDao().getAllAccount();
             String text = binding.edtComment.getText().toString();
@@ -277,6 +298,39 @@ public class VideoPlayerActivity extends AppCompatActivity {
                     String username = login.getName();
 
                     insertComment(text, username);
+
+                    binding.progressComment.setVisibility(View.VISIBLE);
+                    webserviceCaller.getSingleVideo(vid, new IResponseListener() {
+                        @Override
+                        public void onSuccess(Object responseMessage) {
+
+                            if (responseMessage != null) {
+                                SingleVideoModel singleVideoModel = (SingleVideoModel) responseMessage;
+
+                                List<SingleVideo> singleVideoList = singleVideoModel.getAllInOneVideo();
+                                singleVideo = singleVideoList.get(0);
+                                userCommentList = singleVideo.getUserComments();
+
+
+                                binding.recycleComments.setAdapter(new CommentAdapter(getApplicationContext(), userCommentList));
+                                binding.recycleComments.setLayoutManager(new LinearLayoutManager(getApplicationContext(),
+                                        RecyclerView.VERTICAL, false));
+
+                                binding.progressComment.setVisibility(View.GONE);
+                            } else {
+                                binding.appBarLayout.setVisibility(View.GONE);
+                                binding.scrollView.setVisibility(View.GONE);
+                                binding.constraintNoSignal.setVisibility(View.VISIBLE);
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(String onErrorMessage) {
+                            binding.progressComment.setVisibility(View.GONE);
+                        }
+                    });
+
+
                 }
             } else {
                 Toast.makeText(VideoPlayerActivity.this, R.string.login_firs, Toast.LENGTH_SHORT).show();

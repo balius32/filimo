@@ -24,19 +24,20 @@ import java.util.List;
 public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoVH> {
     Context context;
     List<Video> videoList;
-    LayoutInflater inflater;
     Db db;
 
     public VideoAdapter(Context context, List<Video> videoList) {
         this.context = context;
         this.videoList = videoList;
-        inflater = LayoutInflater.from(context);
         db = Db.getInstance(context);
     }
 
     @NonNull
     @Override
     public VideoVH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
+        LayoutInflater inflater = LayoutInflater.from(context);
+
         View view = inflater.inflate(R.layout.video_row, null);
 
         return new VideoVH(view);
@@ -66,7 +67,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoVH> {
         return videoList.size();
     }
 
-    class VideoVH extends RecyclerView.ViewHolder {
+    static class VideoVH extends RecyclerView.ViewHolder {
         AppCompatImageView img_video;
         AppCompatTextView txt_video_name;
         RelativeLayout rel_video;

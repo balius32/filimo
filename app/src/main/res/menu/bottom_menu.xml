@@ -2,17 +2,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:id="@+id/item_myfilms"
-        android:icon="@drawable/ic_baseline_video_library_24"
-        android:title="@string/myfilms"/>
-
+        android:title="@string/myfilms"
+        android:icon="@drawable/ic_baseline_video_library_24"/>
     <item android:id="@+id/item_category"
+        android:title="@string/category"
         android:icon="@drawable/ic_baseline_category_24"
-        android:title="@string/category"/>
+        />
 
 
     <item android:id="@+id/item_vitrin"
+        android:title="@string/vitrin"
         android:icon="@drawable/ic_baseline_home_24"
-        android:title="@string/vitrin"/>
+      />
 
 
 </menu>

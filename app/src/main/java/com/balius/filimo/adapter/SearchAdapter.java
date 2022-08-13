@@ -22,18 +22,19 @@ import java.util.List;
 public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchVh> {
     Context context;
     List<Video> videoList;
-    LayoutInflater inflater;
 
-    public SearchAdapter( Context context, List<Video> videoList) {
-        this.context=context;
-        this.videoList=videoList;
-        inflater= LayoutInflater.from(context);
+
+    public SearchAdapter(Context context, List<Video> videoList) {
+        this.context = context;
+        this.videoList = videoList;
+
     }
 
     @NonNull
     @Override
     public SearchVh onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.search_row,null);
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View view = inflater.inflate(R.layout.search_row, null);
         return new SearchVh(view);
     }
 
@@ -59,7 +60,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchVh> 
         return videoList.size();
     }
 
-    class SearchVh extends RecyclerView.ViewHolder{
+    static class SearchVh extends RecyclerView.ViewHolder {
         AppCompatImageView img_video;
         AppCompatTextView txt_name;
         ConstraintLayout const_layout;
@@ -68,7 +69,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchVh> 
             super(itemView);
             img_video = itemView.findViewById(R.id.img_video);
             txt_name = itemView.findViewById(R.id.txt_name);
-           const_layout = itemView.findViewById(R.id.const_layout);
+            const_layout = itemView.findViewById(R.id.const_layout);
         }
     }
 }

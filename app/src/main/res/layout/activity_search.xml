@@ -80,32 +80,37 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:id="@+id/constraint_search">
+            android:id="@+id/constraint_search"
+            android:layoutDirection="ltr">
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/edt_search"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/margin_40"
-                android:drawableEnd="@drawable/ic_baseline_search_24"
-                android:drawablePadding="@dimen/margin_8"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
                 android:background="@drawable/custom_input"
+                android:drawableEnd="@drawable/ic_baseline_search_24"
+                android:drawablePadding="@dimen/margin_16"
                 android:hint="@string/search"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/img_back"
                 app:layout_constraintTop_toTopOf="parent"
-                android:imeOptions="actionSearch"
-                android:inputType="text"/>
+                />
 
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/img_back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_baseline_arrow_back_24" />
+                app:srcCompat="@drawable/ic__590516_arrow_email_forward_message_right_icon" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

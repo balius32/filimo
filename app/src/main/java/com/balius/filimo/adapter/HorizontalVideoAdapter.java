@@ -24,13 +24,11 @@ public class HorizontalVideoAdapter extends RecyclerView.Adapter<HorizontalVideo
 
     Context context;
     List<Video> videoList;
-    LayoutInflater inflater;
     Db db;
 
     public HorizontalVideoAdapter(Context context, List<Video> videoList) {
         this.context = context;
         this.videoList = videoList;
-        inflater = LayoutInflater.from(context);
         db = Db.getInstance(context);
     }
 
@@ -38,6 +36,8 @@ public class HorizontalVideoAdapter extends RecyclerView.Adapter<HorizontalVideo
     @NonNull
     @Override
     public horzonVideoVh onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
+        LayoutInflater inflater = LayoutInflater.from(context);
 
         View view = inflater.inflate(R.layout.horizon_video_row,null);
 
@@ -70,7 +70,7 @@ public class HorizontalVideoAdapter extends RecyclerView.Adapter<HorizontalVideo
         return videoList.size();
     }
 
-    class horzonVideoVh extends RecyclerView.ViewHolder{
+    static class horzonVideoVh extends RecyclerView.ViewHolder{
         AppCompatImageView img_video;
         RelativeLayout rel_video;
         public horzonVideoVh(@NonNull View itemView) {

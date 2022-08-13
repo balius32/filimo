@@ -25,16 +25,17 @@ public class WatchedAdapter extends RecyclerView.Adapter<WatchedAdapter.watchVH>
 
     List<Watched> watchedList;
     Context context;
-    LayoutInflater inflater;
+
     public WatchedAdapter( List<Watched> watchedList, Context context) {
         this.watchedList = watchedList;
         this.context = context;
-        inflater= LayoutInflater.from(context);
+
     }
 
     @NonNull
     @Override
     public watchVH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.save_row,null);
         return new watchVH(view);
     }
@@ -70,7 +71,7 @@ public class WatchedAdapter extends RecyclerView.Adapter<WatchedAdapter.watchVH>
         return watchedList.size();
     }
 
-    class watchVH extends RecyclerView.ViewHolder{
+    static class watchVH extends RecyclerView.ViewHolder{
 
         AppCompatImageView img_video;
         AppCompatTextView txt_video_name;
