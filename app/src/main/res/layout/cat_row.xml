@@ -30,12 +30,11 @@
                 android:id="@+id/img_categories"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:adjustViewBounds="true"
                 android:scaleType="fitXY"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:adjustViewBounds="true"
-                />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <com.balius.filimo.customview.PersianTextView
                 android:id="@+id/txt_title"

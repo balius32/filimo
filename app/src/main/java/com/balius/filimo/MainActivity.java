@@ -98,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
             super.onBackPressed();
             return;
         }
+
         this.doubleBackToExitPressedOnce = true;
         Toast.makeText(this, R.string.back_agin, Toast.LENGTH_SHORT).show();
 
@@ -108,5 +109,6 @@ public class MainActivity extends AppCompatActivity {
                 doubleBackToExitPressedOnce=false;
             }
         }, 2000);
+
     }
 }

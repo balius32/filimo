@@ -45,6 +45,7 @@ public class SaveAdapter extends RecyclerView.Adapter<SaveAdapter.SaveVH> {
 
     @Override
     public void onBindViewHolder(@NonNull SaveVH holder, int position) {
+
         Save save = saveList.get(position);
 
         holder.txt_video_name.setText(save.getVideo_title());
@@ -52,6 +53,7 @@ public class SaveAdapter extends RecyclerView.Adapter<SaveAdapter.SaveVH> {
         Picasso.get().load(save.getVideo_image()).into(holder.img_video);
 
         holder.rel_save_video.setOnClickListener(view -> {
+
             video.setId(save.getVideo_id());
             video.setVideoTitle(save.getVideo_title());
             video.setVideoThumbnailB(save.getVideo_image());
